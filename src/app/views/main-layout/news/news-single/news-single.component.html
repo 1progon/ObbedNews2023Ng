@@ -42,7 +42,7 @@
 
   </app-card-header>
   <app-card-body>
-    <div *ngIf="news.mainThumb && news.mainImage"
+    <div *ngIf="news.mainImage"
          class="main-image-block">
       <a [href]="imagesPath + '/' + news.mainImage" target="_blank">
         <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>

@@ -2,8 +2,8 @@
   <app-card>
     <app-card-body>
       <a [routerLink]="['/', r.news, c.slug]" class="news-row">
-        <div class="news-image">
-          <img [alt]="'news thumb' + c.name"
+        <div *ngIf="c.mainThumb" class="news-image">
+          <img [alt]="'превью картинка к новости' + c.name"
                [src]="imagesPath + '/' + c.mainThumb"
                height="auto"
                width="100">

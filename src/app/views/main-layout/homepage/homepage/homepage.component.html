@@ -8,7 +8,7 @@
       <div class="block">
         <ng-container *ngFor="let c of dto.popular">
           <a [routerLink]="['/', r.news, c.slug]">
-            <img [alt]="'картинка к новости ' + c.name"
+            <img *ngIf="c.mainThumb" [alt]="'картинка к новости ' + c.name"
                  [src]="imagesPath + '/' + c.mainThumb">
             <div>
               {{c.name}}
