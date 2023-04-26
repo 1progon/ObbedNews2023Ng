@@ -1,0 +1,11 @@
+<app-preloader *ngIf="loading"/>
+<app-card>
+  <app-card-header>
+    Все новости в категории - {{categoryName|uppercase}}
+  </app-card-header>
+  <app-card-body>
+    <app-news-list-index [newsList]="newsList"/>
+
+    <app-pagination [page]="page" [route]="['/', r.categories, slug]"/>
+  </app-card-body>
+</app-card>

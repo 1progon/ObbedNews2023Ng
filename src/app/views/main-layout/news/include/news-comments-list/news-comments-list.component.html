@@ -1,0 +1,113 @@
+<div class="comment-list">
+
+  <ng-container *ngIf="comments.length">
+    <ng-container *ngFor="let mainComment of comments;index as index">
+      <ng-container *ngIf="mainComment.parentCommentId == null">
+        <app-card>
+          <app-card-body>
+            <div [class.moderation]="mainComment.status == CommentStatus.Moderation"
+                 class="comment-row">
+
+              <div *ngIf="mainComment.status == CommentStatus.Active" class="avatar">
+                <a [routerLink]="['/', r.users, mainComment.user.id]">
+                  <img *ngIf="mainComment.user.avatar"
+                       [src]="mainComment.user.avatar"
+                       alt="comment author avatar icon"
+                       width='60'/>
+
+                  <svg *ngIf="!mainComment.user.avatar"
+                       viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="comment-message">
+                <p *ngIf="mainComment.status === CommentStatus.Moderation">Модерация...</p>
+
+                <b *ngIf="mainComment.title">{{mainComment.title}}</b>
+
+                <p>{{mainComment.message}}</p>
+
+                <p (click)="showResponseField(index)"
+                   *ngIf="mainComment.status === CommentStatus.Active"
+                   class="reply">
+                  <svg viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 14h2v-3h3V9h-3V6h-2v3H8v2h3z"></path>
+                    <path
+                      d="M20 2H4c-1.103 0-2 .897-2 2v18l5.333-4H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14H6.667L4 18V4h16v12z"></path>
+                  </svg>
+                  Ответить
+                </p>
+
+                <p *ngIf="responseFieldId == index && !authService.isLogged()">
+                  Необходимо <a [routerLink]="['/', r.login]"><b>Войти</b></a>
+                  или <a [routerLink]="['/', r.register]"><b>Зарегистрироваться</b></a>
+                </p>
+
+                <app-card *ngIf="responseFieldId == index && authService.isLogged()">
+                  <app-card-body>
+                    <form #ngForm="ngForm"
+                          (ngSubmit)="onSubmitSubComment(mainComment.id)"
+                          *ngIf="responseFieldId === index && authService.isLogged()"
+                          style="max-width: 100%">
+
+                      <label class="required" for="message">Текст комментария</label>
+                      <textarea [(ngModel)]="subCommentDto.message"
+                                [minlength]="5"
+                                [rows]="5"
+                                id="message"
+                                name="message"
+                                required></textarea>
+
+                      <button [disabled]="ngForm.invalid || ngForm.pristine"
+                              class="btn"
+                              type="submit">
+                        {{ isPosting ? 'Публикуем...' : 'Добавить комментарий' }}
+                      </button>
+                    </form>
+                  </app-card-body>
+                </app-card>
+
+
+              </div>
+
+            </div>
+
+            <!-- child comments -->
+            <div *ngIf="mainComment.childComments.length" class="comment-list child-comments">
+              <ng-container *ngFor="let childComment of mainComment.childComments">
+                <ng-container *ngIf="childComment.parentCommentId != null">
+                  <app-card>
+                    <app-card-body>
+                      <div class="comment-row">
+                        <div class="avatar">
+                          <img
+                            [src]="childComment.user.avatar ?? 'https://i.pravatar.cc/60'"
+                            alt=""
+                            width='50'/>
+                        </div>
+                        <div>{{childComment.message}}</div>
+                      </div>
+                    </app-card-body>
+                  </app-card>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- end child comments -->
+
+          </app-card-body>
+
+        </app-card>
+      </ng-container>
+
+    </ng-container>
+
+
+  </ng-container>
+
+
+</div>

@@ -1,0 +1,362 @@
+<div *ngIf="auth.isLoggedAdmin()" style="margin-bottom: 10px;">
+  <a [routerLink]="['/', r.admin, r.news, news.id, r.newsDetail]"
+     class="btn">Открыть в админке</a>
+</div>
+
+<app-card>
+  <app-card-header>
+    <h2>{{news.name}}</h2>
+
+    <p *ngIf="news.category">
+      {{news.category.parentCategory?.name}} / {{news.category.name}}
+    </p>
+
+    <div (click)="updateFav()" class="favorites">
+      <ng-container *ngIf="!wrapperComponent.loading">
+        <ng-container *ngIf="!auth.isLogged() || !isInFavorites">
+          <svg [class.updating]="isUpdatingFavorites"
+               style="fill: rgba(255, 0, 0, 1)"
+               viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 2H6c-1.103 0-2 .897-2 2v18l8-4.572L20 22V4c0-1.103-.897-2-2-2zm0 16.553-6-3.428-6 3.428V4h12v14.553z"></path>
+          </svg>
+
+        </ng-container>
+
+        <ng-container *ngIf="auth.isLogged() && isInFavorites">
+          <svg [class.updating]="isUpdatingFavorites"
+               style="fill: rgba(255, 0, 0, 1)"
+               viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 10.132v-6c0-1.103-.897-2-2-2H7c-1.103 0-2 .897-2 2V22l7-4.666L19 22V10.132z"></path>
+          </svg>
+
+        </ng-container>
+
+
+      </ng-container>
+
+
+    </div>
+
+  </app-card-header>
+  <app-card-body>
+    <div class="main-image-block">
+      <a [href]="imagesPath + '/' + news.mainImage" target="_blank">
+        <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>
+        <img (load)="wrapperService.imageLoaded = true"
+             *ngIf="safeMainImage"
+             [alt]="'картинка к новости ' + news.name"
+             [src]="safeMainImage">
+
+      </a>
+
+    </div>
+
+
+    <div *ngIf="news.newsLink || news.description" class="lead">
+      <div *ngIf="news.description" [innerHTML]="news.description"></div>
+      <div *ngIf="news.newsLink">Оригинал: {{news.newsLink}}</div>
+    </div>
+
+
+    <div #articleWrapper class="article-wrapper">
+      <article *ngIf="news.article"
+               [class.hidden-article]="hiddenArticle"
+               [innerHTML]="news.article"></article>
+
+
+      <b (click)="updateHiddenArticle()" *ngIf="hiddenArticle"
+         class="pointer">Показать весь текст!</b>
+
+      <b (click)="updateHiddenArticle(articleWrapper)" *ngIf="!hiddenArticle"
+         class="pointer">Скрыть часть текста</b>
+
+    </div>
+
+
+    <!-- <div *ngIf="news.newsLink" class="websites-links"> -->
+    <!--   <a [href]="siteWithHttp(news.newsLink)" rel="noreferrer noopener nofollow" -->
+    <!--      target="_blank">{{siteNameWithoutHttp(news.newsLink)}}</a> -->
+    <!-- </div> -->
+  </app-card-body>
+  <app-card-footer>
+
+
+    <div *ngIf="auth.isLogged() && votedLikeFor != LikeType.Undefined">
+      Ваш голос =
+      <b>{{votedLikeFor == LikeType.Like ? 'Нравится' : (votedLikeFor == LikeType.Dislike) ? 'Не нравится' :
+        'Кажется не голосовали'}}</b>
+    </div>
+
+    <div *ngIf="!auth.isLogged() || votedLikeFor == LikeType.Undefined">Пожалуйста проголосуйте!</div>
+
+  </app-card-footer>
+</app-card>
+
+<!-- tags -->
+<app-card *ngIf="news.tags?.length">
+  <app-card-header>
+    Теги
+  </app-card-header>
+  <app-card-body>
+    <div class="tags">
+      <a *ngFor="let t of news.tags"
+         [routerLink]="['/', r.tags, t.slug]"
+         class="btn btn-small">{{t.name}}</a>
+    </div>
+  </app-card-body>
+</app-card>
+<!-- end tags -->
+
+<!-- likes dislikes buttons -->
+<app-card>
+  <app-card-header>
+    <p>Проголосовало пользователей: {{votedPeopleCount()}}</p>
+  </app-card-header>
+  <app-card-body>
+    <div class="likes-dislikes-buttons">
+
+      <!-- left button -->
+      <button (click)="onLikeDislikeUpdate(LikeType.Dislike)"
+              [disabled]=isUpdatingLike
+              class="btn btn-danger"
+              type="button">
+
+        <div>{{isUpdatingLike ? 'Обновление...' : 'Дизлайк'}}</div>
+
+        <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Dislike"
+             viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+        </svg>
+
+      </button>
+      <!-- end left button -->
+
+
+      <!-- progress bars -->
+      <div class="progress">
+
+        <!-- dislike -->
+        <div class="left-progress">
+          <div [style.width.%]="leftProgressWidth()" class="filled">
+            <span>{{news.dislikesCount}}</span>
+          </div>
+        </div>
+        <!-- end dislike -->
+
+
+        <div class="middleLine">
+          <!-- news.likeRate -->
+        </div>
+
+        <!-- like -->
+        <div class="right-progress">
+          <div [style.width.%]="rightProgressWidth()" class="filled">
+            <span>{{news.likesCount}}</span>
+          </div>
+        </div>
+        <!-- end like -->
+
+      </div>
+      <!-- end progress bars -->
+
+      <!-- right button -->
+      <button (click)="onLikeDislikeUpdate(LikeType.Like)"
+              [disabled]="isUpdatingLike"
+              class="btn"
+              type="button">
+        <div>{{isUpdatingLike ? 'Обновление...' : 'Лайк'}}</div>
+
+        <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Like"
+             viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+        </svg>
+
+
+      </button>
+      <!-- end right button -->
+    </div>
+
+  </app-card-body>
+
+</app-card>
+<!-- end likes dislikes buttons -->
+
+<!-- watch series -->
+<div #watchSeriesRef></div>
+<app-card *ngIf="news.videoSections.length > 0">
+  <app-card-header>
+    Смотреть видео
+  </app-card-header>
+  <app-card-body>
+    <div class="lead news-meta">
+      <div>
+        <a [relativeTo]="route" class="btn" routerLink="episodes/1">
+          <svg height="24"
+               style="fill: rgba(255, 255, 255, 1)"
+               viewBox="0 0 24 24"
+               width="24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+            <path d="m9 17 8-5-8-5z"></path>
+          </svg>
+          Начать просмотр
+        </a>
+      </div>
+
+      <button (click)="showPreview(watchSeriesRef)"
+              *ngIf="!news.isFree"
+              class="btn btn-warning btn-outline"
+              type="button">
+        {{ isOnlyPreview ? 'Смотреть все' : 'Смотреть предпросмотр' }}
+      </button>
+
+      <div>
+        <svg viewBox="0 0 25 25"
+             xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 22c3.976 0 8-1.374 8-4V6c0-2.626-4.024-4-8-4S4 3.374 4 6v12c0 2.626 4.024 4 8 4zm0-2c-3.722 0-6-1.295-6-2v-1.268C7.541 17.57 9.777 18 12 18s4.459-.43 6-1.268V18c0 .705-2.278 2-6 2zm0-16c3.722 0 6 1.295 6 2s-2.278 2-6 2-6-1.295-6-2 2.278-2 6-2zM6 8.732C7.541 9.57 9.777 10 12 10s4.459-.43 6-1.268V10c0 .705-2.278 2-6 2s-6-1.295-6-2V8.732zm0 4C7.541 13.57 9.777 14 12 14s4.459-.43 6-1.268V14c0 .705-2.278 2-6 2s-6-1.295-6-2v-1.268z"></path>
+        </svg>
+
+        <span>{{filteredSections && filteredSections.length}} Секции</span>
+      </div>
+
+
+    </div>
+
+    <div class="series-block">
+
+      <div class="series">
+
+        <h4 *ngIf="filteredSections != sections"
+            style="color: red;font-style: italic">Предпросмотр видео</h4>
+
+        <ng-container *ngFor="let fs of filteredSections; index as i">
+
+          <app-card *ngIf="fs.videos.length">
+            <app-card-header>
+              <h2 (click)="wrapperService.expandedSections[fs.id] = !wrapperService.expandedSections[fs.id]"
+                  class="section-title">
+                <span>СЕКЦИЯ {{fs.sortNumber}}:</span>
+                <span>{{fs.name}}</span>
+
+                <svg [class.opened]="wrapperService.expandedSections[fs.id]"
+                     class="section-arrow"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     width="18"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                </svg>
+              </h2>
+
+            </app-card-header>
+            <app-card-body *ngIf="wrapperService.expandedSections[fs.id]">
+              <div class="video-rows">
+                <ng-container *ngFor="let v of fs.videos">
+                  <app-card>
+                    <app-card-body>
+
+                      <div class="video-row">
+                        <span>{{v.sortNumber < 10 ? '0' + v.sortNumber : v.sortNumber}}</span>
+
+                        <ng-container *ngIf="v.isFree">
+                          <!-- play image -->
+                          <svg height="20"
+                               style="fill: rgba(0, 0, 0, 1)"
+                               viewBox="0 0 24 24"
+                               width="20"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                            <path d="m9 17 8-5-8-5z"></path>
+                          </svg>
+                          <!-- end play image -->
+
+                          <span *ngIf="(!auth.isLogged() || !auth.user?.hasPremium) && !news.isFree"
+                                style="color: red;">
+                            [ПРЕДПРОСМОТР]
+                          </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="!v.isFree">
+
+                          <!-- locked image -->
+                          <svg *ngIf="!auth.user?.hasPremium"
+                               height="20"
+                               style="fill: rgba(0, 0, 0, 1)"
+                               viewBox="0 0 24 24"
+                               width="20"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm4 10.723V20h-2v-2.277a1.993 1.993 0 0 1 .567-3.677A2.001 2.001 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723z"></path>
+                          </svg>
+                          <!-- end locked image -->
+
+                          <!-- unlocked image -->
+                          <svg *ngIf="auth.user?.hasPremium"
+                               height="20"
+                               style="fill: rgba(0, 0, 0, 1)"
+                               viewBox="0 0 24 24"
+                               width="20"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M18 10H9V7c0-1.654 1.346-3 3-3s3 1.346 3 3h2c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2zm-7.939 5.499A2.002 2.002 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723V20h-2v-2.277a1.992 1.992 0 0 1-.939-2.224z"></path>
+                          </svg>
+                          <!-- end unlocked image -->
+
+                          <!-- play image -->
+                          <svg *ngIf="auth.user?.hasPremium"
+                               height="20"
+                               style="fill: rgba(0, 0, 0, 1)"
+                               viewBox="0 0 24 24"
+                               width="20"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                            <path d="m9 17 8-5-8-5z"></path>
+                          </svg>
+                          <!-- end play image -->
+                        </ng-container>
+
+
+                        <a [relativeTo]="route" [routerLink]="['episodes', v.sortNumber]">
+                          {{v.name}}
+                        </a>
+                      </div>
+
+                    </app-card-body>
+                  </app-card>
+
+                </ng-container>
+
+              </div>
+            </app-card-body>
+          </app-card>
+        </ng-container>
+      </div>
+    </div>
+  </app-card-body>
+</app-card>
+<!-- end watch series -->
+
+
+<h3>Комментарии</h3>
+<!-- comment form -->
+<app-news-comment-form
+  (onAddComment)="addNewComment($event)" [isPosting]="isPostingComment"/>
+<!-- end comment form -->
+
+<!-- comments list -->
+<app-news-comments-list (onAddComment)="addNewComment($event)"
+                        *ngIf="news.comments"
+                        [comments]="news.comments"
+                        [isPosting]="isPostingComment"/>
+<!-- end comments list -->

@@ -1,0 +1,45 @@
+@use "vars";
+
+* {
+  font-family: sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: inherit;
+  overflow-y: scroll;
+  background-color: vars.$bg-color;
+
+
+  a {
+    &:hover {
+      color: vars.$primary-color;
+    }
+  }
+
+  main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.opacity-25 {
+  opacity: .25;
+}
+
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

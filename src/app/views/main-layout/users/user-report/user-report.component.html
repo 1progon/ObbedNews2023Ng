@@ -1,0 +1,13 @@
+<h2>Report form</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label for="title">Title</label>
+  <input [(ngModel)]="reportForm.title" id="title" name="title"
+         type="text">
+
+  <label for="message">Message</label>
+  <input [(ngModel)]="reportForm.message" id="message" name="message"
+         type="text">
+
+  <button class="btn" type="submit">Submit</button>
+</form>

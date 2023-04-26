@@ -1,0 +1,37 @@
+<app-preloader *ngIf="loading"/>
+
+<h2>All Users</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Guid</th>
+    <th>Login</th>
+    <th>Email</th>
+    <th>Orders</th>
+    <th>Detail</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.account.id}}</td>
+    <td>{{user.account.guid}}</td>
+    <td>{{user.login}}</td>
+    <td>{{user.account.email}}</td>
+    <td>
+      <p *ngFor="let order of user.payPalOrders; index as i">
+        {{i + 1}}.
+        id: {{order.id}}.
+        {{OrderStatus[order.status]}}
+        {{order.expiresAt.split('T')[0]}}
+      </p>
+    </td>
+    <td>
+      <a [routerLink]="['/', rNames.admin, rNames.users,  user.id,  rNames.userDetail]"
+         class="btn btn-outline">Detail</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

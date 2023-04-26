@@ -1,0 +1,39 @@
+.preloader {
+  position: fixed;
+  z-index: 999997;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  opacity: .4;
+}
+
+.content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 999998;
+  justify-content: center;
+  align-items: center;
+
+
+  .content-loader {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 999999;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    animation: rotate360 1s infinite linear;
+  }
+}
+
+

@@ -1,0 +1,44 @@
+<div class="pagination">
+  <!-- to back -->
+  <a *ngIf="page == 1" disabled="disabled">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+    </svg>
+  </a>
+  <a *ngIf="page == 2"
+     [queryParams]="{page: null}" [routerLink]="route"
+     queryParamsHandling="merge">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+    </svg>
+  </a>
+  <a *ngIf="page > 2"
+     [queryParams]="{page: (page - 1)}" [routerLink]="route"
+     queryParamsHandling="merge">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+    </svg>
+  </a>
+  <!-- end to back -->
+
+
+  <!-- current page -->
+  <a class="current-page">{{page}}</a>
+  <!-- end current page -->
+
+
+  <!-- forward -->
+  <a [queryParams]="{page: (page + 1)}"
+     [routerLink]="route"
+     class=""
+     queryParamsHandling="merge">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+    </svg>
+  </a>
+  <!-- end forward -->
+
+  <!-- to last page -->
+  <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
+  <!-- end to last page -->
+</div>

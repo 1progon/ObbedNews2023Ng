@@ -1,0 +1,14 @@
+.parents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-basis: 45%;
+
+  .parent-block {
+    flex: 1;
+
+    .children {
+    }
+  }
+}
+

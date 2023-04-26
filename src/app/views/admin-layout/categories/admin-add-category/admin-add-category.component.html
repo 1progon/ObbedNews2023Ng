@@ -1,0 +1,29 @@
+<app-preloader *ngIf="loading"/>
+
+<h2>Add Category</h2>
+
+<form #ngForm="ngForm" (ngSubmit)="onSubmit()">
+
+  <select [(ngModel)]="form.parentCategoryId" id="parent-category"
+          name="parent_category" required>
+    <option [ngValue]="undefined" disabled hidden selected>Select</option>
+    <option *ngFor="let p of parentCats" [ngValue]="p.id">{{p.name}}</option>
+  </select>
+
+  <label [for]="form.name">Name</label>
+  <input [(ngModel)]="form.name" [id]="form.name" [minlength]="3"
+         name="name"
+         required type="text">
+
+  <label [for]="form.slug">Slug</label>
+  <input [(ngModel)]="form.slug" [id]="form.slug" [minlength]="3"
+         name="slug"
+         required type="text">
+
+  <button
+    [disabled]="isPosting || ngForm.invalid || ngForm.pristine"
+    class="btn" type="submit">Submit
+  </button>
+
+
+</form>

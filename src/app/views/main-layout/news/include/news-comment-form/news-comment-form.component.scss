@@ -1,0 +1,24 @@
+@use "vars" as *;
+
+.comment-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+
+  .arrow-icon {
+    transition: .3s;
+    transform: rotate(-90deg);
+
+    &.rotate {
+      transform: rotate(0deg);
+    }
+
+    svg {
+      display: block;
+      fill: $text-color;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<header>
+
+  <app-container>
+
+    <div class="header">
+      <div class="left-side">
+        <a class="homepage-link" routerLink="/">
+          <div class="second">Новости на</div>
+          <div class="first">ОББЕД</div>
+        </a>
+        <a [routerLink]="['/', r.news]">Новости</a>
+        <a [routerLink]="['/', r.categories]">Категории</a>
+      </div>
+
+      <div class="right-side">
+        <ng-container *ngIf="authService.isLogged()">
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.account, r.accountPremium]"
+             class="btn btn-warning"
+             routerLinkActive="btn-outline">Подписка</a>
+
+
+          <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.account]"
+             class="btn"
+             routerLinkActive="btn-outline">Аккаунт</a>
+          <a *ngIf="authService.user?.userType == UserType.Admin"
+             [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin]"
+             class="btn"
+             routerLinkActive="btn-outline">Админ</a>
+
+          <button (click)="authService.logout()" class="btn btn-danger">Выйти</button>
+        </ng-container>
+
+        <ng-container *ngIf="!authService.isLogged()">
+
+          <a [routerLink]="['/', r.login]" class="btn btn-outline">Вход</a>
+          <a [routerLink]="['/', r.register]" class="btn">Регистрация</a>
+        </ng-container>
+
+
+      </div>
+    </div>
+
+  </app-container>
+</header>

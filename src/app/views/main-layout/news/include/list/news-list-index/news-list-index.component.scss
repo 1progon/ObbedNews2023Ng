@@ -1,0 +1,13 @@
+.news-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .news-image {
+
+  }
+
+  .news-info {
+    flex: 1 1;
+  }
+}

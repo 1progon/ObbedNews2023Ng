@@ -1,0 +1,36 @@
+.panels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+
+    .block-title {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .sidebar-widget {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: row;
+    }
+
+  }
+
+  .right-side {
+    flex: 1;
+  }
+}

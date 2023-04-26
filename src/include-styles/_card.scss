@@ -1,0 +1,42 @@
+@use "vars";
+
+.card {
+  background-color: vars.$card-bg-color;
+  border-radius: 8px;
+  //border: 1px solid vars.$card-border-color;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px 0 rgb(194 200 213 / 30%);
+
+
+  &.ml-3 {
+    margin-left: 10px * 3;
+  }
+
+  &.ml-5 {
+    margin-left: 10px * 5;
+  }
+
+  .card-header {
+    font-weight: 600;
+    font-size: 17px;
+    border-bottom: 2px solid vars.$bg-color;
+    padding: 10px;
+    color: vars.$text-color;
+
+  }
+
+  .card-body {
+    padding: 10px;
+
+    &.flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .card-footer {
+    border-top: 2px solid vars.$bg-color;
+    padding: 10px;
+    color: vars.$text-color;
+  }
+}

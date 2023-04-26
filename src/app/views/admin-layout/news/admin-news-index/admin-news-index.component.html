@@ -1,0 +1,61 @@
+<app-preloader *ngIf="loading"/>
+
+<!-- todo add count news -->
+<h2>All News</h2>
+
+
+<table>
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Thumb</td>
+    <td>Name</td>
+    <td>Category</td>
+    <td>Description</td>
+    <td>Vid sections</td>
+    <td>Dislikes</td>
+    <td>Likes</td>
+    <td>Front</td>
+    <td>Link</td>
+    <td>Edit</td>
+    <td>Delete</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of newsList">
+    <td>{{c.id}}</td>
+    <td>
+      <img [src]="imagesPath + '/' + c.mainThumb"
+           alt="thumb"
+           height="60"
+           width="auto">
+    </td>
+    <td>{{c.name}}</td>
+    <td>{{c.category ? c.category.name : ''}}</td>
+    <td>{{c.description}}</td>
+    <td>{{ c.videoSections.length }}</td>
+    <td>{{c.dislikesCount}}</td>
+    <td>{{c.likesCount}}</td>
+    <td>
+      <a [routerLink]="['/', r.news, c.slug]" target="_blank">Front</a>
+    </td>
+    <td>
+      <a [routerLink]="['/' + r.admin, r.news, c.id, r.newsDetail]"
+         class="btn btn-outline">Detail</a>
+    </td>
+    <td>
+      <a [routerLink]="['/' + r.admin, r.news, c.id, r.newsEdit]"
+         class="btn btn-warning">Edit</a>
+    </td>
+    <td>
+      <a [routerLink]="['/' + r.admin, r.news, c.id, r.newsRemove]"
+         class="btn btn-danger">Remove</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<app-pagination [page]="page" [route]="['/', r.admin, r.news]"/>
+
+

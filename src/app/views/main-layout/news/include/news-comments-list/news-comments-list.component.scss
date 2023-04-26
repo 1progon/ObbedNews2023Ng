@@ -1,0 +1,60 @@
+@use "vars" as *;
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+
+  &.child-comments {
+    margin-left: 80px;
+  }
+
+  .comment-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+
+    &.moderation {
+      font-style: italic;
+      background-color: #f0fffc;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      overflow: hidden;
+
+      svg {
+        width: 50px;
+        height: 50px;
+        fill: $text-color;
+
+        @media screen and (max-width: 439px) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+    }
+
+    .comment-message {
+      flex: 1 1 320px;
+
+      .reply {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          fill: $primary-color;
+        }
+      }
+    }
+
+  }
+
+
+}

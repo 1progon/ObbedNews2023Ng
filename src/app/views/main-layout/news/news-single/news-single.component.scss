@@ -1,0 +1,158 @@
+@use "vars" as *;
+
+.article-wrapper {
+
+  article {
+    display: inline-block;
+
+    &.hidden-article {
+      position: relative;
+      max-height: 130px;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 900;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+
+      }
+    }
+  }
+
+  b {
+    display: block;
+    text-align: center;
+    color: $primary-color;
+  }
+
+
+}
+
+.video-rows {
+
+  .video-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+
+.favorites {
+  cursor: pointer;
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    &.updating {
+      animation: rotate360 infinite 1s linear;
+    }
+  }
+}
+
+.main-image-block, .lead, .websites-links {
+  margin-bottom: 20px;
+  background-color: $bg-color;
+  border-radius: 5px;
+}
+
+.main-image-block {
+  max-width: 100%;
+
+  a {
+    min-height: 300px;
+    position: relative;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+}
+
+.lead {
+  padding: 20px;
+  font-style: italic;
+}
+
+.series-block {
+  margin-bottom: 20px;
+
+  .series {
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .section-arrow {
+
+      &.opened {
+        transform: rotate(90deg);
+      }
+
+    }
+  }
+}
+
+article {
+  margin-bottom: 20px;
+}
+
+.websites-links {
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+
+  & > div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+
+    svg {
+      fill: black;
+      display: block;
+      width: 25px;
+      height: 25px;
+    }
+
+    //&::after {
+    //  content: ' | ';
+    //  display: inline-block;
+    //  height: 100%;
+    //  width: 100%;
+    //  line-height: normal;
+    //
+    //}
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+
+

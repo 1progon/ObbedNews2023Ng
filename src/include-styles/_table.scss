@@ -1,0 +1,34 @@
+@use "vars";
+
+table {
+  width: 100%;
+
+  td, th {
+    padding: 5px;
+  }
+
+  thead {
+    tr {
+      background-color: vars.$primary-color;
+      color: #fff;
+    }
+
+    td {
+      font-weight: 600;
+    }
+  }
+
+  tbody {
+    tr {
+
+      td:first-child {
+        font-weight: 600;
+      }
+    }
+
+    tr:nth-child(odd) {
+      background-color: #bcf6e9;
+      border-bottom: 1px solid black;
+    }
+  }
+}

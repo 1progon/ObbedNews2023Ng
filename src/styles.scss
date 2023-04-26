@@ -1,0 +1,14 @@
+@use "include-styles/vars";
+@use "include-styles/reset";
+@use "include-styles/alert";
+@use "include-styles/grid";
+@use "include-styles/card";
+@use "include-styles/buttons";
+@use "include-styles/header";
+@use "include-styles/footer";
+@use "include-styles/form";
+@use "include-styles/table";
+@use "include-styles/default";
+
+//news
+@use "include-styles/news/news-single";

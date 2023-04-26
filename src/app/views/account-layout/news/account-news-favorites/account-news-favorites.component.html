@@ -1,0 +1,14 @@
+<app-preloader *ngIf="isLoading"/>
+
+<div class="flex">
+  <ng-container *ngFor="let c of newsList">
+    <a [routerLink]="['/', r.news, c.slug]">
+      <app-card>
+        <app-card-body>
+          {{c.name}}
+        </app-card-body>
+
+      </app-card>
+    </a>
+  </ng-container>
+</div>

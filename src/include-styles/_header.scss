@@ -1,0 +1,36 @@
+header {
+  background-color: #fff;
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .left-side, .right-side {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .left-side {
+
+      .homepage-link {
+        font-weight: 600;
+        text-align: right;
+
+        div {
+
+          &.second {
+            font-size: 12px;
+
+          }
+        }
+      }
+    }
+
+  }
+}

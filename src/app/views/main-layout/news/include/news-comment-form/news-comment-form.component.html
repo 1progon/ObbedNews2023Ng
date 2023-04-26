@@ -1,0 +1,46 @@
+<app-card>
+  <app-card-header (click)="isShowForm = !isShowForm">
+    <div class="comment-header">
+      <span>Добавить комментарий</span>
+      <span [class.rotate]="isShowForm" class="arrow-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+        </svg>
+      </span>
+    </div>
+  </app-card-header>
+  <app-card-body *ngIf="isShowForm">
+    <p *ngIf="!authService.isLogged()">
+      Необходимо <a [routerLink]="['/', r.login]"><b>Войти</b></a> или <a
+      [routerLink]="['/', r.register]"><b>Зарегистрироваться</b></a>, чтобы оставлять комментарии
+    </p>
+
+    <form #ngForm="ngForm" (ngSubmit)="onSubmitNewComment()"
+          *ngIf="authService.isLogged()">
+      <label for="title">Заголовок</label>
+      <input [(ngModel)]="commentDto.title"
+             id="title"
+             name="title"
+             placeholder="Заголовок"
+             type="text"/>
+
+      <label class="required" for="message">Текст комментария</label>
+      <textarea [(ngModel)]="commentDto.message"
+                [minlength]="5"
+                [rows]="5"
+                id="message"
+                name="message"
+                placeholder="Текст, минимальная длина 5 символов"
+                required></textarea>
+
+      <button
+        [disabled]="isPosting || ngForm.invalid || ngForm.pristine"
+        class="btn"
+        type="submit">
+        {{ isPosting ? 'Публикуем...' : 'Добавить комментарий' }}
+      </button>
+    </form>
+
+  </app-card-body>
+</app-card>

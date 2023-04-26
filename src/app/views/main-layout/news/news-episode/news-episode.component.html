@@ -1,0 +1,186 @@
+<div class="flex">
+
+  <div class="series-list sidebar">
+    <div>
+      <!-- back -->
+      <a [relativeTo]="route.parent" class="back-button btn btn-outline"
+         routerLink="./">
+        <svg viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+        </svg>
+        Back to Overview</a>
+      <!-- end back -->
+
+
+    </div>
+
+    <app-card>
+      <app-card-header>
+        <!-- title news -->
+        <div class="news-title">
+          <!-- mobile menu -->
+          <span (click)="showMobile()" class="mobile-menu">
+            <svg *ngIf="!isShowedMobileMenu" height="24"
+                 style="fill: rgba(0, 193, 148, 1)"
+                 viewBox="0 0 24 24"
+                 width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
+            </svg>
+            <svg *ngIf="isShowedMobileMenu" height="24"
+                 style="fill: rgba(0, 193, 148, 1)"
+                 viewBox="0 0 24 24"
+                 width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+            </svg>
+          </span>
+          <!-- end mobile menu -->
+
+          {{news?.name}}
+        </div>
+        <!-- end title news -->
+      </app-card-header>
+
+      <app-card-body>
+        <!-- news sections -->
+        <div [class.show]="isShowedMobileMenu" class="news-sections">
+          <ng-container *ngFor="let s of sections; index as i">
+
+            <app-card *ngIf="s.videos.length">
+              <app-card-header>
+
+                <div class="section-row">
+
+                  <!-- section number -->
+                  <div class="section-number">
+                    SECTION {{s.sortNumber < 10 ? '0' + s.sortNumber : s.sortNumber }}:
+                  </div>
+                  <!-- end section number -->
+
+                  <!-- section title -->
+                  <div (click)="wrapperService.expandedSections[s.id] = !wrapperService.expandedSections[s.id]"
+                       class="section-title">
+                    {{s.name}}
+                    <svg [class.opened]="wrapperService.expandedSections[s.id]"
+                         class="section-arrow"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         width="18"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                    </svg>
+                  </div>
+                  <!-- end section title -->
+
+                </div>
+
+              </app-card-header>
+              <app-card-body *ngIf="wrapperService.expandedSections[s.id]">
+
+                <!-- videos list -->
+                <ng-container>
+                  <div *ngFor="let v of s.videos" [id]="'video-link_' + v.id">
+                    <a (click)="isShowedMobileMenu = false"
+                       [relativeTo]="route"
+                       [routerLink]="['../', v.sortNumber]"
+                       class="btn"
+                       routerLinkActive="btn-warning">
+
+                      <div>{{v.sortNumber < 10 ? '0' + v.sortNumber : v.sortNumber}}</div>
+                      <svg *ngIf="!v.isFree && !auth.user?.hasPremium"
+                           height="20"
+                           style="fill: rgba(0, 0, 0, 1)"
+                           viewBox="0 0 24 24"
+                           width="20"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm4 10.723V20h-2v-2.277a1.993 1.993 0 0 1 .567-3.677A2.001 2.001 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723z"></path>
+                      </svg>
+
+                      <svg *ngIf="!v.isFree && auth.user?.hasPremium"
+                           height="20"
+                           style="fill: rgba(0, 0, 0, 1)"
+                           viewBox="0 0 24 24"
+                           width="20"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M18 10H9V7c0-1.654 1.346-3 3-3s3 1.346 3 3h2c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2zm-7.939 5.499A2.002 2.002 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723V20h-2v-2.277a1.992 1.992 0 0 1-.939-2.224z"></path>
+                      </svg>
+
+
+                      <div style="font-size: 12px;font-weight: 600">{{v.name}}</div>
+                      <div style="font-size: 10px;font-style: italic">Episode {{v.sortNumber}}</div>
+                    </a>
+                  </div>
+                </ng-container>
+                <!-- end videos list -->
+              </app-card-body>
+            </app-card>
+
+          </ng-container>
+        </div>
+        <!-- end news sections -->
+      </app-card-body>
+
+
+    </app-card>
+
+  </div>
+
+  <div class="player-wrapper">
+    <div *ngIf="episode" class="player episode">
+      <h2>{{episode.sortNumber < 10 ? '0' + episode.sortNumber : episode.sortNumber}} {{episode.name}}</h2>
+
+      <!-- only logged -->
+      <ng-container *ngIf="auth.isLogged() && episode">
+        <!-- [src]="blobUrl" -->
+        <video #videoRef
+               (load)="videoLoaded = true; videoRef.play()"
+               *ngIf="episode.isFree || (!episode.isFree && auth.user?.hasPremium)"
+               [controlsList]="'nodownload'"
+               [src]="episode.remoteUrl ?? videoServer + '/' + episode.filePath"
+               autoplay
+               controls
+               height="auto"
+               width="100%">
+          <source [src]="episode.remoteUrl ?? videoServer + '/' + episode.filePath" type="video/mp4">
+          <!-- <source [src]="blobUrl" type="video/mp4"> -->
+          Your browser does not support the video tag.
+        </video>
+      </ng-container>
+      <!-- end only logged -->
+
+
+    </div>
+
+    <!-- errors -->
+    <div *ngIf="episode" class="player-errors">
+      <ng-container *ngIf="!auth.isLogged()">
+        <div *ngIf="episode.isFree" class="no-player">
+          Need to <a [routerLink]="['/', r.login]">
+          [Login]</a> to watch free content
+        </div>
+
+        <div *ngIf="!episode.isFree" class="no-player">
+          Need to <a [routerLink]="['/', r.login]">
+          [Login]</a> and [Get Premium] to watch
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="auth.isLogged()">
+        <div *ngIf="!episode.isFree && !auth.user?.hasPremium" class="no-player">
+          Need to <a [routerLink]="['/', r.account, r.accountPremium]">
+          [Get Premium]
+        </a> to watch
+        </div>
+      </ng-container>
+
+
+    </div>
+
+    <!-- end errors -->
+  </div>
+</div>

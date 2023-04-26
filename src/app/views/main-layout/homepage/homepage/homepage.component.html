@@ -1,0 +1,51 @@
+<app-preloader *ngIf="isLoading"/>
+
+<ng-container *ngIf="dto">
+
+  <app-card *ngIf="dto.popular?.length">
+    <app-card-header>Популярные новости</app-card-header>
+    <app-card-body>
+      <div class="block">
+        <ng-container *ngFor="let c of dto.popular">
+          <a [routerLink]="['/', r.news, c.slug]">
+            <img [alt]="'картинка к новости ' + c.name"
+                 [src]="imagesPath + '/' + c.mainThumb">
+            <div>
+              {{c.name}}
+            </div>
+
+          </a>
+        </ng-container>
+      </div>
+    </app-card-body>
+  </app-card>
+
+  <app-card *ngIf="dto.mostCommented?.length">
+    <app-card-header>Наиболее комментируемые новости</app-card-header>
+    <app-card-body>
+      <div class="block">
+        <ng-container *ngFor="let c of dto.mostCommented">
+          <a [routerLink]="['/', r.news, c.slug]">
+            <img [alt]="'картинка к новости ' + c.name"
+                 [src]="imagesPath + '/' + c.mainThumb">
+            {{c.name}}</a>
+        </ng-container>
+      </div>
+    </app-card-body>
+  </app-card>
+
+  <app-card *ngIf="dto.last?.length">
+    <app-card-header>Последние добавленные новости</app-card-header>
+    <app-card-body>
+      <div class="block">
+        <ng-container *ngFor="let c of dto.last">
+          <a [routerLink]="['/', r.news, c.slug]">
+            <img [alt]="'картинка к новости ' + c.name"
+                 [src]="imagesPath + '/' + c.mainThumb">
+            {{c.name}}</a>
+        </ng-container>
+      </div>
+    </app-card-body>
+  </app-card>
+</ng-container>
+

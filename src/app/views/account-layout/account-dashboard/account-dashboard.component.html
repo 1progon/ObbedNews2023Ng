@@ -1,0 +1,30 @@
+<div class="panels">
+
+  <div class="sidebar">
+    <div class="sidebar-widget">
+      <h2 class="block-title">Пользователь</h2>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.account, r.accountPremium]"
+         class="btn btn-warning"
+         routerLinkActive="btn-outline">Подписка</a>
+
+      <!-- <a class="btn" [routerLink]="['/', r.account, r.userEdit]">Редактировать аккаунт</a> -->
+    </div>
+
+    <div class="sidebar-widget">
+      <h2 class="block-title">Новости</h2>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.account, r.newsFavorites]"
+         class="btn"
+         routerLinkActive="btn-outline">Избранное</a>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <p>Привет {{auth.user?.email}}!</p>
+    <p *ngIf="auth.isLoggedAdmin()">Привет АДМИН!!!</p>
+
+    <router-outlet/>
+  </div>
+</div>
+

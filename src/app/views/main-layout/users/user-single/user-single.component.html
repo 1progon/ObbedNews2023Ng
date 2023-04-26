@@ -1,0 +1,8 @@
+<div *ngIf="user">
+  <img *ngIf="user.avatar" [src]="user.avatar" alt="user avatar">
+  <p><b>First Name:</b><span>{{user.firstName}}</span></p>
+  <p><b>Last Name:</b><span>{{user.lastName}}</span></p>
+  <p><b>Login Name:</b><span>{{user.login}}</span></p>
+
+  <a [relativeTo]="route" [routerLink]="r.usersReport" class="btn">Send report</a>
+</div>

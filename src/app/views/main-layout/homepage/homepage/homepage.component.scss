@@ -1,0 +1,36 @@
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    display: flex;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
+
+
+    & img {
+      object-fit: cover;
+      object-position: center;
+      max-height: 200px;
+      width: 100%;
+    }
+
+
+  }
+
+  & > * {
+    flex-basis: calc(25% - 20px);
+
+    @media screen and (max-width: 1366px) {
+      flex-basis: calc(33% - 20px);
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+}

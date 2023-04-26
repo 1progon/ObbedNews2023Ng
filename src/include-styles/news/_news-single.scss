@@ -1,0 +1,138 @@
+@use "vars" as *;
+
+.likes-dislikes-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    flex-wrap: unset;
+  }
+
+  & button {
+    width: 135px;
+    font-size: 16px;
+    gap: 10px;
+
+    & svg {
+      fill: #fff;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+
+  .progress {
+    flex: 1;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    height: inherit;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 425px) {
+      width: 100%;
+      flex-direction: column;
+    }
+
+
+    & .left-progress {
+      height: 20px;
+      border-left: 1px solid red;
+      border-top: 1px solid red;
+      border-bottom: 1px solid red;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      @media screen and (max-width: 425px) {
+        justify-content: flex-start;
+        border: 1px solid red;
+        border-radius: 5px;
+      }
+
+      & .filled {
+        text-align: right;
+        background-color: red;
+        color: #fff;
+        font-size: 13px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        @media screen and (max-width: 425px) {
+          justify-content: flex-start;
+        }
+
+        & span {
+          padding-left: 3px;
+          padding-right: 3px;
+          text-shadow: 1px 1px 4px #000000;
+        }
+
+      }
+    }
+
+    & .middleLine {
+      border-left: 1px solid $primary-color;
+      border-right: 1px solid $primary-color;
+      min-height: 30px;
+      width: fit-content;
+
+      @media screen and (max-width: 425px) {
+        min-height: unset;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid $primary-color;
+        border-bottom: 1px solid $primary-color;
+      }
+
+    }
+
+    & .right-progress {
+      height: 20px;
+      border-right: 1px solid $primary-color;
+      border-top: 1px solid $primary-color;
+      border-bottom: 1px solid $primary-color;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      @media screen and (max-width: 425px) {
+        border: 1px solid $primary-color;
+        border-radius: 5px;
+      }
+
+      & .filled {
+        background-color: $primary-color;
+        color: #fff;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+
+        & span {
+          padding-left: 3px;
+          padding-right: 3px;
+          text-shadow: 1px 1px 4px #000000;
+
+        }
+
+      }
+    }
+  }
+
+
+}

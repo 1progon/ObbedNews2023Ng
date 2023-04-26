@@ -1,0 +1,55 @@
+<app-preloader *ngIf="wrapperComponent.loading"/>
+
+<h2 *ngIf="news">Detail News {{news.id}}</h2>
+
+<div class="flex">
+
+  <a *ngIf="news" [routerLink]="['/', r.news, news.slug]"
+     class="btn btn-outline">Front View</a>
+
+  <a [relativeTo]="route.parent" [routerLink]="r.newsEdit" class="btn">Edit</a>
+  <a [relativeTo]="route.parent" [routerLink]="r.newsRemove" class="btn btn-danger">Remove</a>
+
+</div>
+
+<ng-container *ngIf="news">
+  <br>
+  <div>
+    <p>Redirect for cards
+      <button (click)="copyRedirectCardUrl()"
+              class="pointer"
+              type="button">
+        Copy Url
+      </button>
+    </p>
+    <a [href]="redirectCard" target="_blank">
+      <pre>{{redirectCard}}</pre>
+    </a>
+  </div>
+
+  <br>
+
+  <h3>News link</h3>
+  <p>
+    <a [href]="news.newsLink" rel="noreferrer noopener nofollow"
+       target="_blank">{{news.newsLink}}</a>
+  </p>
+
+  <br>
+  <h3>News Image</h3>
+  <p>
+    <a *ngIf="thumb"
+       [href]="imagesPath + '/' + news.mainImage" target="_blank">
+      <img [src]="imagesPath + '/' + thumb" alt="thumb">
+    </a>
+  </p>
+
+  <br>
+  <h3>News object</h3>
+  <pre>{{news|json}}</pre>
+
+
+</ng-container>
+
+
+

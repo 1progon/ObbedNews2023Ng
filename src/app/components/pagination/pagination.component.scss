@@ -1,0 +1,45 @@
+@use "vars" as *;
+
+.pagination {
+  padding-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+
+  a {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    background-color: $bg-color;
+    color: $success-bg-text;
+    font-weight: 600;
+    height: 50px;
+    width: 50px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    transition: all, 0.3s;
+
+    & svg {
+      fill: $success-bg-text;
+      width: 24px;
+      height: 24px;
+    }
+
+
+    &.current-page {
+      border: 1px solid #ffffff;
+      background-color: white;
+      cursor: default;
+    }
+
+    &:hover:not(.current-page) {
+      background-color: $success-bg-color;
+    }
+
+  }
+}

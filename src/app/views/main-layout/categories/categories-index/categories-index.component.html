@@ -1,0 +1,37 @@
+<app-preloader *ngIf="loading"/>
+<div class="parents">
+  <ng-container *ngFor="let pc of parentCategories">
+
+    <app-card>
+      <app-card-header>
+        <h3>{{pc.name}}</h3>
+      </app-card-header>
+      <app-card-body>
+
+        <ng-container *ngFor="let c of categories">
+          <app-card *ngIf="c.parentCategory?.id == pc.id">
+            <app-card-body>
+              <a [routerLink]="['/', r.categories, c.slug]" class="news-row">
+                <div class="news-image">
+                  <!-- <img [alt]="'news thumb' + c.name" -->
+                  <!--      [src]="imagesPath + '/' + c.image" -->
+                  <!--      height="auto" -->
+                  <!--      width="100"> -->
+                </div>
+
+                <div class="news-info">
+                  <h3>{{c.name}}</h3>
+                  <!-- <div [innerHTML]="c.description"></div> -->
+                </div>
+
+              </a>
+            </app-card-body>
+          </app-card>
+
+        </ng-container>
+      </app-card-body>
+    </app-card>
+
+
+  </ng-container>
+</div>

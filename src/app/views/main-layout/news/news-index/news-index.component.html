@@ -1,0 +1,11 @@
+<app-preloader *ngIf="loading"/>
+<app-card>
+  <app-card-header>
+    Все новости
+  </app-card-header>
+  <app-card-body>
+    <app-news-list-index [newsList]="newsList"/>
+
+    <app-pagination *ngIf="!loading" [page]="page" [route]="['/', r.news]"/>
+  </app-card-body>
+</app-card>
