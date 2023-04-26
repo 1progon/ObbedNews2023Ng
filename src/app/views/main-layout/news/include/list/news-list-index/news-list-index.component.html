@@ -1,17 +1,17 @@
-<ng-container *ngFor="let c of newsList">
+<ng-container *ngFor="let news of newsList">
   <app-card>
     <app-card-body>
-      <a [routerLink]="['/', r.news, c.slug]" class="news-row">
-        <div *ngIf="c.mainThumb" class="news-image">
-          <img [alt]="'превью картинка к новости' + c.name"
-               [src]="imagesPath + '/' + c.mainThumb"
+      <a [routerLink]="['/', r.news, news.slug]" class="news-row">
+        <div *ngIf="news.mainThumb" class="news-image">
+          <img [alt]="'превью картинка к новости' + news.name"
+               [src]="imagesPath + '/' + news.mainThumb"
                height="auto"
                width="100">
         </div>
 
         <div class="news-info">
-          <h3>{{c.name}}</h3>
-          <div [innerHTML]="c.description"></div>
+          <h3>{{news.name}}</h3>
+          <div [innerHTML]="news.description"></div>
         </div>
 
       </a>
