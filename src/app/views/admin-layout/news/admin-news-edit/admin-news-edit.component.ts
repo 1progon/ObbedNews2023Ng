@@ -113,26 +113,18 @@ export class AdminNewsEditComponent implements OnInit {
       .split('|')
       .filter(value => value.length > 0)
       .map(tagName => {
-        tagName = tagName
-          .replace(/['"_;:,\\?\/.!|~`<>@#$%^&*(){}\[\]]/gi, '')
-          .trim();
-
-        let slug = tagName
-          .replace(/\s+/gi, '-')
-          .replace(/^-/i, '')
-          .replace(/-$/i, '');
 
         let tag = this.form.tags?.find(tag => tag.name == tagName);
         if (tag) {
-          tag.name = tagName;
-          tag.slug = slug;
+          tag.name = tagName.toLowerCase();
+          tag.slug = this.wrapperService.createSlugFromString(tagName);
           return tag;
 
         } else {
 
           return <TagDto>{
-            name: tagName,
-            slug
+            name: tagName.toLowerCase(),
+            slug: this.wrapperService.createSlugFromString(tagName)
           }
         }
 
@@ -143,11 +135,7 @@ export class AdminNewsEditComponent implements OnInit {
   }
 
   updateSlug() {
-    this.form.slug = this.form.slug
-      .toLowerCase()
-      .replace(/['"_;:,\\?\/.!|~`<>@#$%^&*(){}\[\]]/gi, '')
-      .replace(' ', '-')
-      .replace(/(-)+/gi, '-')
+    this.form.slug = this.wrapperService.createSlugFromString(this.form.slug);
   }
 
   updateImagePreview(e: Event) {

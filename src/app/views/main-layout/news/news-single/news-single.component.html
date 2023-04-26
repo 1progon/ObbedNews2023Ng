@@ -42,7 +42,8 @@
 
   </app-card-header>
   <app-card-body>
-    <div class="main-image-block">
+    <div *ngIf="news.mainThumb && news.mainImage"
+         class="main-image-block">
       <a [href]="imagesPath + '/' + news.mainImage" target="_blank">
         <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>
         <img (load)="wrapperService.imageLoaded = true"
@@ -62,16 +63,22 @@
 
 
     <div #articleWrapper class="article-wrapper">
-      <article *ngIf="news.article"
-               [class.hidden-article]="hiddenArticle"
-               [innerHTML]="news.article"></article>
+      <ng-container *ngIf="news.article && news.article.length">
+        <article [class.hidden-article]="hiddenArticle"
+                 [innerHTML]="news.article"></article>
 
+        <ng-container *ngIf="news.article.split(' ').length > 50">
+          <b (click)="updateHiddenArticle()"
+             *ngIf="hiddenArticle"
+             class="pointer">Показать весь текст!</b>
 
-      <b (click)="updateHiddenArticle()" *ngIf="hiddenArticle"
-         class="pointer">Показать весь текст!</b>
+          <b (click)="updateHiddenArticle(articleWrapper)"
+             *ngIf="!hiddenArticle"
+             class="pointer">Скрыть часть текста</b>
+        </ng-container>
 
-      <b (click)="updateHiddenArticle(articleWrapper)" *ngIf="!hiddenArticle"
-         class="pointer">Скрыть часть текста</b>
+      </ng-container>
+
 
     </div>
 
