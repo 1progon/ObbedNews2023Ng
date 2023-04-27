@@ -8,7 +8,10 @@
     <h2>{{news.name}}</h2>
 
     <p *ngIf="news.category">
-      {{news.category.parentCategory?.name}} / {{news.category.name}}
+      {{news.category.parentCategory?.name}} /
+      <a [routerLink]="['/', r.categories, news.category.slug]">
+        {{news.category.name}}
+      </a>
     </p>
 
     <div (click)="updateFav()" class="favorites">
@@ -64,8 +67,8 @@
 
     <div #articleWrapper class="article-wrapper">
       <ng-container *ngIf="news.article && news.article.length">
-        <article [class.hidden-article]="hiddenArticle"
-                 [innerHTML]="news.article"></article>
+        <article *ngIf="safeArticle" [class.hidden-article]="hiddenArticle"
+                 [innerHtml]="safeArticle"></article>
 
         <ng-container *ngIf="news.article.split(' ').length > 50">
           <b (click)="updateHiddenArticle()"
@@ -209,7 +212,7 @@
 
 <!-- watch series -->
 <div #watchSeriesRef></div>
-<app-card *ngIf="news.videoSections.length > 0">
+<app-card *ngIf="news.videoSections?.length && news.videoSections.length > 0">
   <app-card-header>
     Смотреть видео
   </app-card-header>

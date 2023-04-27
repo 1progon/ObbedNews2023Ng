@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {DomSanitizer, SafeResourceUrl, Title} from "@angular/platform-browser";
+import {DomSanitizer, SafeHtml, SafeResourceUrl, Title} from "@angular/platform-browser";
 import {environment} from "../../../../../environments/environment";
 import {AuthService} from "../../../../services/auth.service";
 import {Comment} from "../../../../interfaces/Comment";
@@ -43,6 +43,8 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
   sections: NewsVideoSection[] = [];
   filteredSections: NewsVideoSection[] = [];
 
+  safeArticle?: SafeHtml;
+
   FavoriteStatus = FavoriteStatus;
   yaButtonsScript: string = 'https://yastatic.net/share2/share.js';
 
@@ -80,6 +82,10 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
           if (value.mainImage) {
             this.safeMainImage = this.san
               .bypassSecurityTrustResourceUrl(this.imagesPath + '/' + value.mainImage ?? '');
+          }
+
+          if (this.news.article) {
+            this.safeArticle = this.san.bypassSecurityTrustHtml(this.news.article);
           }
 
           if (this.auth.isLogged()) {
