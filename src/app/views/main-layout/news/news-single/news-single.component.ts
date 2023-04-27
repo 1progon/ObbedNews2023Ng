@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeResourceUrl, Title} from "@angular/platform-browser";
@@ -23,7 +23,7 @@ import {NewsWrapperComponent} from "../news-wrapper/news-wrapper.component";
   templateUrl: './news-single.component.html',
   styleUrls: ['./news-single.component.scss']
 })
-export class NewsSingleComponent implements OnInit {
+export class NewsSingleComponent implements OnInit, AfterViewInit {
   r = rNames;
 
   news: News = <News>{};
@@ -43,6 +43,9 @@ export class NewsSingleComponent implements OnInit {
   sections: NewsVideoSection[] = [];
   filteredSections: NewsVideoSection[] = [];
 
+  FavoriteStatus = FavoriteStatus;
+  yaButtonsScript: string = 'https://yastatic.net/share2/share.js';
+
 
   constructor(public route: ActivatedRoute,
               public auth: AuthService,
@@ -52,7 +55,8 @@ export class NewsSingleComponent implements OnInit {
               private toastService: ToastsService,
               private san: DomSanitizer,
               public wrapperService: NewsWrapperService,
-              public wrapperComponent: NewsWrapperComponent) {
+              public wrapperComponent: NewsWrapperComponent,
+              private renderer: Renderer2) {
   }
 
 
@@ -97,6 +101,15 @@ export class NewsSingleComponent implements OnInit {
       })
 
 
+  }
+
+  ngAfterViewInit(): void {
+    // add share buttons yandex script
+    let s: HTMLScriptElement = this.renderer.createElement('script');
+    s.async = true;
+    s.src = this.yaButtonsScript;
+
+    this.renderer.appendChild(document.body, s);
   }
 
 
@@ -267,5 +280,5 @@ export class NewsSingleComponent implements OnInit {
     elementRefToScroll.scrollIntoView();
   }
 
-  protected readonly FavoriteStatus = FavoriteStatus;
+
 }

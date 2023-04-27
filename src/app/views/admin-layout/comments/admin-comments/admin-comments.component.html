@@ -1,0 +1,50 @@
+<app-loader *ngIf="loading"/>
+
+<button (click)="showOnlyModeration = !showOnlyModeration"
+        type="button">
+  {{showOnlyModeration ? 'Only moderation' : 'All comments'}}
+</button>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Message</th>
+    <th>AuthorId</th>
+    <th>Status</th>
+    <th>Change Status</th>
+    <th>News</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let comment of filteredComments()">
+    <td>{{comment.id}}</td>
+    <td>{{comment.title}}</td>
+    <td>{{comment.message}}</td>
+    <td>{{comment.user?.account?.id}}</td>
+    <td>{{CommentStatus[comment.status]}}</td>
+    <td>
+      <button (click)="updateCommentStatus(comment, CommentStatus.Moderation)"
+              type="button">Moderation
+      </button>
+      <button (click)="updateCommentStatus(comment, CommentStatus.Active)"
+              type="button">Active
+      </button>
+      <button (click)="updateCommentStatus(comment, CommentStatus.Declined)"
+              type="button">Declined
+      </button>
+    </td>
+    <td><a [routerLink]="['/', rNames.news, comment.news.slug]">Open News</a></td>
+    <td>
+      <button type="button">Edit</button>
+    </td>
+    <td>
+      <button type="button">Remove</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

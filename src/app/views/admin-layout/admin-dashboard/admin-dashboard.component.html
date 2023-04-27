@@ -2,35 +2,56 @@
 
   <div class="sidebar left-side">
 
+    <!-- news -->
     <div class="sidebar-widget">
-      <h2 class="block-title">News</h2>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news]"
-         class="btn" routerLinkActive="btn-outline">All News</a>
-
+      <h2 class="block-title">Новости</h2>
       <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news, r.newsAdd]"
-         class="btn" routerLinkActive="btn-outline">Add News</a>
+         class="btn" routerLinkActive="btn-outline">Добавить новость</a>
+
+
+      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news]"
+         class="btn" routerLinkActive="btn-outline">Все новости</a>
+
 
     </div>
+    <!-- end news -->
 
 
+    <!-- categories -->
     <div class="sidebar-widget">
-      <h2 class="block-title">Categories</h2>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.parentCategories, r.parentCategoryAdd]"
-         class="btn" routerLinkActive="btn-outline">Add Parent Category</a>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.admCategories, r.admCategoryAdd]"
-         class="btn" routerLinkActive="btn-outline">Add Category</a>
+      <h2 class="block-title">Категории</h2>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.admin, r.parentCategories, r.parentCategoryAdd]"
+         class="btn" routerLinkActive="btn-outline">Добавить род. категорию</a>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.admin, r.admCategories, r.admCategoryAdd]"
+         class="btn" routerLinkActive="btn-outline">Добавить влож. категорию</a>
     </div>
+    <!-- end categories -->
 
+
+    <!-- users -->
     <div class="sidebar-widget">
-      <h2 class="block-title">Users</h2>
+      <h2 class="block-title">Пользователи</h2>
       <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.users]"
-         class="btn" routerLinkActive="btn-outline">All Users</a>
-
+         class="btn" routerLinkActive="btn-outline">Все пользователи</a>
     </div>
+    <!-- end users -->
+
+    <!-- comments -->
+    <div class="sidebar-widget">
+      <h2 class="block-title">Комментарии</h2>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.admin, r.comments, r.commentWaitModer]"
+         class="btn" routerLinkActive="btn-outline">Ожидают модерации</a>
+    </div>
+    <!-- end comments -->
+
+
   </div>
 
   <div class="right-side">
-    <p>Admin Dashboard</p>
+    <p>Панель управления Админа</p>
 
     <router-outlet/>
   </div>

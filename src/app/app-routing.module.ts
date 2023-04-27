@@ -47,6 +47,7 @@ import {NewsEpisodeComponent} from "./views/main-layout/news/news-episode/news-e
 import {CategoriesIndexComponent} from "./views/main-layout/categories/categories-index/categories-index.component";
 import {CategorySingleComponent} from "./views/main-layout/categories/category-single/category-single.component";
 import {Error404Component} from "./views/main-layout/errors/error404/error404.component";
+import {AdminCommentsComponent} from "./views/admin-layout/comments/admin-comments/admin-comments.component";
 
 export const rNames = {
 
@@ -108,6 +109,10 @@ export const rNames = {
   // tags
   tags: 'tags',
   tagsSlug: 'slug',
+
+  // comments
+  comments: 'comments',
+  commentWaitModer: 'wait-moderation',
 
 
 }
@@ -232,6 +237,11 @@ const routes: Routes = [
 
                 ]
               },
+              {
+                path: rNames.comments, children: [
+                  {path: rNames.commentWaitModer, component: AdminCommentsComponent}
+                ]
+              }
             ]
           },
 

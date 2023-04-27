@@ -70,6 +70,7 @@ import {Error404Component} from "./views/main-layout/errors/error404/error404.co
 import {AdminUsersIndexComponent} from "./views/admin-layout/users/admin-users-index/admin-users-index.component";
 import {AdminUserDetailComponent} from "./views/admin-layout/users/admin-user-detail/admin-user-detail.component";
 import {AddTokenInterceptor} from "./interceptors/add-token.interceptor";
+import {AdminCommentsComponent} from "./views/admin-layout/comments/admin-comments/admin-comments.component";
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import {AddTokenInterceptor} from "./interceptors/add-token.interceptor";
     Error404Component,
     AdminUsersIndexComponent,
     AdminUserDetailComponent,
+    AdminCommentsComponent,
   ],
   imports: [
     BrowserModule,
