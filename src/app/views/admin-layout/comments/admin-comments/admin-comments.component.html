@@ -25,7 +25,7 @@
     <td>{{comment.id}}</td>
     <td>{{comment.title}}</td>
     <td>{{comment.message}}</td>
-    <td>{{comment.user?.account?.id}}</td>
+    <td>{{comment.user.account.id}}</td>
     <td>{{CommentStatus[comment.status]}}</td>
     <td>
       <button (click)="updateCommentStatus(comment, CommentStatus.Moderation)"
