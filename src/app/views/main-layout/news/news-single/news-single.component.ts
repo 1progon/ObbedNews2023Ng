@@ -74,7 +74,7 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
 
           this.votedLikeFor = LikeType.Undefined;
 
-          this.titleService.setTitle(value.name + ' news');
+          this.titleService.setTitle(value.name + '|' + environment.websiteName);
           this.news = value;
           this.updateSumCount();
 
