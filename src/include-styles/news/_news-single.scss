@@ -3,18 +3,10 @@
 .lead {
   padding: 20px;
   font-style: italic;
-
-  & * {
-    font-size: 16px;
-  }
 }
 
 article {
   display: inline-block;
-
-  p {
-    font-size: 17px;
-  }
 
   &.hidden-article {
     position: relative;
