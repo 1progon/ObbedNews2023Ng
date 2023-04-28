@@ -45,7 +45,7 @@ export class AccountNewsService {
     if (!this.authService.isLogged()) {
       throw new HttpErrorResponse({
         status: HttpStatusCode.Unauthorized,
-        statusText: 'Need to login or register'
+        statusText: 'Нужно войти или зарегистрироваться'
       });
     }
 

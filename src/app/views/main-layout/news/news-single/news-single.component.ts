@@ -141,7 +141,7 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
     if (!this.auth.isLogged()) {
       this.toastService.pushToast(
         {
-          message: 'Need to login or register',
+          message: 'Нужно войти или зарегистрироваться',
           type: ToastType.Info
         }
       )
@@ -203,7 +203,7 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
             this.news.comments = [comment, ...this.news.comments];
             this.toastService
               .pushToast({
-                message: 'New comment added and wait for moderation!',
+                message: 'Новый комментарий ожидает модерации! Спасибо.',
                 type: ToastType.Info
               });
           }
@@ -236,7 +236,7 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
     if (!this.auth.isLogged()) {
       this.toastService.pushToast(
         {
-          message: 'Need to login or register',
+          message: 'Нужно войти или зарегистрироваться',
           type: ToastType.Info
         }
       )

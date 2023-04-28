@@ -26,7 +26,7 @@ export class AccountPremiumService {
     if (!this.auth.isLogged()) {
       throw new HttpErrorResponse({
         status: HttpStatusCode.Unauthorized,
-        statusText: 'Need to login or register'
+        statusText: 'Нужно войти или зарегистрироваться'
       })
     }
     return this.http.get<AccountPremiumInitialDto>(this.api + '/GetInitialData');
@@ -36,7 +36,7 @@ export class AccountPremiumService {
     if (!this.auth.isLogged()) {
       throw new HttpErrorResponse({
         status: HttpStatusCode.Unauthorized,
-        statusText: 'Need to login or register'
+        statusText: 'Нужно войти или зарегистрироваться'
       })
     }
 
@@ -47,7 +47,7 @@ export class AccountPremiumService {
     if (!this.auth.isLogged()) {
       throw new HttpErrorResponse({
         status: HttpStatusCode.Unauthorized,
-        statusText: 'Need to login or register'
+        statusText: 'Нужно войти или зарегистрироваться'
       })
     }
 
