@@ -18,6 +18,7 @@ export class CategorySingleComponent implements OnInit {
   loading = false;
   slug = '';
   categoryName = '';
+  parentCategoryName: string = '';
 
   constructor(private title: Title,
               private route: ActivatedRoute,
@@ -56,7 +57,12 @@ export class CategorySingleComponent implements OnInit {
       .subscribe({
         next: value => {
           this.newsList = value;
-          this.categoryName = this.newsList[0].category.name;
+          let category = this.newsList[0].category;
+          this.categoryName = category.name;
+          if (category.parentCategory) {
+            this.parentCategoryName = category.parentCategory.name;
+          }
+
           this.title.setTitle(this.categoryName + ' категория');
 
         },
