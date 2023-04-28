@@ -2,27 +2,7 @@
 
 .article-wrapper {
 
-  article {
-    display: inline-block;
 
-    &.hidden-article {
-      position: relative;
-      max-height: 130px;
-      overflow: hidden;
-
-      &::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 900;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-
-      }
-    }
-  }
 
   b {
     display: block;
@@ -79,10 +59,7 @@
   }
 }
 
-.lead {
-  padding: 20px;
-  font-style: italic;
-}
+
 
 .series-block {
   margin-bottom: 20px;
