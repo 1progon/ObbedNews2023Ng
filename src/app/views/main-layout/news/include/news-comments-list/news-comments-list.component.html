@@ -32,8 +32,12 @@
                 <p>{{mainComment.message}}</p>
 
                 <p>
-                  <span class="pointer" style="color: green;">Нравится: {{mainComment.likes}}</span>
-                  <span class="pointer"
+                  <span *ngIf="mainComment.status == CommentStatus.Active"
+                        class="pointer"
+                        style="color: green;">Нравится:
+                    {{mainComment.likes}}</span>
+                  <span *ngIf="mainComment.status == CommentStatus.Active"
+                        class="pointer"
                         style="margin-left: 10px;color: red;">Не нравится: {{mainComment.dislikes}}</span>
                 </p>
 
@@ -108,9 +112,14 @@
                             {{childComment.message}}
                           </div>
                           <div style="margin-top: 20px;">
-                          <span class="pointer" style="color: green;">Нравится:
+                          <span *ngIf="childComment.status == CommentStatus.Active"
+                                class="pointer"
+                                style="color: green;">Нравится:
                             {{childComment.likes}}</span>
-                            <span class="pointer" style="margin-left: 10px; color: red;">Не нравится:
+                            <span *ngIf="childComment.status == CommentStatus.Active"
+                                  class="pointer"
+                                  style="margin-left: 10px; color: red;">Не
+                              нравится:
                               {{childComment.dislikes}}</span>
                           </div>
                         </div>
