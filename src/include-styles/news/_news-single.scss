@@ -12,7 +12,7 @@
 article {
   display: inline-block;
 
-  p {
+  & * {
     font-size: 17px;
   }
 
