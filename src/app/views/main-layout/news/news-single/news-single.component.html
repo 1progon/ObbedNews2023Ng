@@ -96,7 +96,7 @@
 
     <div *ngIf="auth.isLogged() && votedLikeFor != LikeType.Undefined">
       Ваш голос =
-      <b>{{votedLikeFor == LikeType.Like ? 'Нравится' : (votedLikeFor == LikeType.Dislike) ? 'Не нравится' :
+      <b>{{votedLikeFor == LikeType.Like ? 'Интересная' : (votedLikeFor == LikeType.Dislike) ? 'Не интересная' :
         'Кажется не голосовали'}}</b>
     </div>
 
@@ -135,6 +135,7 @@
 <!-- likes dislikes buttons -->
 <app-card>
   <app-card-header>
+    <h3>Интересная ли новость?</h3>
     <p>Проголосовало пользователей: {{votedPeopleCount()}}</p>
   </app-card-header>
   <app-card-body>
@@ -146,7 +147,7 @@
               class="btn btn-danger"
               type="button">
 
-        <div>{{isUpdatingLike ? 'Обновление...' : 'Дизлайк'}}</div>
+        <div>{{isUpdatingLike ? 'Обновление...' : 'Нет'}}</div>
 
         <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Dislike"
              viewBox="0 0 24 24"
@@ -191,7 +192,7 @@
               [disabled]="isUpdatingLike"
               class="btn"
               type="button">
-        <div>{{isUpdatingLike ? 'Обновление...' : 'Лайк'}}</div>
+        <div>{{isUpdatingLike ? 'Обновление...' : 'Да'}}</div>
 
         <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Like"
              viewBox="0 0 24 24"
