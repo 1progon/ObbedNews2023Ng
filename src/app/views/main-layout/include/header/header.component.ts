@@ -3,6 +3,7 @@ import {AuthService} from "../../../../services/auth.service";
 import {UserType} from "../../../../enums/users/UserType";
 import {rNames} from "../../../../app-routing.module";
 import {NavigationEnd, Router} from "@angular/router";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   UserType = UserType;
   r = rNames;
+  protected readonly environment = environment;
 
   constructor(public authService: AuthService,
               public router: Router) {
