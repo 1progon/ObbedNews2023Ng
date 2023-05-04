@@ -77,20 +77,19 @@ export const rNames = {
   register: 'register',
 
   // account
+  admin: 'admin',
   account: 'account',
   accountCheckPayment: 'check-payment',
-  admin: 'admin',
   accountPremium: 'premium',
-
 
   // users
   users: 'users',
 
   // categories
-  categories: 'sections',
+  nestedCats: 'categories',
 
   // admin parent categories
-  parentCategories: 'parent-sections',
+  parentCats: 'parent-categories',
 
   // errors
   error404: '404',
@@ -101,7 +100,6 @@ export const rNames = {
   // comments
   comments: 'comments',
   commentWaitModer: 'wait-moderation',
-
 
 }
 
@@ -199,12 +197,12 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.categories, children: [
+                path: rNames.nestedCats, children: [
                   // index nested categories
                   {path: '', component: AdminCategoriesIndexComponent},
 
                   // index parent categories
-                  {path: rNames.parentCategories, component: AdminParentCategoriesIndexComponent},
+                  {path: rNames.parentCats, component: AdminParentCategoriesIndexComponent},
 
                   {path: rNames.add, component: AdminAddCategoryComponent},
                   {
@@ -218,7 +216,7 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.parentCategories, children: [
+                path: rNames.parentCats, children: [
                   {path: rNames.add, component: AdminAddParentCategoryComponent},
                   {
                     path: ':' + rNames.id, children: [
@@ -265,7 +263,7 @@ const routes: Routes = [
 
       // categories
       {
-        path: rNames.categories, children: [
+        path: rNames.nestedCats, children: [
           {path: '', component: CategoriesIndexComponent, title: 'Категории'},
           {path: ':' + rNames.slug, component: CategorySingleComponent},
         ]

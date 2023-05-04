@@ -43,7 +43,7 @@ export class AdminAddCategoryComponent implements OnInit {
         next: value => {
           this.router
             .navigate(['/', rNames.admin,
-              rNames.categories,
+              rNames.nestedCats,
               value.id,
               rNames.detail])
             .finally();

@@ -17,24 +17,23 @@
 
     <!-- categories -->
     <div class="sidebar-widget">
-      <h2 class="block-title">Категории</h2>
-
-
+      <h2 class="block-title">Родительские категории</h2>
       <!-- parent categories -->
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.parentCategories]"
+         [routerLink]="['/', r.admin, r.nestedCats, r.parentCats]"
          class="btn" routerLinkActive="btn-outline">Все род. категории</a>
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.parentCategories, r.add]"
+         [routerLink]="['/', r.admin, r.parentCats, r.add]"
          class="btn" routerLinkActive="btn-outline">Добавить род. категорию</a>
       <!-- end parent categories -->
 
+      <h2 class="block-title">Вложенные категории</h2>
       <!-- nested categories -->
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.categories]"
+         [routerLink]="['/', r.admin, r.nestedCats]"
          class="btn" routerLinkActive="btn-outline">Все влож. категории</a>
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.categories, r.add]"
+         [routerLink]="['/', r.admin, r.nestedCats, r.add]"
          class="btn" routerLinkActive="btn-outline">Добавить влож. категорию</a>
       <!-- end nested categories -->
 

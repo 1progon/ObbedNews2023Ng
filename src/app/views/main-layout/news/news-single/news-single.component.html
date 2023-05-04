@@ -9,7 +9,7 @@
 
     <p *ngIf="news.category">
       {{news.category.parentCategory?.name}} /
-      <a [routerLink]="['/', r.categories, news.category.slug]">
+      <a [routerLink]="['/', r.nestedCats, news.category.slug]">
         {{news.category.name}}
       </a>
     </p>

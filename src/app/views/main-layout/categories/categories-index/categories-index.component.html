@@ -11,7 +11,7 @@
         <ng-container *ngFor="let c of categories">
           <app-card *ngIf="c.parentCategory?.id == pc.id">
             <app-card-body>
-              <a [routerLink]="['/', r.categories, c.slug]" class="news-row">
+              <a [routerLink]="['/', r.nestedCats, c.slug]" class="news-row">
                 <div class="news-image">
                   <!-- <img [alt]="'news thumb' + c.name" -->
                   <!--      [src]="imagesPath + '/' + c.image" -->

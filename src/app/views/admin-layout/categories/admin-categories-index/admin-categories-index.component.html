@@ -1,1 +1,22 @@
-<p>admin-categories-index works!</p>
+<h2>Все вложенные категории</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Parent Category</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let pc of categories">
+    <td>{{pc.id}}</td>
+    <td>{{pc.name}}</td>
+    <td>{{pc.parentCategory?.name}}</td>
+    <td>Edit</td>
+    <td>Remove</td>
+  </tr>
+  </tbody>
+</table>

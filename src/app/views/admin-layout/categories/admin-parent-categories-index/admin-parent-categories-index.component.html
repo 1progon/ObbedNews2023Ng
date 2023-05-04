@@ -1,8 +1,11 @@
+<h2>Все родительские категории</h2>
 <table>
   <thead>
   <tr>
     <th>Id</th>
     <th>Name</th>
+    <th>Slug</th>
+    <th>Child cats</th>
     <th>Edit</th>
     <th>Remove</th>
   </tr>
@@ -12,6 +15,16 @@
   <tr *ngFor="let pc of parentCategories">
     <td>{{pc.id}}</td>
     <td>{{pc.name}}</td>
+    <td>{{pc.slug}}</td>
+    <td>
+      <div *ngFor="let nested of pc.categories">
+        <span>{{nested.name}}</span>
+        <a class="btn btn-small"
+           [routerLink]="['/', rNames.admin, rNames.nestedCats, nested.id, rNames.edit]">
+          Edit</a>
+      </div>
+
+    </td>
     <td>Edit</td>
     <td>Remove</td>
   </tr>
