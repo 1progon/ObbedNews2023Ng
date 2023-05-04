@@ -3,7 +3,6 @@
 .article-wrapper {
 
 
-
   b {
     display: block;
     text-align: center;
@@ -26,6 +25,11 @@
 
 .favorites {
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 
   svg {
     display: block;
@@ -58,7 +62,6 @@
     overflow: hidden;
   }
 }
-
 
 
 .series-block {
