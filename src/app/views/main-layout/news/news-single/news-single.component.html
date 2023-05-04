@@ -5,15 +5,7 @@
 
 <app-card>
   <app-card-header>
-    <h1>{{news.name}}</h1>
-
-    <p *ngIf="news.category">
-      {{news.category.parentCategory?.name}} /
-      <a [routerLink]="['/', r.nestedCats, news.category.slug]">
-        {{news.category.name}}
-      </a>
-    </p>
-
+    <h1 style="margin-bottom: 10px">{{news.name}}</h1>
     <div (click)="updateFav()" class="favorites">
       <ng-container *ngIf="!wrapperComponent.loading">
         <ng-container *ngIf="!auth.isLogged() || !isInFavorites">
