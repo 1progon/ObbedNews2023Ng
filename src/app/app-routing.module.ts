@@ -48,6 +48,12 @@ import {CategoriesIndexComponent} from "./views/main-layout/categories/categorie
 import {CategorySingleComponent} from "./views/main-layout/categories/category-single/category-single.component";
 import {Error404Component} from "./views/main-layout/errors/error404/error404.component";
 import {AdminCommentsComponent} from "./views/admin-layout/comments/admin-comments/admin-comments.component";
+import {
+  AdminCategoriesIndexComponent
+} from "./views/admin-layout/categories/admin-categories-index/admin-categories-index.component";
+import {
+  AdminParentCategoriesIndexComponent
+} from "./views/admin-layout/categories/admin-parent-categories-index/admin-parent-categories-index.component";
 
 export const rNames = {
 
@@ -211,8 +217,14 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.admCategories, children: [
-                  {path: rNames.admCategoryAdd, component: AdminAddCategoryComponent},
+                path: rNames.categories, children: [
+                  // index nested categories
+                  {path: '', component: AdminCategoriesIndexComponent},
+
+                  // index parent categories
+                  {path: rNames.parentCategories, component: AdminParentCategoriesIndexComponent},
+
+                  {path: rNames.add, component: AdminAddCategoryComponent},
                   {
                     path: ':' + rNames.admCategorySingleId, children: [
                       // {path: routeNames.categoryAdd, component: 'edit'},
