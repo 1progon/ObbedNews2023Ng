@@ -1,0 +1,19 @@
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let pc of parentCategories">
+    <td>{{pc.id}}</td>
+    <td>{{pc.name}}</td>
+    <td>Edit</td>
+    <td>Remove</td>
+  </tr>
+  </tbody>
+</table>
