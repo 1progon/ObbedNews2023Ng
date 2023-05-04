@@ -1,5 +1,5 @@
 <div *ngIf="auth.isLoggedAdmin()" style="margin-bottom: 10px;">
-  <a [routerLink]="['/', r.admin, r.news, news.id, r.newsDetail]"
+  <a [routerLink]="['/', r.admin, r.news, news.id, r.detail]"
      class="btn">Открыть в админке</a>
 </div>
 
@@ -51,7 +51,7 @@
         <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>
         <img (load)="wrapperService.imageLoaded = true"
              *ngIf="safeMainImage"
-             [alt]="'картинка к новости ' + news.name"
+             [alt]="'картинка к уроку программирования ' + news.name"
              [src]="safeMainImage">
 
       </a>
@@ -135,7 +135,7 @@
 <!-- likes dislikes buttons -->
 <app-card>
   <app-card-header>
-    <h3>Интересная ли новость?</h3>
+    <h3>Понравился материал?</h3>
     <p>Проголосовало пользователей: {{votedPeopleCount()}}</p>
   </app-card-header>
   <app-card-body>

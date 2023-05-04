@@ -43,9 +43,9 @@ export class AdminAddCategoryComponent implements OnInit {
         next: value => {
           this.router
             .navigate(['/', rNames.admin,
-              rNames.admCategories,
+              rNames.categories,
               value.id,
-              rNames.admCategoryDetail])
+              rNames.detail])
             .finally();
         },
         error: err => console.error(err)

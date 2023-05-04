@@ -58,33 +58,19 @@ import {
 export const rNames = {
 
   // news
-  news: 'news',
-  newsSlug: 'slug',
-  newsFavorites: 'favorites',
+  news: 'pages',
 
-  // admin news
-  newsAdd: 'add',
-  newsSingleId: 'id',
-  newsEdit: 'edit',
-  newsDetail: 'detail',
-  newsRemove: 'remove',
+  // base
+  id: 'id',
+  slug: 'slug',
 
-
-  // admin categories
-  admCategories: 'categories',
-  admCategorySingleId: 'id',
-  admCategoryAdd: 'add',
-  admCategoryEdit: 'edit',
-  admCategoryDetail: 'detail',
-  admCategoryRemove: 'remove',
-
-  // admin parent categories
-  parentCategories: 'parent-categories',
-  parentCategorySingleId: 'id',
-  parentCategoryAdd: 'add',
-  parentCategoryDetail: 'detail',
-  parentCategoryEdit: 'edit',
-  parentCategoryRemove: 'remove',
+  // base action
+  add: 'add',
+  edit: 'edit',
+  detail: 'detail',
+  remove: 'remove',
+  favorites: 'favorites',
+  report: 'report',
 
   // auth
   login: 'login',
@@ -99,22 +85,18 @@ export const rNames = {
 
   // users
   users: 'users',
-  usersSingleId: 'id',
-  userEdit: 'edit',
-  userDetail: 'detail',
-  userRemove: 'remove',
-  usersReport: 'report',
 
   // categories
-  categories: 'categories',
-  categoriesSlug: 'slug',
+  categories: 'sections',
+
+  // admin parent categories
+  parentCategories: 'parent-sections',
 
   // errors
   error404: '404',
 
   // tags
   tags: 'tags',
-  tagsSlug: 'slug',
 
   // comments
   comments: 'comments',
@@ -129,15 +111,15 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children: [
       // homepage
       {path: '', component: HomepageComponent, title: 'Новости на Оббед'},
-      // {path: '', redirectTo: '/news', pathMatch: 'full'},
+      // {path: '', redirectTo: '/' + rNames.news, pathMatch: 'full'},
 
       // public users
       {
         path: rNames.users, children: [
           {
-            path: ':' + rNames.usersSingleId, children: [
+            path: ':' + rNames.id, children: [
               {path: '', component: UserSingleComponent},
-              {path: rNames.usersReport, component: UserReportComponent}
+              {path: rNames.report, component: UserReportComponent}
             ]
           },
         ]
@@ -159,11 +141,11 @@ const routes: Routes = [
                 component: AccountCheckPaymentComponent
               },
               {
-                path: rNames.newsFavorites,
+                path: rNames.favorites,
                 component: AccountNewsFavoritesComponent
               },
               {
-                path: rNames.userEdit,
+                path: rNames.edit,
                 component: AccountEditComponent,
               },
               {
@@ -191,9 +173,9 @@ const routes: Routes = [
                 path: rNames.users, children: [
                   {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
                   {
-                    path: ':' + rNames.usersSingleId, children: [
-                      {path: '', redirectTo: rNames.userDetail, pathMatch: 'full'},
-                      {path: rNames.userDetail, component: AdminUserDetailComponent},
+                    path: ':' + rNames.id, children: [
+                      {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
+                      {path: rNames.detail, component: AdminUserDetailComponent},
                       // {path: rNames.userEdit, component: AdminUserEditComponent},
                       // {path: rNames.userRemove, component: AdminUserRemoveComponent},
                     ]
@@ -203,15 +185,15 @@ const routes: Routes = [
               {
                 path: rNames.news, children: [
                   {path: '', component: AdminNewsIndexComponent, title: 'All News'},
-                  {path: rNames.newsAdd, component: AdminNewsAddComponent, title: 'Add News'},
+                  {path: rNames.add, component: AdminNewsAddComponent, title: 'Add News'},
                   {
-                    path: ':' + rNames.newsSingleId,
+                    path: ':' + rNames.id,
                     component: AdminNewsWrapperComponent,
                     children: [
-                      {path: '', redirectTo: rNames.newsDetail, pathMatch: 'full'},
-                      {path: rNames.newsDetail, component: AdminNewsDetailComponent},
-                      {path: rNames.newsEdit, component: AdminNewsEditComponent},
-                      {path: rNames.newsRemove, component: AdminNewsRemoveComponent},
+                      {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
+                      {path: rNames.detail, component: AdminNewsDetailComponent},
+                      {path: rNames.edit, component: AdminNewsEditComponent},
+                      {path: rNames.remove, component: AdminNewsRemoveComponent},
                     ]
                   },
                 ]
@@ -226,10 +208,10 @@ const routes: Routes = [
 
                   {path: rNames.add, component: AdminAddCategoryComponent},
                   {
-                    path: ':' + rNames.admCategorySingleId, children: [
-                      // {path: routeNames.categoryAdd, component: 'edit'},
-                      {path: rNames.admCategoryDetail, component: AdminCategoryDetailComponent},
-                      // {path: routeNames.categoryAdd, component: 'remove'},
+                    path: ':' + rNames.id, children: [
+                      {path: rNames.detail, component: AdminCategoryDetailComponent},
+                      // {path: rNames.edit, component: 'edit'},
+                      // {path: rNames.remove, component: 'remove'},
                     ]
                   }
 
@@ -237,12 +219,12 @@ const routes: Routes = [
               },
               {
                 path: rNames.parentCategories, children: [
-                  {path: rNames.parentCategoryAdd, component: AdminAddParentCategoryComponent},
+                  {path: rNames.add, component: AdminAddParentCategoryComponent},
                   {
-                    path: ':' + rNames.parentCategorySingleId, children: [
-                      {path: rNames.parentCategoryDetail, component: AdminParentCategoryDetailComponent},
-                      // {path: routeNames.parentCategoryEdit, component: 'edit'},
-                      // {path: routeNames.parentCategoryRemove, component: 'remove'},
+                    path: ':' + rNames.id, children: [
+                      {path: rNames.detail, component: AdminParentCategoryDetailComponent},
+                      // {path: routeNames.edit, component: 'edit'},
+                      // {path: routeNames.remove, component: 'remove'},
                     ]
                   }
 
@@ -269,9 +251,9 @@ const routes: Routes = [
       // news
       {
         path: rNames.news, children: [
-          {path: '', component: NewsIndexComponent, title: 'Все новости'},
+          {path: '', component: NewsIndexComponent, title: 'Все страницы'},
           {
-            path: ':' + rNames.newsSlug,
+            path: ':' + rNames.slug,
             component: NewsWrapperComponent,
             children: [
               {path: '', component: NewsSingleComponent},
@@ -285,7 +267,7 @@ const routes: Routes = [
       {
         path: rNames.categories, children: [
           {path: '', component: CategoriesIndexComponent, title: 'Категории'},
-          {path: ':' + rNames.categoriesSlug, component: CategorySingleComponent},
+          {path: ':' + rNames.slug, component: CategorySingleComponent},
         ]
       },
 

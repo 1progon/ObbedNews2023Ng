@@ -4,14 +4,12 @@
 
     <!-- news -->
     <div class="sidebar-widget">
-      <h2 class="block-title">Новости</h2>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news, r.newsAdd]"
-         class="btn" routerLinkActive="btn-outline">Добавить новость</a>
-
+      <h2 class="block-title">Уроки</h2>
+      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news, r.add]"
+         class="btn" routerLinkActive="btn-outline">Добавить урок</a>
 
       <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.news]"
-         class="btn" routerLinkActive="btn-outline">Все новости</a>
-
+         class="btn" routerLinkActive="btn-outline">Все уроки</a>
 
     </div>
     <!-- end news -->
@@ -20,12 +18,26 @@
     <!-- categories -->
     <div class="sidebar-widget">
       <h2 class="block-title">Категории</h2>
+
+
+      <!-- parent categories -->
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.parentCategories, r.parentCategoryAdd]"
+         [routerLink]="['/', r.admin, r.parentCategories]"
+         class="btn" routerLinkActive="btn-outline">Все род. категории</a>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.admin, r.parentCategories, r.add]"
          class="btn" routerLinkActive="btn-outline">Добавить род. категорию</a>
+      <!-- end parent categories -->
+
+      <!-- nested categories -->
       <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.admCategories, r.admCategoryAdd]"
+         [routerLink]="['/', r.admin, r.categories]"
+         class="btn" routerLinkActive="btn-outline">Все влож. категории</a>
+      <a [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/', r.admin, r.categories, r.add]"
          class="btn" routerLinkActive="btn-outline">Добавить влож. категорию</a>
+      <!-- end nested categories -->
+
     </div>
     <!-- end categories -->
 

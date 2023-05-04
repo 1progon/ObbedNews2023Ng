@@ -3,12 +3,12 @@
 <ng-container *ngIf="dto">
 
   <app-card *ngIf="dto.popular?.length">
-    <app-card-header>Популярные новости</app-card-header>
+    <app-card-header>Популярные уроки</app-card-header>
     <app-card-body>
       <div class="block">
         <ng-container *ngFor="let news of dto.popular">
           <a [routerLink]="['/', r.news, news.slug]">
-            <img *ngIf="news.mainThumb" [alt]="'картинка к новости ' + news.name"
+            <img *ngIf="news.mainThumb" [alt]="'картинка к уроку программирования ' + news.name"
                  [src]="imagesPath + '/' + news.mainThumb">
             <div>
               {{news.name}}
@@ -21,12 +21,12 @@
   </app-card>
 
   <app-card *ngIf="dto.mostCommented?.length">
-    <app-card-header>Наиболее комментируемые новости</app-card-header>
+    <app-card-header>Наиболее комментируемые уроки</app-card-header>
     <app-card-body>
       <div class="block">
         <ng-container *ngFor="let news of dto.mostCommented">
           <a [routerLink]="['/', r.news, news.slug]">
-            <img *ngIf="news.mainThumb" [alt]="'картинка к новости ' + news.name"
+            <img *ngIf="news.mainThumb" [alt]="'картинка к уроку программирования ' + news.name"
                  [src]="imagesPath + '/' + news.mainThumb">
             {{news.name}}</a>
         </ng-container>
@@ -35,12 +35,12 @@
   </app-card>
 
   <app-card *ngIf="dto.last?.length">
-    <app-card-header>Последние добавленные новости</app-card-header>
+    <app-card-header>Последние добавленные уроки</app-card-header>
     <app-card-body>
       <div class="block">
         <ng-container *ngFor="let news of dto.last">
           <a [routerLink]="['/', r.news, news.slug]">
-            <img *ngIf="news.mainThumb" [alt]="'картинка к новости ' + news.name"
+            <img *ngIf="news.mainThumb" [alt]="'картинка к уроку программирования ' + news.name"
                  [src]="imagesPath + '/' + news.mainThumb">
             {{news.name}}</a>
         </ng-container>

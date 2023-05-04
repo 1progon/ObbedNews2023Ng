@@ -40,7 +40,7 @@ export class CategorySingleComponent implements OnInit {
           next: params => {
 
             this.loading = true;
-            this.slug = params[this.r.categoriesSlug];
+            this.slug = params[this.r.slug];
 
             this.getData();
           }

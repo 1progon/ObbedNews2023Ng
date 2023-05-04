@@ -1,7 +1,7 @@
 <app-preloader *ngIf="loading"/>
 <app-card>
   <app-card-header>
-    Все новости в категории - {{parentCategoryName|uppercase}} / {{categoryName|uppercase}}
+    Все уроки в разделе - {{parentCategoryName|uppercase}} / {{categoryName|uppercase}}
   </app-card-header>
   <app-card-body>
     <app-news-list-index [newsList]="newsList"/>

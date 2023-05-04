@@ -7,8 +7,8 @@
   <a *ngIf="news" [routerLink]="['/', r.news, news.slug]"
      class="btn btn-outline">Front View</a>
 
-  <a [relativeTo]="route.parent" [routerLink]="r.newsEdit" class="btn">Edit</a>
-  <a [relativeTo]="route.parent" [routerLink]="r.newsRemove" class="btn btn-danger">Remove</a>
+  <a [relativeTo]="route.parent" [routerLink]="r.edit" class="btn">Edit</a>
+  <a [relativeTo]="route.parent" [routerLink]="r.remove" class="btn btn-danger">Remove</a>
 
 </div>
 
