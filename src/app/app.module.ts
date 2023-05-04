@@ -71,6 +71,8 @@ import {AdminUsersIndexComponent} from "./views/admin-layout/users/admin-users-i
 import {AdminUserDetailComponent} from "./views/admin-layout/users/admin-user-detail/admin-user-detail.component";
 import {AddTokenInterceptor} from "./interceptors/add-token.interceptor";
 import {AdminCommentsComponent} from "./views/admin-layout/comments/admin-comments/admin-comments.component";
+import { AdminCategoriesIndexComponent } from './views/admin-layout/categories/admin-categories-index/admin-categories-index.component';
+import { AdminParentCategoriesIndexComponent } from './views/admin-layout/categories/admin-parent-categories-index/admin-parent-categories-index.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,8 @@ import {AdminCommentsComponent} from "./views/admin-layout/comments/admin-commen
     AdminUsersIndexComponent,
     AdminUserDetailComponent,
     AdminCommentsComponent,
+    AdminCategoriesIndexComponent,
+    AdminParentCategoriesIndexComponent,
   ],
   imports: [
     BrowserModule,
