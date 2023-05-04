@@ -1,6 +1,6 @@
 <?php
 
-$siteName = 'Новости на Оббед';
+$siteName = 'Английский на Оббед';
 $seconds = 1;
 
 $slug = $_GET['slug'];
@@ -8,7 +8,7 @@ if( !isset($slug) ){
   exit;
 }
 
-$title = $_GET['title'] ?? 'Горячие и интересные новости на Оббед';
+$title = $_GET['title'] ?? 'Английский на Оббед';
 $desc = $_GET['desc'] ?? '';
 
 $domain = 'https://obbed.ru';

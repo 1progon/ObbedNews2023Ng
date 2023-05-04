@@ -51,7 +51,7 @@
         <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>
         <img (load)="wrapperService.imageLoaded = true"
              *ngIf="safeMainImage"
-             [alt]="'картинка к уроку программирования ' + news.name"
+             [alt]="'картинка к записи ' + news.name"
              [src]="safeMainImage">
 
       </a>

@@ -108,7 +108,7 @@ const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
       // homepage
-      {path: '', component: HomepageComponent, title: 'Новости на Оббед'},
+      {path: '', component: HomepageComponent, title: 'Английский на Оббед'},
       // {path: '', redirectTo: '/' + rNames.news, pathMatch: 'full'},
 
       // public users
