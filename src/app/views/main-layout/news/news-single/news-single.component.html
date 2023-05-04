@@ -91,18 +91,6 @@
     <!--      target="_blank">{{siteNameWithoutHttp(news.newsLink)}}</a> -->
     <!-- </div> -->
   </app-card-body>
-  <app-card-footer>
-
-
-    <div *ngIf="auth.isLogged() && votedLikeFor != LikeType.Undefined">
-      Ваш голос =
-      <b>{{votedLikeFor == LikeType.Like ? 'Интересная' : (votedLikeFor == LikeType.Dislike) ? 'Не интересная' :
-        'Кажется не голосовали'}}</b>
-    </div>
-
-    <div *ngIf="!auth.isLogged() || votedLikeFor == LikeType.Undefined">Пожалуйста проголосуйте!</div>
-
-  </app-card-footer>
 </app-card>
 
 <!-- share buttons -->
@@ -207,6 +195,17 @@
     </div>
 
   </app-card-body>
+  <app-card-footer>
+
+    <div *ngIf="auth.isLogged() && votedLikeFor != LikeType.Undefined">
+      Ваш голос =
+      <b>{{votedLikeFor == LikeType.Like ? 'Интересная' : (votedLikeFor == LikeType.Dislike) ? 'Не интересная' :
+        'Кажется не голосовали'}}</b>
+    </div>
+
+    <div *ngIf="!auth.isLogged() || votedLikeFor == LikeType.Undefined">Пожалуйста проголосуйте!</div>
+
+  </app-card-footer>
 
 </app-card>
 <!-- end likes dislikes buttons -->
