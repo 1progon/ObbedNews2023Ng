@@ -63,7 +63,11 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    document.body.scrollIntoView();
+    this.route.params.subscribe({
+      next: () => {
+        document.body.scrollIntoView();
+      }
+    })
 
     this.wrapperService.news$
       .subscribe({
