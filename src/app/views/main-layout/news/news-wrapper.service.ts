@@ -7,6 +7,8 @@ import {News} from "../../../interfaces/News";
 })
 export class NewsWrapperService {
   news$: BehaviorSubject<News> = new BehaviorSubject<News>({} as News);
+  nearbyNews$: BehaviorSubject<News[]> = new BehaviorSubject<News[]>([]);
+
   imageLoaded: boolean = false;
 
   expandedSections = <boolean[]>[];
