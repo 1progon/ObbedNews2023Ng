@@ -1,53 +1,57 @@
 <app-preloader *ngIf="loading"/>
 
-<h2>Вход в аккаунт</h2>
 
-<form #ngForm='ngForm' (ngSubmit)="onSubmit()">
-  <label class="required" for="email">Email</label>
-  <input #emailR="ngModel"
-         [(ngModel)]="form.email"
-         email
-         id="email"
-         name="email"
-         placeholder='Эл. почта Email'
-         required
-         type="email"/>
-  <div *ngIf="emailR.invalid && (emailR.touched || emailR.dirty)"
-       class="alert alert-danger">
+<div class="form-container">
+  <h2>Вход в аккаунт</h2>
 
-    <ng-container *ngIf="emailR.errors?.['required']">Поле обязательно</ng-container>
-    <ng-container *ngIf="emailR.errors?.['email']">Email формат не верный</ng-container>
+  <form #ngForm='ngForm' (ngSubmit)="onSubmit()">
+    <label class="required" for="email">Email</label>
+    <input #emailR="ngModel"
+           [(ngModel)]="form.email"
+           email
+           id="email"
+           name="email"
+           placeholder='Эл. почта Email'
+           required
+           type="email"/>
+    <div *ngIf="emailR.invalid && (emailR.touched || emailR.dirty)"
+         class="alert alert-danger">
 
-  </div>
+      <ng-container *ngIf="emailR.errors?.['required']">Поле обязательно</ng-container>
+      <ng-container *ngIf="emailR.errors?.['email']">Email формат не верный</ng-container>
 
-  <label class="required" for="password">Пароль</label>
-  <input #passR="ngModel"
-         [(ngModel)]="form.password"
-         [minlength]="passMinLength"
-         id="password"
-         name="password"
-         placeholder='Пароль'
-         required
-         type="password"/>
+    </div>
 
-  <div *ngIf="passR.invalid && (passR.touched || passR.dirty)"
-       class="alert alert-danger">
+    <label class="required" for="password">Пароль</label>
+    <input #passR="ngModel"
+           [(ngModel)]="form.password"
+           [minlength]="passMinLength"
+           id="password"
+           name="password"
+           placeholder='Пароль'
+           required
+           type="password"/>
 
-    <ng-container *ngIf="passR.errors?.['required']">Поле обязательно</ng-container>
-    <ng-container *ngIf="passR.errors?.['minlength']">Минимальная длина {{passMinLength}} символов</ng-container>
+    <div *ngIf="passR.invalid && (passR.touched || passR.dirty)"
+         class="alert alert-danger">
 
-  </div>
+      <ng-container *ngIf="passR.errors?.['required']">Поле обязательно</ng-container>
+      <ng-container *ngIf="passR.errors?.['minlength']">Минимальная длина {{passMinLength}} символов</ng-container>
 
-  <button
-    [disabled]="loading || ngForm.invalid || ngForm.pristine"
-    class='btn'
-    type='submit'>
-    {{loading ? 'Загрузка...' : 'Войти'}}
-  </button>
+    </div>
 
-  <div *ngIf="error" class="alert alert-danger">
-    {{error}}
-  </div>
+    <button
+      [disabled]="loading || ngForm.invalid || ngForm.pristine"
+      class='btn'
+      type='submit'>
+      {{loading ? 'Загрузка...' : 'Войти'}}
+    </button>
+
+    <div *ngIf="error" class="alert alert-danger">
+      {{error}}
+    </div>
 
 
-</form>
+  </form>
+</div>
+

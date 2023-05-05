@@ -53,3 +53,14 @@ form {
     }
   }
 }
+
+
+.form-container {
+  padding-left: 20%;
+  padding-right: 20%;
+
+  @media screen and (max-width: 768px) {
+    padding-left: unset;
+    padding-right: unset;
+  }
+}
