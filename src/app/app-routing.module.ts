@@ -244,10 +244,10 @@ const routes: Routes = [
       {path: rNames.register, component: RegisterComponent, title: 'Страница регистрации на сайте Оббед'},
 
 
-      // news
+      // dictionary
       {
         path: rNames.dictionary, children: [
-          {path: '', component: NewsIndexComponent, title: 'Все страницы'},
+          {path: '', component: NewsIndexComponent, title: 'Словарь'},
           {
             path: ':' + rNames.slug,
             component: NewsWrapperComponent,
