@@ -27,6 +27,7 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
   r = rNames;
 
   news: News = <News>{};
+  nearbyNews: News[] = [];
   votedLikeFor = LikeType.Undefined;
   LikeType = LikeType;
   isUpdatingLike: boolean = false;
@@ -104,6 +105,17 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
 
 
         },
+      })
+
+    this.wrapperService.nearbyNews$
+      .subscribe({
+        next: value => {
+          if (!value.length) {
+            return;
+          }
+
+          this.nearbyNews = value;
+        }
       })
 
 
@@ -287,4 +299,5 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
   }
 
 
+  protected readonly rNames = rNames;
 }

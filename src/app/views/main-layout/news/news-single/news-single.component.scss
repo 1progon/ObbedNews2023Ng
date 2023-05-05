@@ -1,5 +1,23 @@
 @use "vars" as *;
 
+.sidebar {
+  display: flex;
+  flex: 2 0;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    display: block;
+    padding: 5px 3px;
+
+    &.active {
+      background-color: #cfa9fc;
+
+    }
+  }
+}
+
 .article-wrapper {
 
 
@@ -21,7 +39,6 @@
     align-items: center;
   }
 }
-
 
 .favorites {
   cursor: pointer;
@@ -62,7 +79,6 @@
     overflow: hidden;
   }
 }
-
 
 .series-block {
   margin-bottom: 20px;
