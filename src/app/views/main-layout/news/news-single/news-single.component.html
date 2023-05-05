@@ -92,31 +92,10 @@
         </div>
 
 
-        <div #articleWrapper class="article-wrapper">
-          <ng-container *ngIf="news.article && news.article.length">
-            <article *ngIf="safeArticle" [class.hidden-article]="hiddenArticle"
-                     [innerHtml]="safeArticle"></article>
-
-            <ng-container *ngIf="news.article.split(' ').length > 50">
-              <b (click)="updateHiddenArticle()"
-                 *ngIf="hiddenArticle"
-                 class="pointer">Показать весь текст!</b>
-
-              <b (click)="updateHiddenArticle(articleWrapper)"
-                 *ngIf="!hiddenArticle"
-                 class="pointer">Скрыть часть текста</b>
-            </ng-container>
-
-          </ng-container>
+        <article *ngIf="news.article && safeArticle"
+                 [innerHtml]="safeArticle"></article>
 
 
-        </div>
-
-
-        <!-- <div *ngIf="news.newsLink" class="websites-links"> -->
-        <!--   <a [href]="siteWithHttp(news.newsLink)" rel="noreferrer noopener nofollow" -->
-        <!--      target="_blank">{{siteNameWithoutHttp(news.newsLink)}}</a> -->
-        <!-- </div> -->
       </app-card-body>
     </app-card>
 

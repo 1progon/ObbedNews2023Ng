@@ -46,7 +46,6 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
 
   safeArticle?: SafeHtml;
 
-  FavoriteStatus = FavoriteStatus;
   yaButtonsScript: string = 'https://yastatic.net/share2/share.js';
 
 
@@ -228,16 +227,6 @@ export class NewsSingleComponent implements OnInit, AfterViewInit {
   votedPeopleCount() {
     this.updateSumCount();
     return isNaN(this.sumCount) ? 'counting...' : this.sumCount;
-  }
-
-  siteNameWithoutHttp(site: string) {
-    return site.replace(/https?:\/\//gi, '');
-  }
-
-  siteWithHttp(site: string) {
-    return site.startsWith('https://') || site.startsWith('http://', 0)
-      ? site
-      : 'https://' + site
   }
 
   updateFav() {
