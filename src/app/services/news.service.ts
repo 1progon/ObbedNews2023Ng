@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {News} from "../interfaces/News";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {GetSingleNewsDto} from "../dto/news/GetSingleNewsDto";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class NewsService {
   }
 
   getNewsBySlug(slug: string) {
-    return this.http.get<News>(this.api + '/' + slug);
+    return this.http.get<GetSingleNewsDto>(this.api + '/' + slug);
   }
 
 }
