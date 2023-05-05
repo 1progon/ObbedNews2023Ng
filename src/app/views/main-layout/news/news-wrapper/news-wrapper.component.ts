@@ -23,6 +23,7 @@ export class NewsWrapperComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.wrapperService.news$.next({} as News);
+    this.wrapperService.nearbyNews$.next([]);
 
     this.route.params.subscribe({
       next: params => {
@@ -34,7 +35,8 @@ export class NewsWrapperComponent implements OnInit {
         this.newsService.getNewsBySlug(params['slug'])
           .subscribe({
             next: value => {
-              this.wrapperService.news$.next(value);
+              this.wrapperService.news$.next(value.news);
+              this.wrapperService.nearbyNews$.next(value.nearbyNews);
             },
             error: (err: HttpErrorResponse) => {
               if (err.status == HttpStatusCode.NotFound) {
