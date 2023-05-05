@@ -20,15 +20,15 @@
       <div *ngFor="let nested of pc.categories">
         <span>{{nested.name}}</span>
         <a class="btn btn-warning btn-small"
-           [routerLink]="['/', rNames.admin, rNames.nestedCats, nested.id, rNames.edit]">
+           [routerLink]="['/', rNames.admin, rNames.catNested, nested.id, rNames.edit]">
           Edit</a>
       </div>
 
     </td>
     <td><a class="btn btn-warning btn-small"
-           [routerLink]="['/', rNames.admin, rNames.parentCats, pc.id, rNames.edit]">Edit</a></td>
+           [routerLink]="['/', rNames.admin, rNames.catParent, pc.id, rNames.edit]">Edit</a></td>
     <td><a class="btn btn-danger btn-small"
-           [routerLink]="['/', rNames.admin, rNames.parentCats, pc.id, rNames.remove]">Remove</a></td>
+           [routerLink]="['/', rNames.admin, rNames.catParent, pc.id, rNames.remove]">Remove</a></td>
   </tr>
   </tbody>
 </table>

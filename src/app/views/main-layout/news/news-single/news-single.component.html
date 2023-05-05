@@ -1,5 +1,5 @@
 <div *ngIf="auth.isLoggedAdmin()" style="margin-bottom: 10px;">
-  <a [routerLink]="['/', r.admin, r.news, news.id, r.detail]"
+  <a [routerLink]="['/', r.admin, r.dictionary, news.id, r.show]"
      class="btn">Открыть в админке</a>
 </div>
 
@@ -43,7 +43,7 @@
     <div class="lead">
       <div *ngIf="news.category">
         {{news.category.parentCategory?.name}} /
-        <a [routerLink]="['/', r.nestedCats, news.category.slug]">
+        <a [routerLink]="['/', r.catNested, news.category.slug]">
           {{news.category.name}}
         </a>
       </div>

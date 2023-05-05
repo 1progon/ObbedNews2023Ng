@@ -41,8 +41,8 @@ export class AdminNewsRemoveComponent implements OnInit {
     this.adminNewsService.removeNews(this.id)
       .subscribe({
         next: () => {
-          const {admin, news} = rNames;
-          this.router.navigate(['/', admin, news]).finally();
+          const {admin, dictionary} = rNames;
+          this.router.navigate(['/', admin, dictionary]).finally();
         },
         error: (err: HttpErrorResponse) => console.error(err)
       })

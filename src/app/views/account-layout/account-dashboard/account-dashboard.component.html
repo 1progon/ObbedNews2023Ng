@@ -2,17 +2,17 @@
 
   <div class="sidebar">
     <div class="sidebar-widget">
-      <h2 class="block-title">Пользователь</h2>
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.account, r.accountPremium]"
-         class="btn btn-warning"
-         routerLinkActive="btn-outline">Подписка</a>
+      <!-- <h4 class="block-title">Пользователь</h4> -->
+      <!-- <a [routerLinkActiveOptions]="{exact: true}" -->
+      <!--    [routerLink]="['/', r.account, r.accountPremium]" -->
+      <!--    class="btn btn-warning" -->
+      <!--    routerLinkActive="btn-outline">Подписка</a> -->
 
       <!-- <a class="btn" [routerLink]="['/', r.account, r.userEdit]">Редактировать аккаунт</a> -->
     </div>
 
     <div class="sidebar-widget">
-      <h2 class="block-title">Записи</h2>
+      <h4 class="block-title">Материалы</h4>
       <a [routerLinkActiveOptions]="{exact: true}"
          [routerLink]="['/', r.account, r.favorites]"
          class="btn"

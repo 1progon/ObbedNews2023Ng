@@ -26,9 +26,9 @@ export class AdminAddParentCategoryComponent {
         next: value => {
           this.router
             .navigate(['/', rNames.admin,
-              rNames.parentCats,
+              rNames.catParent,
               value.id,
-              rNames.detail])
+              rNames.show])
             .finally();
         },
         error: err => console.error(err)

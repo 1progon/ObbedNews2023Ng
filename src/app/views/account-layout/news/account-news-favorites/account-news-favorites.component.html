@@ -2,7 +2,7 @@
 
 <div class="flex">
   <ng-container *ngFor="let c of newsList">
-    <a [routerLink]="['/', r.news, c.slug]">
+    <a [routerLink]="['/', r.dictionary, c.slug]">
       <app-card>
         <app-card-body>
           {{c.name}}

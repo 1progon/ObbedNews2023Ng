@@ -69,7 +69,7 @@ export class AdminNewsAddComponent implements OnInit {
       .subscribe({
         next: value => {
           if (value.id) {
-            this.router.navigate(['/', rNames.news, value.slug])
+            this.router.navigate(['/', rNames.dictionary, value.slug])
               .finally();
           }
         },

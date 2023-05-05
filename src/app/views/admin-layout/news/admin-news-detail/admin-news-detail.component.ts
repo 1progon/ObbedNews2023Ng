@@ -52,10 +52,4 @@ export class AdminNewsDetailComponent implements OnInit {
       })
   }
 
-
-  copyRedirectCardUrl() {
-    if (this.redirectCard) {
-      navigator.clipboard.writeText(this.redirectCard).finally();
-    }
-  }
 }

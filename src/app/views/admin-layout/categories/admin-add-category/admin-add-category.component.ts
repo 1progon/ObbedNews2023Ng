@@ -43,9 +43,9 @@ export class AdminAddCategoryComponent implements OnInit {
         next: value => {
           this.router
             .navigate(['/', rNames.admin,
-              rNames.nestedCats,
+              rNames.catNested,
               value.id,
-              rNames.detail])
+              rNames.show])
             .finally();
         },
         error: err => console.error(err)

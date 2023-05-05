@@ -25,10 +25,12 @@
   <tr *ngFor="let c of newsList">
     <td>{{c.id}}</td>
     <td>
-      <img [src]="imagesPath + '/' + c.mainThumb"
+      <img *ngIf="c.mainThumb"
+           [src]="imagesPath + '/' + c.mainThumb"
            alt="thumb"
            height="60"
            width="auto">
+      <span *ngIf="!c.mainThumb">None</span>
     </td>
     <td>{{c.name}}</td>
     <td>{{c.category ? c.category.name : ''}}</td>
@@ -37,18 +39,18 @@
     <td>{{c.dislikesCount}}</td>
     <td>{{c.likesCount}}</td>
     <td>
-      <a [routerLink]="['/', r.news, c.slug]" target="_blank">Front</a>
+      <a [routerLink]="['/', r.dictionary, c.slug]" target="_blank">Front</a>
     </td>
     <td>
-      <a [routerLink]="['/' + r.admin, r.news, c.id, r.detail]"
+      <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.show]"
          class="btn btn-outline">Detail</a>
     </td>
     <td>
-      <a [routerLink]="['/' + r.admin, r.news, c.id, r.edit]"
+      <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.edit]"
          class="btn btn-warning">Edit</a>
     </td>
     <td>
-      <a [routerLink]="['/' + r.admin, r.news, c.id, r.remove]"
+      <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.remove]"
          class="btn btn-danger">Remove</a>
     </td>
   </tr>
@@ -56,6 +58,6 @@
 </table>
 
 
-<app-pagination [page]="page" [route]="['/', r.admin, r.news]"/>
+<app-pagination [page]="page" [route]="['/', r.admin, r.dictionary]"/>
 
 

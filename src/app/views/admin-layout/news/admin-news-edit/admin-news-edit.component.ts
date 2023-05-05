@@ -31,15 +31,6 @@ export class AdminNewsEditComponent implements OnInit {
   imagesPath = environment.imagesPath;
   categories: Category[] = [];
 
-  // udemy
-  udemy = {
-    maxRating: 5,
-    rating: 0.0,
-    count: 0,
-
-  };
-  udemyMaxRatingReadonly = true;
-
   constructor(private wrapperService: AdminNewsWrapperService,
               private adminNewsService: AdminNewsService,
               private toastService: ToastsService,
@@ -205,10 +196,6 @@ export class AdminNewsEditComponent implements OnInit {
       .add(() => this.isPosting = false)
   }
 
-  toNumber(key: string) {
-    return Number(key);
-  }
-
   videoFoldersToDb() {
     if (!this.newsId) {
       return;
@@ -226,9 +213,4 @@ export class AdminNewsEditComponent implements OnInit {
       })
   }
 
-  countLikesFromUdemy() {
-    let percent = (this.udemy.rating * 100 / this.udemy.maxRating) / 100;
-    this.form.likes = Math.floor(this.udemy.count * percent);
-    this.form.disLikes = Math.floor(this.udemy.count - this.form.likes);
-  }
 }

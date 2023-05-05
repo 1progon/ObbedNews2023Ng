@@ -3,7 +3,7 @@
 <h2>Edit News {{newsId}}</h2>
 
 <div class="buttons">
-  <a [relativeTo]="route.parent" [routerLink]="r.detail"
+  <a [relativeTo]="route.parent" [routerLink]="r.show"
      class="btn">Detail</a>
 
   <button (click)="videoFoldersToDb()" class="btn" type="button">
@@ -102,48 +102,6 @@
 
 
   <br/>
-
-
-  <!-- calc likes from udemy rating -->
-  <app-card>
-    <app-card-header>
-      Calc Likes from Udemy Rating (not required)
-    </app-card-header>
-    <app-card-body>
-      <div>
-        <label>
-          udemy_max_rating
-          <span (click)="udemyMaxRatingReadonly = !udemyMaxRatingReadonly">[EDIT] </span>
-
-          <input [(ngModel)]="udemy.maxRating"
-                 [readOnly]="udemyMaxRatingReadonly"
-                 name="udemy_max_rating"
-                 step="1" type="number">
-        </label>
-
-      </div>
-      <div>
-        <div>
-          <label>
-            udemy_rating
-            <input [(ngModel)]="udemy.rating" name="udemy_rating" step="0.1" type="number">
-          </label>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label>
-            udemy_count
-            <input [(ngModel)]="udemy.count" name="udemy_count" step="1" type="number">
-          </label>
-        </div>
-      </div>
-      <button (click)="countLikesFromUdemy()" class="btn btn-small" type="button">Calc likes</button>
-    </app-card-body>
-  </app-card>
-
-  <!-- end calc likes from udemy rating -->
 
 
   <div class="checkbox-block">

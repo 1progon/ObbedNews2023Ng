@@ -1,11 +1,11 @@
 <app-preloader *ngIf="loading"/>
 <app-card>
   <app-card-header>
-    Все записи в разделе - {{parentCategoryName|uppercase}} / {{categoryName|uppercase}}
+    Все материалы в разделе - {{parentCategoryName|uppercase}} / {{categoryName|uppercase}}
   </app-card-header>
   <app-card-body>
     <app-news-list-index [newsList]="newsList"/>
 
-    <app-pagination [page]="page" [route]="['/', r.nestedCats, slug]"/>
+    <app-pagination [page]="page" [route]="['/', r.catNested, slug]"/>
   </app-card-body>
 </app-card>

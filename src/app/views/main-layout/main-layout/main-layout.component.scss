@@ -1,4 +1,14 @@
-main {
-  margin-top: 10px;
-  padding-bottom: 30px;
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  main {
+    margin-top: 10px;
+    padding-bottom: 30px;
+    flex: 1;
+  }
 }
+
+
+

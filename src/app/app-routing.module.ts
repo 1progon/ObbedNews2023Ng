@@ -58,25 +58,22 @@ import {
 export const rNames = {
 
   // news
-  news: 'pages',
+  dictionary: 'dictionary',
 
   // base
   id: 'id',
   slug: 'slug',
-
-  // base action
   add: 'add',
   edit: 'edit',
-  detail: 'detail',
+  show: 'detail',
   remove: 'remove',
-  favorites: 'favorites',
   report: 'report',
 
   // auth
   login: 'login',
   register: 'register',
 
-  // account
+  // admin, account
   admin: 'admin',
   account: 'account',
   accountCheckPayment: 'check-payment',
@@ -86,16 +83,17 @@ export const rNames = {
   users: 'users',
 
   // categories
-  nestedCats: 'categories',
-
-  // admin parent categories
-  parentCats: 'parent-categories',
+  catNested: 'categories',
+  catParent: 'parent-categories',
 
   // errors
   error404: '404',
 
   // tags
   tags: 'tags',
+
+  // favorites
+  favorites: 'favorites',
 
   // comments
   comments: 'comments',
@@ -172,8 +170,8 @@ const routes: Routes = [
                   {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
                   {
                     path: ':' + rNames.id, children: [
-                      {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
-                      {path: rNames.detail, component: AdminUserDetailComponent},
+                      {path: '', redirectTo: rNames.show, pathMatch: 'full'},
+                      {path: rNames.show, component: AdminUserDetailComponent},
                       // {path: rNames.userEdit, component: AdminUserEditComponent},
                       // {path: rNames.userRemove, component: AdminUserRemoveComponent},
                     ]
@@ -181,15 +179,15 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.news, children: [
+                path: rNames.dictionary, children: [
                   {path: '', component: AdminNewsIndexComponent, title: 'All News'},
                   {path: rNames.add, component: AdminNewsAddComponent, title: 'Add News'},
                   {
                     path: ':' + rNames.id,
                     component: AdminNewsWrapperComponent,
                     children: [
-                      {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
-                      {path: rNames.detail, component: AdminNewsDetailComponent},
+                      {path: '', redirectTo: rNames.show, pathMatch: 'full'},
+                      {path: rNames.show, component: AdminNewsDetailComponent},
                       {path: rNames.edit, component: AdminNewsEditComponent},
                       {path: rNames.remove, component: AdminNewsRemoveComponent},
                     ]
@@ -197,17 +195,17 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.nestedCats, children: [
+                path: rNames.catNested, children: [
                   // index nested categories
                   {path: '', component: AdminCategoriesIndexComponent},
 
                   // index parent categories
-                  {path: rNames.parentCats, component: AdminParentCategoriesIndexComponent},
+                  {path: rNames.catParent, component: AdminParentCategoriesIndexComponent},
 
                   {path: rNames.add, component: AdminAddCategoryComponent},
                   {
                     path: ':' + rNames.id, children: [
-                      {path: rNames.detail, component: AdminCategoryDetailComponent},
+                      {path: rNames.show, component: AdminCategoryDetailComponent},
                       // {path: rNames.edit, component: 'edit'},
                       // {path: rNames.remove, component: 'remove'},
                     ]
@@ -216,11 +214,11 @@ const routes: Routes = [
                 ]
               },
               {
-                path: rNames.parentCats, children: [
+                path: rNames.catParent, children: [
                   {path: rNames.add, component: AdminAddParentCategoryComponent},
                   {
                     path: ':' + rNames.id, children: [
-                      {path: rNames.detail, component: AdminParentCategoryDetailComponent},
+                      {path: rNames.show, component: AdminParentCategoryDetailComponent},
                       // {path: routeNames.edit, component: 'edit'},
                       // {path: routeNames.remove, component: 'remove'},
                     ]
@@ -248,7 +246,7 @@ const routes: Routes = [
 
       // news
       {
-        path: rNames.news, children: [
+        path: rNames.dictionary, children: [
           {path: '', component: NewsIndexComponent, title: 'Все страницы'},
           {
             path: ':' + rNames.slug,
@@ -263,7 +261,7 @@ const routes: Routes = [
 
       // categories
       {
-        path: rNames.nestedCats, children: [
+        path: rNames.catNested, children: [
           {path: '', component: CategoriesIndexComponent, title: 'Категории'},
           {path: ':' + rNames.slug, component: CategorySingleComponent},
         ]

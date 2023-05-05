@@ -1,11 +1,11 @@
 <app-preloader *ngIf="loading"/>
 <app-card>
   <app-card-header>
-    Все записи
+    Все материалы
   </app-card-header>
   <app-card-body>
     <app-news-list-index [newsList]="newsList"/>
 
-    <app-pagination *ngIf="!loading" [page]="page" [route]="['/', r.news]"/>
+    <app-pagination *ngIf="!loading" [page]="page" [route]="['/', r.dictionary]"/>
   </app-card-body>
 </app-card>

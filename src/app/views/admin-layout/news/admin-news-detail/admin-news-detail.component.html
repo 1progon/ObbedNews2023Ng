@@ -4,7 +4,7 @@
 
 <div class="flex">
 
-  <a *ngIf="news" [routerLink]="['/', r.news, news.slug]"
+  <a *ngIf="news" [routerLink]="['/', r.dictionary, news.slug]"
      class="btn btn-outline">Front View</a>
 
   <a [relativeTo]="route.parent" [routerLink]="r.edit" class="btn">Edit</a>
@@ -13,20 +13,6 @@
 </div>
 
 <ng-container *ngIf="news">
-  <br>
-  <div>
-    <p>Redirect for cards
-      <button (click)="copyRedirectCardUrl()"
-              class="pointer"
-              type="button">
-        Copy Url
-      </button>
-    </p>
-    <a [href]="redirectCard" target="_blank">
-      <pre>{{redirectCard}}</pre>
-    </a>
-  </div>
-
   <br>
 
   <h3>News link</h3>

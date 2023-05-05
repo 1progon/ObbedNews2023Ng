@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 10px;
+    flex: 2;
 
     .block-title {
       margin-top: 10px;
@@ -31,6 +32,6 @@
   }
 
   .right-side {
-    flex: 1;
+    flex: 10;
   }
 }

@@ -5,19 +5,19 @@
     <div class="header">
       <div class="left-side">
         <a class="homepage-link" routerLink="/">
-          <div class="second">Интересное на</div>
+          <div class="second">Английский на</div>
           <div class="first">{{environment.websiteName}}</div>
         </a>
-        <a [routerLink]="['/', r.news]">Страницы</a>
-        <a [routerLink]="['/', r.nestedCats]">Разделы</a>
+        <a [routerLink]="['/', r.dictionary]">Страницы</a>
+        <a [routerLink]="['/', r.catNested]">Разделы</a>
       </div>
 
       <div class="right-side">
         <ng-container *ngIf="authService.isLogged()">
-          <a [routerLinkActiveOptions]="{exact: true}"
-             [routerLink]="['/', r.account, r.accountPremium]"
-             class="btn btn-warning"
-             routerLinkActive="btn-outline">Подписка</a>
+          <!-- <a [routerLinkActiveOptions]="{exact: true}" -->
+          <!--    [routerLink]="['/', r.account, r.accountPremium]" -->
+          <!--    class="btn btn-warning" -->
+          <!--    routerLinkActive="btn-outline">Подписка</a> -->
 
 
           <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.account]"
