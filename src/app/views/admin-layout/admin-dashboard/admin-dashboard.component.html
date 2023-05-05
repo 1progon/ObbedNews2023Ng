@@ -1,71 +1,79 @@
 <div class="panels">
 
   <div class="sidebar left-side">
+    <app-card>
+      <app-card-body>
+        <!-- news -->
+        <div class="sidebar-widget">
+          <h4 class="block-title">Материалы</h4>
+          <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.dictionary, r.add]"
+             class="btn" routerLinkActive="btn-outline">Добавить материал</a>
 
-    <!-- news -->
-    <div class="sidebar-widget">
-      <h4 class="block-title">Материалы</h4>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.dictionary, r.add]"
-         class="btn" routerLinkActive="btn-outline">Добавить материал</a>
+          <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.dictionary]"
+             class="btn" routerLinkActive="btn-outline">Все материалы</a>
 
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.dictionary]"
-         class="btn" routerLinkActive="btn-outline">Все материалы</a>
-
-    </div>
-    <!-- end news -->
-
-
-    <!-- categories -->
-    <div class="sidebar-widget">
-      <h4 class="block-title">Родительские категории</h4>
-      <!-- parent categories -->
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.catNested, r.catParent]"
-         class="btn" routerLinkActive="btn-outline">Все род. категории</a>
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.catParent, r.add]"
-         class="btn" routerLinkActive="btn-outline">Добавить род. категорию</a>
-      <!-- end parent categories -->
-
-      <h4 class="block-title">Вложенные категории</h4>
-      <!-- nested categories -->
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.catNested]"
-         class="btn" routerLinkActive="btn-outline">Все влож. категории</a>
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.catNested, r.add]"
-         class="btn" routerLinkActive="btn-outline">Добавить влож. категорию</a>
-      <!-- end nested categories -->
-
-    </div>
-    <!-- end categories -->
+        </div>
+        <!-- end news -->
 
 
-    <!-- users -->
-    <div class="sidebar-widget">
-      <h4 class="block-title">Пользователи</h4>
-      <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.users]"
-         class="btn" routerLinkActive="btn-outline">Все пользователи</a>
-    </div>
-    <!-- end users -->
+        <!-- categories -->
+        <div class="sidebar-widget">
+          <h4 class="block-title">Родительские категории</h4>
+          <!-- parent categories -->
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.admin, r.catNested, r.catParent]"
+             class="btn" routerLinkActive="btn-outline">Все род. категории</a>
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.admin, r.catParent, r.add]"
+             class="btn" routerLinkActive="btn-outline">Добавить род. категорию</a>
+          <!-- end parent categories -->
 
-    <!-- comments -->
-    <div class="sidebar-widget">
-      <h4 class="block-title">Комментарии</h4>
-      <a [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/', r.admin, r.comments, r.commentWaitModer]"
-         class="btn" routerLinkActive="btn-outline">Ожидают модерации</a>
-    </div>
-    <!-- end comments -->
+          <h4 class="block-title">Вложенные категории</h4>
+          <!-- nested categories -->
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.admin, r.catNested]"
+             class="btn" routerLinkActive="btn-outline">Все влож. категории</a>
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.admin, r.catNested, r.add]"
+             class="btn" routerLinkActive="btn-outline">Добавить влож. категорию</a>
+          <!-- end nested categories -->
+
+        </div>
+        <!-- end categories -->
 
 
+        <!-- users -->
+        <div class="sidebar-widget">
+          <h4 class="block-title">Пользователи</h4>
+          <a [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin, r.users]"
+             class="btn" routerLinkActive="btn-outline">Все пользователи</a>
+        </div>
+        <!-- end users -->
+
+        <!-- comments -->
+        <div class="sidebar-widget">
+          <h4 class="block-title">Комментарии</h4>
+          <a [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', r.admin, r.comments, r.commentWaitModer]"
+             class="btn" routerLinkActive="btn-outline">Ожидают модерации</a>
+        </div>
+        <!-- end comments -->
+
+      </app-card-body>
+    </app-card>
   </div>
+
 
   <div class="right-side">
-    <p>Панель управления Админа</p>
+    <app-card>
+      <app-card-body>
+        <p>Панель управления Админа</p>
 
-    <router-outlet/>
+        <router-outlet/>
+      </app-card-body>
+    </app-card>
   </div>
+
 </div>
 
 
