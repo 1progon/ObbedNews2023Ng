@@ -1,5 +1,5 @@
 import {Category} from "../../interfaces/Category";
 
-export interface AddNewsDtoInitial {
+export interface AddNewsInitialDto {
   categories: Category[];
 }

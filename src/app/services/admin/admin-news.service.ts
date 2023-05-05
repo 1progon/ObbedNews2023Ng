@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpStatusCode} from "@angular/common/htt
 import {AuthService} from "../auth.service";
 import {News} from "../../interfaces/News";
 import {environment} from "../../../environments/environment";
-import {AddNewsDtoInitial} from "../../dto/news/AddNewsDtoInitial";
+import {AddNewsInitialDto} from "../../dto/news/AddNewsInitialDto";
 import {AddNewsDto} from "../../dto/news/AddNewsDto";
 import {UpdateNewsDto} from "../../dto/news/UpdateNewsDto";
 
@@ -21,7 +21,7 @@ export class AdminNewsService {
 
   // only for logged in admin
   addNewsGetInitialData() {
-    return this.http.get<AddNewsDtoInitial>(this.api + '/AddNewsDtoInitial')
+    return this.http.get<AddNewsInitialDto>(this.api + '/AddNewsDtoInitial')
   }
 
   addNews(dto: AddNewsDto) {
