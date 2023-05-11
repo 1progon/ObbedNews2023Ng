@@ -1,34 +1,50 @@
-<app-card>
-  <app-card-body>
-    <div class="meanings">
-      <h6>Meanings</h6>
-      <div class="meaning" *ngFor="let m of section.meanings; index as i" style="margin-left: 30px">
-        <app-card>
-          <app-card-body>
-            <button type="button" (click)="section.meanings.splice(i,1)">Remove</button>
+<div style="margin-left: 30px;">
+  <app-card>
+    <app-card-header>
+      Meanings
+      <button type="button"
+              *ngIf="section.meanings?.length"
+              (click)="sortMeanings(section.meanings)">
+        Sort
+      </button>
+    </app-card-header>
+    <app-card-body *ngIf="section.meanings?.length">
+      <div class="meanings">
+        <div class="meaning" *ngFor="let m of section.meanings; index as i"
+             style="margin-left: 30px">
+          <app-card *ngIf="ws.activeSection == m || !ws.activeSection">
+            <app-card-header [active]="ws.activeSection == m">
+              <label>
+                <span (click)="showSection[i] = !showSection[i]">
+                  {{showSection[i] ? '-' : '+'}} Meaning Order
+                </span>
 
-            <label>
-              Meaning section Order
-              <input type="number" name="m_sectionOrder[{{i}}]" [(ngModel)]="m.sectionOrder"/>
-            </label>
+                <input type="number"
+                       placeholder="Section Order"
+                       name="m_sectionOrder[{{i}}]"
+                       [(ngModel)]="m.sectionOrder"/>
+              </label>
+              <button type="button" (click)="section.meanings.splice(i,1)">Remove</button>
 
-            <br>
+            </app-card-header>
+            <app-card-body *ngIf="showSection[i]">
 
-            <label>
-              Meaning mean
-              <textarea name="m_mean[{{i}}]" [(ngModel)]="m.mean"></textarea>
-            </label>
+              <label>
+                Meaning mean
+                <textarea name="m_mean[{{i}}]" [(ngModel)]="m.mean"></textarea>
+              </label>
 
-            <br>
+              <app-definitions-list [section]="m"/>
 
-            <h6>Definitions inside meaning part</h6>
-            <app-definitions-list [section]="m"/>
+            </app-card-body>
+          </app-card>
 
-          </app-card-body>
-        </app-card>
-
+        </div>
       </div>
+    </app-card-body>
+    <app-card-footer>
       <button type="button" (click)="addMeaningInSpeechPart(section)">Add meaning part +</button>
-    </div>
-  </app-card-body>
-</app-card>
+    </app-card-footer>
+  </app-card>
+</div>
+

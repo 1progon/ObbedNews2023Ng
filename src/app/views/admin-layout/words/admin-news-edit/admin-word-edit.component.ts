@@ -12,6 +12,11 @@ import {TagDto} from "../../../../dto/news/TagDto";
 import {rNames} from "../../../../app-routing.module";
 import {Category} from "../../../../interfaces/words/Category";
 import {WordSection} from "../../../../interfaces/words/dictionary/WordSection";
+import {SpeechPartSection} from "../../../../interfaces/words/dictionary/SpeechPartSection";
+import {Meaning} from "../../../../interfaces/words/dictionary/Meaning";
+import {SpecialDefinitionBlock} from "../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
+import {Definition} from "../../../../interfaces/words/dictionary/Definition";
+import {WordSound} from "../../../../interfaces/words/dictionary/WordSound";
 
 @Component({
   selector: 'app-admin-word-edit',
@@ -34,7 +39,7 @@ export class AdminWordEditComponent implements OnInit {
 
   wordSection = {} as WordSection;
 
-  constructor(private wrapperService: AdminWordsWrapperService,
+  constructor(public wordsWrapperService: AdminWordsWrapperService,
               private adminWordService: AdminWordService,
               private toastService: ToastsService,
               private router: Router,
@@ -55,7 +60,7 @@ export class AdminWordEditComponent implements OnInit {
       })
       .add(() => this.loading = false)
 
-    this.wrapperService.word$
+    this.wordsWrapperService.word$
       .subscribe({
         next: word => {
           if (word.wordSection) {
@@ -113,14 +118,14 @@ export class AdminWordEditComponent implements OnInit {
         let tag = this.form.tags?.find(tag => tag.name == tagName);
         if (tag) {
           tag.name = tagName.toLowerCase();
-          tag.slug = this.wrapperService.createSlugFromString(tagName);
+          tag.slug = this.wordsWrapperService.createSlugFromString(tagName);
           return tag;
 
         } else {
 
           return <TagDto>{
             name: tagName.toLowerCase(),
-            slug: this.wrapperService.createSlugFromString(tagName)
+            slug: this.wordsWrapperService.createSlugFromString(tagName)
           }
         }
 
@@ -131,7 +136,7 @@ export class AdminWordEditComponent implements OnInit {
   }
 
   updateSlug() {
-    this.form.slug = this.wrapperService.createSlugFromString(this.form.slug);
+    this.form.slug = this.wordsWrapperService.createSlugFromString(this.form.slug);
   }
 
   updateImagePreview(e: Event) {
@@ -167,7 +172,7 @@ export class AdminWordEditComponent implements OnInit {
     this.adminWordService.updateWord(this.form, this.newsId)
       .subscribe({
         next: value => {
-          this.wrapperService.word$.next(value);
+          this.wordsWrapperService.word$.next(value);
 
           this.router
             .navigate(['detail'], {relativeTo: this.route.parent})
@@ -193,7 +198,7 @@ export class AdminWordEditComponent implements OnInit {
       .updateWordImage(this.newsId, this.form.mainImage)
       .subscribe({
         next: value => {
-          this.wrapperService.word$.next(value);
+          this.wordsWrapperService.word$.next(value);
 
           this.router
             .navigate(['detail'], {relativeTo: this.route.parent})
@@ -223,4 +228,14 @@ export class AdminWordEditComponent implements OnInit {
   }
 
 
+  setActiveSection(speechPart: SpeechPartSection,
+                   section?: Meaning | SpecialDefinitionBlock | Definition | WordSound) {
+    this.wordsWrapperService.activeSpeechPart = speechPart;
+    this.wordsWrapperService.activeSection = section;
+  }
+
+  resetActiveSection() {
+    this.wordsWrapperService.activeSpeechPart = undefined;
+    this.wordsWrapperService.activeSection = undefined;
+  }
 }

@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {SpeechPartSection} from "../../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {Meaning} from "../../../../../../interfaces/words/dictionary/Meaning";
 import {Definition} from "../../../../../../interfaces/words/dictionary/Definition";
+import {AdminWordsWrapperService} from "../../../admin-words-wrapper.service";
 
 @Component({
   selector: 'app-definitions-list',
@@ -13,13 +14,29 @@ export class DefinitionsListComponent {
 
   protected readonly Number = Number;
 
-  constructor() {
+  constructor(public ws: AdminWordsWrapperService) {
   }
 
-  addDefinition(section: Meaning | SpeechPartSection) {
-    if (!section.definitions) section.definitions = [];
-    section.definitions.push({} as Definition);
+  addDefinition(sp: Meaning | SpeechPartSection) {
+    if (!sp.definitions) sp.definitions = [];
+
+    this.sortDefinitions(sp.definitions);
+
+    let order = sp.definitions.length
+      ? sp.definitions[sp.definitions.length - 1].sectionOrder + 1
+      : sp.definitions.length + 1;
+
+
+    sp.definitions.push({sectionOrder: order} as Definition);
   }
 
 
+  sortDefinitions(definitions: Definition[]) {
+    definitions
+      .sort((a, b) => a.sectionOrder - b.sectionOrder)
+      .map((value, i) => {
+        value.sectionOrder = i + 1;
+        return value;
+      });
+  }
 }

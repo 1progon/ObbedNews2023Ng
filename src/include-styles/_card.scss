@@ -17,11 +17,20 @@
   }
 
   .card-header {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
     font-weight: 600;
     font-size: 17px;
     border-bottom: 2px solid vars.$bg-color;
-    padding: 20px 10px;
+    padding: 10px;
     color: vars.$text-color;
+    background-color: vars.$bg-color;
+
+    &.active {
+      background-color: vars.$warning-bg-color;
+    }
 
   }
 

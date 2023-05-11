@@ -1,45 +1,53 @@
-<app-card>
-  <app-card-body>
-    <div class="spec-blocks">
-      <h6>Spec block</h6>
+<div style="margin-left: 30px;">
+  <app-card>
+    <app-card-header>
+      Spec blocks
+      <button type="button"
+              *ngIf="section.specBlocks?.length"
+              (click)="sortSpecBlock(section.specBlocks)">Sort
+      </button>
+    </app-card-header>
+    <app-card-body *ngIf="section.specBlocks?.length">
+      <div class="spec-blocks">
+        <div class="spec-block"
+             *ngFor="let b of section.specBlocks; index as i" style="margin-left: 30px">
+          <app-card *ngIf="ws.activeSection == b || !ws.activeSection">
+            <app-card-header [active]="ws.activeSection == b">
 
-      <div class="spec-block" *ngFor="let b of section.specBlocks; index as i" style="margin-left: 30px">
-        <app-card>
-          <app-card-body>
+              <div style="display: flex; gap: 10px; align-items: center">
+                <span (click)="specBlockShow[i] = !specBlockShow[i]">
+                  {{specBlockShow[i] ? '-' : '+'}} Spec Block</span>
+                <input type="number" name="spb_sectionOrder[{{i}}]"
+                       placeholder="Order"
+                       [(ngModel)]="b.sectionOrder"/>
+                <button type="button" (click)="section.specBlocks.splice(i,1)">Remove</button>
 
-            <button type="button" (click)="section.specBlocks.splice(i,1)">Remove</button>
+                <input type="text" name="spb_name[{{i}}]" [(ngModel)]="b.name"
+                       placeholder="Name"/>
+              </div>
 
-            <label>
-              Spec block section Order
-              <input type="number" name="spb_sectionOrder[{{i}}]" [(ngModel)]="b.sectionOrder"/>
-            </label>
+            </app-card-header>
+            <app-card-body *ngIf="specBlockShow[i]">
 
-            <br>
-
-            <label>
-              Spec block name
-              <input type="text" name="spb_name[{{i}}]" [(ngModel)]="b.name"/>
-            </label>
-
-            <br>
-
-
-            <label>
-              <app-card>
-                <app-card-body>
-                  <h6>Spec block def</h6>
-                  <app-definitions-list-item/>
-
-                </app-card-body>
-              </app-card>
-            </label>
+              <div style="margin-left: 30px;">
+                <app-card>
+                  <app-card-header>
+                    Spec block def
+                  </app-card-header>
+                  <app-card-body>
+                    <app-definitions-list-item [section]="section"/>
+                  </app-card-body>
+                </app-card>
+              </div>
 
 
-          </app-card-body>
-        </app-card>
+            </app-card-body>
+          </app-card>
+        </div>
       </div>
+    </app-card-body>
+    <app-card-footer>
       <button type="button" (click)="addSpecBlockInSpeechPart(section)">Add spec bloc part +</button>
-    </div>
-  </app-card-body>
-</app-card>
-
+    </app-card-footer>
+  </app-card>
+</div>

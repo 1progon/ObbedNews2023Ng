@@ -2,14 +2,20 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, map} from "rxjs";
 import {AdminWordService} from "../../../services/admin/admin-word.service";
 import {Word} from "../../../interfaces/words/Word";
+import {SpeechPartSection} from "../../../interfaces/words/dictionary/SpeechPartSection";
+import {Meaning} from "../../../interfaces/words/dictionary/Meaning";
+import {SpecialDefinitionBlock} from "../../../interfaces/words/dictionary/SpecialDefinitionBlock";
+import {Definition} from "../../../interfaces/words/dictionary/Definition";
+import {WordSound} from "../../../interfaces/words/dictionary/WordSound";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminWordsWrapperService {
-
-
   word$: BehaviorSubject<Word> = new BehaviorSubject<Word>(<Word>{});
+
+  activeSpeechPart?: SpeechPartSection;
+  activeSection?: Meaning | SpecialDefinitionBlock | Definition | WordSound;
 
   constructor(private adminWordService: AdminWordService) {
   }

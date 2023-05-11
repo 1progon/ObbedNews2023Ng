@@ -103,13 +103,68 @@
   <hr/>
 
   <!-- Word section -->
-  {{wordSection | json}}
   <app-card>
     <app-card-body>
       <div class="word-sections">
         <h3>Word Section</h3>
 
-        <app-speech-parts [wordSection]="wordSection"/>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap">
+          <div style="flex: 2">
+            <h4>Sections</h4>
+            <button type="button"
+                    *ngIf="wordSection.speechParts?.length"
+                    (click)="resetActiveSection()">Reset Selected
+            </button>
+            <div *ngFor="let sp of wordSection.speechParts">
+              <app-card>
+                <app-card-header>
+                  <button type="button"
+                          [class.btn]="wordsWrapperService.activeSpeechPart == sp"
+                          (click)="setActiveSection(sp)">
+                    Speech Part {{sp.order}}
+                  </button>
+                </app-card-header>
+                <app-card-body>
+                  <div style="margin-left: 20px;">
+                    <div *ngFor="let m of sp.meanings">
+                      <button type="button"
+                              [class.btn]="wordsWrapperService.activeSection == m"
+                              (click)="setActiveSection(sp,m)">
+                        Meaning {{m.sectionOrder}}</button>
+                    </div>
+                    <hr>
+                    <div *ngFor="let d of sp.definitions">
+                      <button type="button"
+                              [class.btn]="wordsWrapperService.activeSection == d"
+                              (click)="setActiveSection(sp,d)">
+                        Definition {{d.sectionOrder}}</button>
+                    </div>
+                    <hr>
+                    <div *ngFor="let sb of sp.specBlocks">
+                      <button type="button"
+                              [class.btn]="wordsWrapperService.activeSection == sb"
+                              (click)="setActiveSection(sp,sb)">
+                        Spec Block {{sb.sectionOrder}}</button>
+                    </div>
+                    <hr>
+                    <div *ngFor="let s of sp.sounds">
+                      <button type="button"
+                              [class.btn]="wordsWrapperService.activeSection == s"
+                              (click)="setActiveSection(sp,s)">Sound Lang {{s.language}}</button>
+                    </div>
+
+                  </div>
+                </app-card-body>
+              </app-card>
+
+            </div>
+          </div>
+
+          <div style="flex: 10">
+            <app-speech-parts [wordSection]="wordSection"/>
+          </div>
+        </div>
+
 
       </div>
     </app-card-body>

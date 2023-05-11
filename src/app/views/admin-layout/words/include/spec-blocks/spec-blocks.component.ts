@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {EngLevel} from "../../../../../enums/news/EngLevel";
 import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {SpecialDefinitionBlock} from "../../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
+import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
 
 @Component({
   selector: 'app-spec-blocks',
@@ -12,12 +12,28 @@ export class SpecBlocksComponent {
   @Input() section: SpeechPartSection = <SpeechPartSection>{};
 
   protected readonly Number = Number;
+  specBlockShow: boolean[] = [];
 
-  constructor() {
+  constructor(public ws: AdminWordsWrapperService) {
   }
 
   addSpecBlockInSpeechPart(sp: SpeechPartSection) {
     if (!sp.specBlocks) sp.specBlocks = [];
-    sp.specBlocks.push({} as SpecialDefinitionBlock);
+
+    this.sortSpecBlock(sp.specBlocks);
+
+    let order = sp.specBlocks.length
+      ? sp.specBlocks[sp.specBlocks.length - 1].sectionOrder + 1
+      : sp.specBlocks.length + 1;
+
+    sp.specBlocks.push({sectionOrder: order} as SpecialDefinitionBlock);
+  }
+
+  sortSpecBlock(specBlocks: SpecialDefinitionBlock[]) {
+    specBlocks.sort((a, b) => a.sectionOrder - b.sectionOrder)
+      .map((value, index) => {
+        value.sectionOrder = index + 1;
+        return value;
+      });
   }
 }

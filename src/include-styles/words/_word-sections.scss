@@ -14,11 +14,13 @@ article, .word-sections {
   }
 
   .sounds {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+
 
     .sound-block {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+
       .language {
         text-transform: uppercase;
         margin-right: 10px;

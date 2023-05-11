@@ -1,114 +1,152 @@
-<label>
-  definitions section Order
-  <input type="number" name="d_sectionOrder[{{index}}]" [(ngModel)]="definition.sectionOrder"/>
-</label>
+<div style="margin-left: 30px;">
+  <app-card>
+    <app-card-header [active]="ws.activeSection==definition">
+      <label>
+        <span (click)="showSection[index] = !showSection[index]">
+          {{showSection[index] ? '-' : '+'}} Definition Order
+        </span>
 
-<br>
+        <input type="number" name="d_sectionOrder[{{index}}]"
+               placeholder="Section Order"
+               [(ngModel)]="definition.sectionOrder"/>
+      </label>
 
-<label>
-  definitions order Inside Meaning
-  <input type="number" name="d_orderInsideMeaning[{{index}}]" [(ngModel)]="definition.orderInsideMeaning"/>
-</label>
+      <button type="button"
+              (click)="section.definitions.splice(index,1)">Remove
+      </button>
 
-<br>
+    </app-card-header>
+    <app-card-body *ngIf="showSection[index]">
 
-<label>
-  definitions def Text
-  <textarea name="d_defText[{{index}}]" [(ngModel)]="definition.defText"></textarea>
-</label>
+      <label>
+        definitions order Inside Meaning
+        <input type="number" name="d_orderInsideMeaning[{{index}}]" [(ngModel)]="definition.orderInsideMeaning"/>
+      </label>
 
-<br>
+      <br>
 
-<label>
-  definitions level EngLevel
-  <select name="d_level[{{index}}]" [(ngModel)]="definition.level">
-    <ng-container *ngFor="let l of EngLevel|keyvalue">
-      <option *ngIf="Number(l.value)" [ngValue]="l.value">{{l.key}}</option>
-    </ng-container>
-  </select>
-</label>
+      <label>
+        definitions def Text
+        <textarea name="d_defText[{{index}}]" [(ngModel)]="definition.defText"></textarea>
+      </label>
 
-<br>
+      <br>
 
-<app-card>
-  <app-card-body>
-    <h6>Definition Labels</h6>
-    <div *ngFor="let l of definition.labels;index as i" style="margin-left: 60px">
-      <app-card>
-        <app-card-body>
-          <button type="button" (click)="definition.labels.splice(i, 1)">Remove</button>
-          <label>
-            Definition Labels description
-            <textarea name="l_description[{{i}}]" [(ngModel)]="l.description"></textarea>
-          </label>
-          <br>
-          <label>
-            Definition Labels name
-            <input type="text" name="l_name[{{i}}]" [(ngModel)]="l.name">
-          </label>
-          <br>
-          <label>
-            Definition Labels speechPartEnum
-            <select name="l_speechPartEnum[{{i}}]" [(ngModel)]="l.speechPartEnum">
-              <ng-container *ngFor="let e of SpeechPartEnum|keyvalue">
-                <option *ngIf="Number(e.value)" [ngValue]="e.value">{{e.key}}</option>
-              </ng-container>
-            </select>
-          </label>
-          <br>
+      <label>
+        definitions level EngLevel
+        <select name="d_level[{{index}}]" [(ngModel)]="definition.level">
+          <ng-container *ngFor="let l of EngLevel|keyvalue">
+            <option *ngIf="Number(l.value)" [ngValue]="l.value">{{l.key}}</option>
+          </ng-container>
+        </select>
+      </label>
 
 
-          <!-- todo add parent meaning -->
-          <div contenteditable="true">parentMeaning: ...</div>
-        </app-card-body>
-      </app-card>
+      <br>
 
-    </div>
-    <button type="button" (click)="addLabelsInDefinition(definition)">
-      Add def label in definition +
-    </button>
-  </app-card-body>
-</app-card>
+      <!-- labels -->
+      <div style="margin-left: 30px;">
+        <app-card>
+          <app-card-header>
+            Definition Labels
+          </app-card-header>
+          <app-card-body>
+            <div *ngFor="let l of definition.labels;index as i" style="margin-left: 60px">
+              <app-card>
+                <app-card-header>
+                  Label {{i}}
+                  <button type="button" (click)="definition.labels.splice(i, 1)">Remove</button>
+                  <input type="text" name="l_name[{{i}}]"
+                         placeholder="Name"
+                         [(ngModel)]="l.name">
+                </app-card-header>
+                <app-card-body>
+                  <label>
+                    Definition Labels description
+                    <textarea name="l_description[{{i}}]" [(ngModel)]="l.description"></textarea>
+                  </label>
+
+                  <br>
+                  <label>
+                    Definition Labels speechPartEnum
+                    <select name="l_speechPartEnum[{{i}}]" [(ngModel)]="l.speechPartEnum">
+                      <ng-container *ngFor="let e of SpeechPartEnum|keyvalue">
+                        <option *ngIf="Number(e.value)" [ngValue]="e.value">{{e.key}}</option>
+                      </ng-container>
+                    </select>
+                  </label>
+                  <br>
 
 
-<br>
+                  <!-- todo add parent meaning -->
+                  <div contenteditable="true">parentMeaning: ...</div>
+                </app-card-body>
+              </app-card>
 
-<app-card>
-  <app-card-body>
-    <h6>Definition Examples</h6>
-    <div *ngFor="let ex of definition.examples;index as i" style="margin-left: 60px">
-      <app-card>
-        <app-card-body>
-          <button type="button" (click)="definition.examples.splice(i, 1)">Remove</button>
-
-          <label>
-            example example
-            <textarea name="ex_example[{{i}}]" [(ngModel)]="ex.example"></textarea>
-          </label>
-          <br>
-          <label>
-            example example Translation
-            <textarea name="ex_exampleTranslation[{{i}}]" [(ngModel)]="ex.exampleTranslation"></textarea>
-          </label>
-          <br>
+            </div>
+            <button type="button" (click)="addLabelsInDefinition(definition)">
+              Add def label in definition +
+            </button>
+          </app-card-body>
+        </app-card>
+      </div>
+      <!-- end labels -->
 
 
-          <label>
-            example
+      <br>
 
-          </label>
-          <br>
+      <!-- examples -->
+      <div style="margin-left: 30px;">
+        <app-card>
+          <app-card-header>
+            Definition Examples
+          </app-card-header>
+          <app-card-body>
+            <div *ngFor="let ex of definition.examples;index as i" style="margin-left: 60px">
+              <app-card>
+                <app-card-header>
+                  Example {{i}}
+                  <button type="button" (click)="definition.examples.splice(i, 1)">Remove</button>
+                </app-card-header>
+                <app-card-body>
 
-          <!-- todo add parent meaning -->
-          <div contenteditable="true">parentMeaning: ...</div>
+                  <label>
+                    example example
+                    <textarea name="ex_example[{{i}}]" [(ngModel)]="ex.example"></textarea>
+                  </label>
+                  <br>
+                  <label>
+                    example example Translation
+                    <textarea name="ex_exampleTranslation[{{i}}]"
+                              [(ngModel)]="ex.exampleTranslation"></textarea>
+                  </label>
+                  <br>
 
-        </app-card-body>
-      </app-card>
-    </div>
-    <button type="button" (click)="addExampleInDefinition(definition)">
-      Add def example in definition +
-    </button>
-  </app-card-body>
-</app-card>
+                  <!-- todo add parent meaning -->
+                  <div contenteditable="true">parentMeaning: ...</div>
+
+                </app-card-body>
+              </app-card>
+            </div>
+
+          </app-card-body>
+          <app-card-footer>
+            <button type="button" (click)="addExampleInDefinition(definition)">
+              Add def example in definition +
+            </button>
+          </app-card-footer>
+        </app-card>
+      </div>
+
+      <!-- end examples -->
+
+    </app-card-body>
+  </app-card>
+</div>
+
+
+
+
+
 
 
