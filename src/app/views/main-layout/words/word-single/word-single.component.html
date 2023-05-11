@@ -1,0 +1,512 @@
+<div *ngIf="auth.isLoggedAdmin()" style="margin-bottom: 10px;">
+  <a [routerLink]="['/', r.admin, r.dictionary, word.id, r.show]"
+     class="btn">Открыть в админке</a>
+</div>
+
+
+<div class="page-wrapper">
+
+  <div class="sidebar left-side">
+    <app-card style="width: 100%;">
+      <app-card-header>Соседние записи</app-card-header>
+      <app-card-body>
+        <div>
+          <a *ngFor="let n of nearbyWords"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}"
+             [routerLink]="['/', rNames.dictionary, n.slug]">
+            <div>{{n.name}}</div>
+          </a>
+        </div>
+
+      </app-card-body>
+    </app-card>
+
+  </div>
+  <div class="right-side">
+
+    <app-card>
+      <app-card-header>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between">
+          <!-- bread -->
+          <div *ngIf="word.category">
+            {{word.category.parentCategory?.name}} /
+            <a [routerLink]="['/', r.catNested, word.category.slug]">
+              {{word.category.name}}
+            </a>
+          </div>
+          <!-- end bread -->
+
+          <!-- favorites -->
+          <div (click)="updateFav()" class="favorites">
+            <ng-container *ngIf="!auth.isLogged() || !isInFavorites">
+              <!-- add to favorites button -->
+              <svg [class.updating]="isUpdatingFavorites"
+                   style="fill: rgba(255, 0, 0, 1)"
+                   viewBox="0 0 24 24"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18 2H6c-1.103 0-2 .897-2 2v18l8-4.572L20 22V4c0-1.103-.897-2-2-2zm0 16.553-6-3.428-6 3.428V4h12v14.553z"></path>
+              </svg>
+              <b>Добавить в избранное</b>
+              <!-- end add to favorites button -->
+            </ng-container>
+
+            <ng-container *ngIf="auth.isLogged() && isInFavorites">
+              <!-- in favorites button -->
+              <svg [class.updating]="isUpdatingFavorites"
+                   style="fill: rgba(255, 0, 0, 1)"
+                   viewBox="0 0 24 24"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 10.132v-6c0-1.103-.897-2-2-2H7c-1.103 0-2 .897-2 2V22l7-4.666L19 22V10.132z"></path>
+              </svg>
+              <b>В избранном</b>
+              <!-- end in favorites button -->
+
+            </ng-container>
+
+
+          </div>
+          <!-- end favorites -->
+        </div>
+        <h1>{{word.name}}</h1>
+
+        <div *ngIf="word.newsLink || word.description" class="lead">
+          <div *ngIf="word.description" [innerHTML]="word.description"></div>
+          <div *ngIf="word.newsLink">Оригинал: {{word.newsLink}}</div>
+        </div>
+
+      </app-card-header>
+      <app-card-body>
+        <div *ngIf="word.mainImage"
+             class="main-image-block">
+          <a [href]="imagesPath + '/' + word.mainImage" target="_blank">
+            <app-loader *ngIf="(!wrapperService.imageLoaded || !safeMainImage) && !wrapperComponent.loading"/>
+            <img (load)="wrapperService.imageLoaded = true"
+                 *ngIf="safeMainImage"
+                 [alt]="'картинка к записи ' + word.name"
+                 [src]="safeMainImage">
+
+          </a>
+
+        </div>
+
+
+        <article *ngIf="word.article && safeArticle"
+                 [innerHtml]="safeArticle"></article>
+
+
+      </app-card-body>
+    </app-card>
+
+
+    <!-- word sections -->
+    <div class="word-sections">
+
+      <div *ngFor="let sp of word.wordSection?.speechParts">
+        <app-card>
+          <app-card-body>
+            <h3 class="def-name">{{word.name}}</h3>
+            <h4 class="def-name italic">{{SpeechPartEnum[sp.speechPartEnum]}}</h4>
+
+            <!-- speech section - sounds and transcription -->
+            <ng-container *ngIf="sp.sounds.length">
+              <div class="sounds">
+                <div class="sound-block" *ngFor="let m of sp.sounds">
+                  <span class="language">{{m.language}}</span>
+                  <!-- todo add play audio sound -->
+                  <!-- <span class="language">{{m.sound}}</span> -->
+                  <span class="transcription">/{{m.transcription}}/</span>
+                </div>
+
+              </div>
+            </ng-container>
+            <!-- end speech section - sounds and transcription -->
+
+            <!-- speech section - meanings -->
+            <ng-container *ngIf="sp.meanings.length">
+              <hr>
+              <div class="mean-block" *ngFor="let m of sp.meanings">
+
+                <p class="mean">{{word.name}} <span class="italic">{{SpeechPartEnum[sp.speechPartEnum]}}</span>
+                  ({{m.mean}})</p>
+
+                <!-- meaning definitions -->
+                <ng-container *ngFor="let d of m.definitions">
+                  <p class="def-text">{{d.defText}}</p>
+                  <span class="tag">{{EngLevel[d.level]}}</span>
+
+                  <ul class="labels" *ngIf="d.labels.length">
+                    <li *ngFor="let l of d.labels">
+                      <span class="tag">{{l.name}}</span>
+                    </li>
+                  </ul>
+
+                  <ul class="examples" *ngIf="d.examples.length">
+                    <li *ngFor="let ex of d.examples">
+                      <div class="example">{{ex.example}}</div>
+                      <div class="example-tr">{{ex.exampleTranslation}}</div>
+                    </li>
+
+                  </ul>
+                </ng-container>
+                <!-- end meaning definitions -->
+
+              </div>
+            </ng-container>
+            <!-- end speech section - meanings -->
+
+            <!-- speech section - definitions -->
+            <ng-container *ngIf="sp.definitions.length">
+              <hr>
+              <div class="definition-block" *ngFor="let d of sp.definitions">
+
+                <!-- single definition -->
+                <p class="def-text">{{d.defText}}</p>
+                <span class="tag">{{EngLevel[d.level]}}</span>
+
+                <ul class="labels" *ngIf="d.labels.length">
+                  <li *ngFor="let l of d.labels">
+                    <span class="tag">{{l.name}}</span>
+                  </li>
+                </ul>
+
+                <ul class="examples" *ngIf="d.examples.length">
+                  <li *ngFor="let ex of d.examples">
+                    <div class="example">{{ex.example}}</div>
+                    <div class="example-tr">{{ex.exampleTranslation}}</div>
+                  </li>
+
+                </ul>
+                <!-- end single definition -->
+
+
+              </div>
+            </ng-container>
+            <!-- end speech section - definitions -->
+
+
+            <ng-container *ngIf="sp.specBlocks.length">
+              <hr>
+              <div *ngFor="let m of sp.specBlocks"></div>
+            </ng-container>
+
+          </app-card-body>
+        </app-card>
+
+
+      </div>
+
+
+    </div>
+    <!-- end word sections -->
+
+    <!-- tags -->
+    <app-card *ngIf="word.tags?.length">
+      <app-card-header>
+        Теги
+      </app-card-header>
+      <app-card-body>
+        <div class="tags">
+          <a *ngFor="let t of word.tags"
+             [routerLink]="['/', r.tags, t.slug]"
+             class="btn btn-small">{{t.name}}</a>
+        </div>
+      </app-card-body>
+    </app-card>
+    <!-- end tags -->
+
+    <!-- share buttons and likes flex row -->
+    <!-- likes dislikes buttons -->
+    <app-card>
+      <app-card-header>
+        <div>Понравился материал?</div>
+      </app-card-header>
+      <app-card-body>
+        <div class="likes-dislikes-buttons">
+
+          <!-- left button -->
+          <div (click)="onLikeDislikeUpdate(LikeType.Dislike)"
+               class="pointer"
+               style="position:relative;">
+
+            <!-- svg dislike not active -->
+            <svg *ngIf="!isUpdatingLike && votedLikeFor !== LikeType.Dislike"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: red">
+              <path
+                d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.001 9H18z"></path>
+            </svg>
+            <!-- end svg dislike not active -->
+
+            <!-- svg dislike active -->
+            <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Dislike"
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: red">
+              <path
+                d="M20 3h-1v13h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM4 16h7l-1.122 3.368A2 2 0 0 0 11.775 22H12l5-5.438V3H6l-3.937 8.649-.063.293V14a2 2 0 0 0 2 2z"></path>
+            </svg>
+            <!-- end svg dislike active -->
+
+          </div>
+          <!-- end left button -->
+
+
+          <!-- progress bars -->
+          <div class="progress">
+
+            <!-- dislike -->
+            <div class="left-progress">
+              <div [style.width.%]="leftProgressWidth()" class="filled">
+                <span>{{word.dislikesCount}}</span>
+              </div>
+            </div>
+            <!-- end dislike -->
+
+
+            <div class="middleLine">
+              <!-- news.likeRate -->
+            </div>
+
+            <!-- like -->
+            <div class="right-progress">
+              <div [style.width.%]="rightProgressWidth()" class="filled">
+                <span>{{word.likesCount}}</span>
+              </div>
+            </div>
+            <!-- end like -->
+
+          </div>
+          <!-- end progress bars -->
+
+          <!-- right button -->
+          <div (click)="onLikeDislikeUpdate(LikeType.Like)"
+               class="pointer"
+               style="position:relative;">
+
+            <!-- svg like not active -->
+            <svg *ngIf="!isUpdatingLike && votedLikeFor !== LikeType.Like"
+                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(0, 193, 148, 1)">
+              <path
+                d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
+            </svg>
+            <!-- end svg like not active -->
+
+            <!-- svg like active -->
+            <svg *ngIf="auth.isLogged() && !isUpdatingLike && votedLikeFor === LikeType.Like"
+                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(0, 193, 148, 1)">
+              <path
+                d="M4 21h1V8H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2zM20 8h-7l1.122-3.368A2 2 0 0 0 12.225 2H12L7 7.438V21h11l3.912-8.596L22 12v-2a2 2 0 0 0-2-2z"></path>
+            </svg>
+            <!-- end svg like active -->
+
+
+          </div>
+          <!-- end right button -->
+        </div>
+
+      </app-card-body>
+      <app-card-footer>
+
+        <span style="margin-right: 20px">Проголосовало пользователей: {{votedPeopleCount()}}</span>
+
+        <span *ngIf="auth.isLogged() && votedLikeFor != LikeType.Undefined">
+      Ваш голос =
+      <b>{{votedLikeFor == LikeType.Like ? 'За' : (votedLikeFor == LikeType.Dislike) ? 'Против' :
+        'Кажется Вы пока не голосовали'}}</b>
+    </span>
+
+        <span *ngIf="!auth.isLogged() || votedLikeFor == LikeType.Undefined">Пожалуйста проголосуйте!</span>
+
+        <!-- share buttons -->
+        <div style="margin-top: 10px;" class="ya-share2" data-curtain data-size="m" data-shape="round"
+             data-services="messenger,vkontakte,odnoklassniki,telegram,twitter,viber,whatsapp"></div>
+        <!-- end share buttons -->
+
+
+      </app-card-footer>
+
+    </app-card>
+    <!-- end likes dislikes buttons -->
+    <!-- end share buttons and likes flex row -->
+
+    <!-- watch series -->
+    <div #watchSeriesRef></div>
+    <app-card *ngIf="word.videoSections?.length && word.videoSections.length > 0">
+      <app-card-header>
+        Смотреть видео
+      </app-card-header>
+      <app-card-body>
+        <div class="lead news-meta">
+          <div>
+            <a [relativeTo]="route" class="btn" routerLink="episodes/1">
+              <svg height="24"
+                   style="fill: rgba(255, 255, 255, 1)"
+                   viewBox="0 0 24 24"
+                   width="24"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                <path d="m9 17 8-5-8-5z"></path>
+              </svg>
+              Начать просмотр
+            </a>
+          </div>
+
+          <button (click)="showPreview(watchSeriesRef)"
+                  *ngIf="!word.isFree"
+                  class="btn btn-warning btn-outline"
+                  type="button">
+            {{ isOnlyPreview ? 'Смотреть все' : 'Смотреть предпросмотр' }}
+          </button>
+
+          <div>
+            <svg viewBox="0 0 25 25"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 22c3.976 0 8-1.374 8-4V6c0-2.626-4.024-4-8-4S4 3.374 4 6v12c0 2.626 4.024 4 8 4zm0-2c-3.722 0-6-1.295-6-2v-1.268C7.541 17.57 9.777 18 12 18s4.459-.43 6-1.268V18c0 .705-2.278 2-6 2zm0-16c3.722 0 6 1.295 6 2s-2.278 2-6 2-6-1.295-6-2 2.278-2 6-2zM6 8.732C7.541 9.57 9.777 10 12 10s4.459-.43 6-1.268V10c0 .705-2.278 2-6 2s-6-1.295-6-2V8.732zm0 4C7.541 13.57 9.777 14 12 14s4.459-.43 6-1.268V14c0 .705-2.278 2-6 2s-6-1.295-6-2v-1.268z"></path>
+            </svg>
+
+            <span>{{filteredSections && filteredSections.length}} Секции</span>
+          </div>
+
+
+        </div>
+
+        <div class="series-block">
+
+          <div class="series">
+
+            <h4 *ngIf="filteredSections != sections"
+                style="color: red;font-style: italic">Предпросмотр видео</h4>
+
+            <ng-container *ngFor="let fs of filteredSections; index as i">
+
+              <app-card *ngIf="fs.videos.length">
+                <app-card-header>
+                  <h2 (click)="wrapperService.expandedSections[fs.id] = !wrapperService.expandedSections[fs.id]"
+                      class="section-title">
+                    <span>СЕКЦИЯ {{fs.sortNumber}}:</span>
+                    <span>{{fs.name}}</span>
+
+                    <svg [class.opened]="wrapperService.expandedSections[fs.id]"
+                         class="section-arrow"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         width="18"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                    </svg>
+                  </h2>
+
+                </app-card-header>
+                <app-card-body *ngIf="wrapperService.expandedSections[fs.id]">
+                  <div class="video-rows">
+                    <ng-container *ngFor="let v of fs.videos">
+                      <app-card>
+                        <app-card-body>
+
+                          <div class="video-row">
+                            <span>{{v.sortNumber < 10 ? '0' + v.sortNumber : v.sortNumber}}</span>
+
+                            <ng-container *ngIf="v.isFree">
+                              <!-- play image -->
+                              <svg height="20"
+                                   style="fill: rgba(0, 0, 0, 1)"
+                                   viewBox="0 0 24 24"
+                                   width="20"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                <path d="m9 17 8-5-8-5z"></path>
+                              </svg>
+                              <!-- end play image -->
+
+                              <span *ngIf="(!auth.isLogged() || !auth.user?.hasPremium) && !word.isFree"
+                                    style="color: red;">
+                            [ПРЕДПРОСМОТР]
+                          </span>
+                            </ng-container>
+
+                            <ng-container *ngIf="!v.isFree">
+
+                              <!-- locked image -->
+                              <svg *ngIf="!auth.user?.hasPremium"
+                                   height="20"
+                                   style="fill: rgba(0, 0, 0, 1)"
+                                   viewBox="0 0 24 24"
+                                   width="20"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm4 10.723V20h-2v-2.277a1.993 1.993 0 0 1 .567-3.677A2.001 2.001 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723z"></path>
+                              </svg>
+                              <!-- end locked image -->
+
+                              <!-- unlocked image -->
+                              <svg *ngIf="auth.user?.hasPremium"
+                                   height="20"
+                                   style="fill: rgba(0, 0, 0, 1)"
+                                   viewBox="0 0 24 24"
+                                   width="20"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M18 10H9V7c0-1.654 1.346-3 3-3s3 1.346 3 3h2c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2zm-7.939 5.499A2.002 2.002 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723V20h-2v-2.277a1.992 1.992 0 0 1-.939-2.224z"></path>
+                              </svg>
+                              <!-- end unlocked image -->
+
+                              <!-- play image -->
+                              <svg *ngIf="auth.user?.hasPremium"
+                                   height="20"
+                                   style="fill: rgba(0, 0, 0, 1)"
+                                   viewBox="0 0 24 24"
+                                   width="20"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                <path d="m9 17 8-5-8-5z"></path>
+                              </svg>
+                              <!-- end play image -->
+                            </ng-container>
+
+
+                            <a [relativeTo]="route" [routerLink]="['episodes', v.sortNumber]">
+                              {{v.name}}
+                            </a>
+                          </div>
+
+                        </app-card-body>
+                      </app-card>
+
+                    </ng-container>
+
+                  </div>
+                </app-card-body>
+              </app-card>
+            </ng-container>
+          </div>
+        </div>
+      </app-card-body>
+    </app-card>
+    <!-- end watch series -->
+
+
+    <h3>Комментарии</h3>
+    <!-- comment form -->
+    <app-news-comment-form
+      (onAddComment)="addNewComment($event)" [isPosting]="isPostingComment"/>
+    <!-- end comment form -->
+
+    <!-- comments list -->
+    <app-news-comments-list (onAddComment)="addNewComment($event)"
+                            *ngIf="word.comments"
+                            [comments]="word.comments"
+                            [isPosting]="isPostingComment"/>
+    <!-- end comments list -->
+  </div>
+
+</div>
+

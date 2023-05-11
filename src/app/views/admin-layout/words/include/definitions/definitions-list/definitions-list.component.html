@@ -1,0 +1,21 @@
+<app-card>
+  <app-card-body>
+    <div class="definitions">
+      <h6>Definitions</h6>
+      <div class="definition" *ngFor="let d of section.definitions; index as i" style="margin-left: 30px">
+
+        <app-card>
+          <app-card-body>
+            <button type="button" (click)="section.definitions.splice(i,1)">Remove</button>
+            <app-definitions-list-item [definition]="d" [index]="i"/>
+
+          </app-card-body>
+        </app-card>
+
+
+      </div>
+      <button type="button" (click)="addDefinition(section)">Add definition part +</button>
+
+    </div>
+  </app-card-body>
+</app-card>

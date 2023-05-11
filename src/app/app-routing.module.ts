@@ -22,12 +22,12 @@ import {AccountEditComponent} from "./views/account-layout/account-edit/account-
 import {AccountPremiumComponent} from "./views/account-layout/account-premium/account-premium.component";
 import {AdminUsersIndexComponent} from "./views/admin-layout/users/admin-users-index/admin-users-index.component";
 import {AdminUserDetailComponent} from "./views/admin-layout/users/admin-user-detail/admin-user-detail.component";
-import {AdminNewsIndexComponent} from "./views/admin-layout/news/admin-news-index/admin-news-index.component";
-import {AdminNewsAddComponent} from "./views/admin-layout/news/admin-news-add/admin-news-add.component";
-import {AdminNewsWrapperComponent} from "./views/admin-layout/news/admin-news-wrapper/admin-news-wrapper.component";
-import {AdminNewsDetailComponent} from "./views/admin-layout/news/admin-news-detail/admin-news-detail.component";
-import {AdminNewsEditComponent} from "./views/admin-layout/news/admin-news-edit/admin-news-edit.component";
-import {AdminNewsRemoveComponent} from "./views/admin-layout/news/admin-news-remove/admin-news-remove.component";
+import {AdminWordsIndexComponent} from "./views/admin-layout/words/admin-news-index/admin-words-index.component";
+import {AdminWordAddComponent} from "./views/admin-layout/words/admin-news-add/admin-word-add.component";
+import {AdminWordsWrapperComponent} from "./views/admin-layout/words/admin-news-wrapper/admin-words-wrapper.component";
+import {AdminWordDetailComponent} from "./views/admin-layout/words/admin-news-detail/admin-word-detail.component";
+import {AdminWordEditComponent} from "./views/admin-layout/words/admin-news-edit/admin-word-edit.component";
+import {AdminWordRemoveComponent} from "./views/admin-layout/words/admin-news-remove/admin-word-remove.component";
 import {
   AdminAddCategoryComponent
 } from "./views/admin-layout/categories/admin-add-category/admin-add-category.component";
@@ -40,10 +40,6 @@ import {
 import {
   AdminParentCategoryDetailComponent
 } from "./views/admin-layout/categories/admin-parent-category-detail/admin-parent-category-detail.component";
-import {NewsIndexComponent} from "./views/main-layout/news/news-index/news-index.component";
-import {NewsWrapperComponent} from "./views/main-layout/news/news-wrapper/news-wrapper.component";
-import {NewsSingleComponent} from "./views/main-layout/news/news-single/news-single.component";
-import {NewsEpisodeComponent} from "./views/main-layout/news/news-episode/news-episode.component";
 import {CategoriesIndexComponent} from "./views/main-layout/categories/categories-index/categories-index.component";
 import {CategorySingleComponent} from "./views/main-layout/categories/category-single/category-single.component";
 import {Error404Component} from "./views/main-layout/errors/error404/error404.component";
@@ -54,6 +50,10 @@ import {
 import {
   AdminParentCategoriesIndexComponent
 } from "./views/admin-layout/categories/admin-parent-categories-index/admin-parent-categories-index.component";
+import {WordSingleComponent} from "./views/main-layout/words/word-single/word-single.component";
+import {WordWrapperComponent} from "./views/main-layout/words/word-wrapper/word-wrapper.component";
+import {WordEpisodeComponent} from "./views/main-layout/words/word-episode/word-episode.component";
+import {WordIndexComponent} from "./views/main-layout/words/word-index/word-index.component";
 
 export const rNames = {
 
@@ -180,16 +180,16 @@ const routes: Routes = [
               },
               {
                 path: rNames.dictionary, children: [
-                  {path: '', component: AdminNewsIndexComponent, title: 'All News'},
-                  {path: rNames.add, component: AdminNewsAddComponent, title: 'Add News'},
+                  {path: '', component: AdminWordsIndexComponent, title: 'All News'},
+                  {path: rNames.add, component: AdminWordAddComponent, title: 'Add News'},
                   {
                     path: ':' + rNames.id,
-                    component: AdminNewsWrapperComponent,
+                    component: AdminWordsWrapperComponent,
                     children: [
                       {path: '', redirectTo: rNames.show, pathMatch: 'full'},
-                      {path: rNames.show, component: AdminNewsDetailComponent},
-                      {path: rNames.edit, component: AdminNewsEditComponent},
-                      {path: rNames.remove, component: AdminNewsRemoveComponent},
+                      {path: rNames.show, component: AdminWordDetailComponent},
+                      {path: rNames.edit, component: AdminWordEditComponent},
+                      {path: rNames.remove, component: AdminWordRemoveComponent},
                     ]
                   },
                 ]
@@ -247,13 +247,13 @@ const routes: Routes = [
       // dictionary
       {
         path: rNames.dictionary, children: [
-          {path: '', component: NewsIndexComponent, title: 'Словарь'},
+          {path: '', component: WordIndexComponent, title: 'Словарь'},
           {
             path: ':' + rNames.slug,
-            component: NewsWrapperComponent,
+            component: WordWrapperComponent,
             children: [
-              {path: '', component: NewsSingleComponent},
-              {path: 'episodes/:episode', component: NewsEpisodeComponent},
+              {path: '', component: WordSingleComponent},
+              {path: 'episodes/:episode', component: WordEpisodeComponent},
             ]
           },
         ]

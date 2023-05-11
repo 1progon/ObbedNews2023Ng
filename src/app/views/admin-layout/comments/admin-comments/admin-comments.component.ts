@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Comment} from "../../../../interfaces/Comment";
 import {CommentsService} from "../../../../services/comments.service";
 import {CommentStatus} from "../../../../enums/news/comments/CommentStatus";
 import {rNames} from "../../../../app-routing.module";
+import {WordComment} from "../../../../interfaces/words/WordComment";
 
 @Component({
   selector: 'app-admin-comments',
@@ -13,7 +13,7 @@ export class AdminCommentsComponent implements OnInit {
   protected readonly rNames = rNames;
   protected readonly CommentStatus = CommentStatus;
 
-  comments: Comment[] = [];
+  comments: WordComment[] = [];
   loading: boolean = false;
   showOnlyModeration: boolean = false;
 
@@ -38,7 +38,7 @@ export class AdminCommentsComponent implements OnInit {
   }
 
 
-  updateCommentStatus(comment: Comment, commentStatus: CommentStatus) {
+  updateCommentStatus(comment: WordComment, commentStatus: CommentStatus) {
     if (comment.status == commentStatus) {
       return;
     }

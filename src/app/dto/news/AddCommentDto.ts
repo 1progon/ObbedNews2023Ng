@@ -3,7 +3,7 @@ export interface AddCommentDto {
   title?: string;
   message: string;
 
-  newsId: number;
+  wordId: number;
 
   parentCommentId?: number;
 

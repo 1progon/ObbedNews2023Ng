@@ -3,8 +3,8 @@ import {AddCategoryDto} from "../../../../dto/categories/AddCategoryDto";
 import {AdminCategoriesService} from "../../../../services/admin/admin-categories.service";
 import {Router} from "@angular/router";
 import {rNames} from "../../../../app-routing.module";
-import {ParentCategory} from "../../../../interfaces/ParentCategory";
 import {CategoriesService} from "../../../../services/categories.service";
+import {ParentCategory} from "../../../../interfaces/words/ParentCategory";
 
 @Component({
   selector: 'app-admin-add-category',

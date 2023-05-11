@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ParentCategory} from "../../../../interfaces/ParentCategory";
 import {CategoriesService} from "../../../../services/categories.service";
 import {rNames} from "../../../../app-routing.module";
+import {ParentCategory} from "../../../../interfaces/words/ParentCategory";
 
 @Component({
   selector: 'app-admin-parent-categories-index',

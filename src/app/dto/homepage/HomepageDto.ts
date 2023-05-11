@@ -1,7 +1,7 @@
-import {News} from "../../interfaces/News";
+import {Word} from "../../interfaces/words/Word";
 
 export interface HomepageDto {
-  popular?: News[];
-  mostCommented?: News[];
-  last?: News[];
+  popular?: Word[];
+  mostCommented?: Word[];
+  last?: Word[];
 }

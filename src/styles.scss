@@ -9,6 +9,7 @@
 @use "include-styles/form";
 @use "include-styles/table";
 @use "include-styles/default";
+@use "include-styles/words/word-sections";
 
 //news
-@use "include-styles/news/news-single";
+@use "include-styles/words/word-single";

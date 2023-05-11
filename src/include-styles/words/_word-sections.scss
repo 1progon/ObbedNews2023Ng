@@ -1,0 +1,109 @@
+@use "vars" as *;
+
+article, .word-sections {
+
+  .mean-block {
+    .mean {
+      font-weight: 600;
+      color: darkmagenta;
+
+      .italic {
+        font-style: italic;
+      }
+    }
+  }
+
+  .sounds {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .sound-block {
+      .language {
+        text-transform: uppercase;
+        margin-right: 10px;
+        font-weight: 600;
+        color: darkblue;
+      }
+
+      .transcription {
+        color: dimgray;
+        font-size: 15px;
+      }
+
+    }
+  }
+
+  .def-name {
+    color: darkblue;
+    text-transform: capitalize;
+
+    &.italic {
+      font-style: italic;
+    }
+  }
+
+  .def-desc {
+    font-style: italic;
+    color: gray;
+    font-size: 14px;
+
+    & * {
+      font-size: 14px;
+    }
+
+  }
+
+  .def-text {
+    color: dimgray;
+
+  }
+
+  .tag {
+    text-transform: lowercase;
+    background-color: lightgray;
+    border-radius: 6px;
+    padding: 3px;
+    margin-right: 5px;
+    color: dimgray;
+  }
+
+}
+
+ul.examples {
+  &::before {
+    content: 'Примеры';
+    text-transform: lowercase;
+    color: darkgray;
+    font-style: italic;
+  }
+
+  li:first-child {
+    margin-top: 10px;
+  }
+
+  li {
+    margin-bottom: 20px;
+
+    .example {
+      font-weight: 600;
+      color: darkblue;
+      margin-bottom: 10px;
+
+    }
+
+    .example-tr {
+      font-weight: 300;
+      font-style: italic;
+      color: dimgray;
+      font-size: 15px;
+
+      &::before {
+        content: 'Перевод: ';
+        text-transform: lowercase;
+        color: darkgray;
+      }
+
+    }
+  }
+}

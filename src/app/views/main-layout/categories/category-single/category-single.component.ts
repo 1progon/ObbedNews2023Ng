@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {News} from "../../../../interfaces/News";
-import {NewsService} from "../../../../services/news.service";
+import {WordService} from "../../../../services/word.service";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {rNames} from "../../../../app-routing.module";
 import {Title} from "@angular/platform-browser";
+import {Word} from "../../../../interfaces/words/Word";
 
 @Component({
   selector: 'app-category-single',
@@ -13,7 +13,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class CategorySingleComponent implements OnInit {
   r = rNames;
-  newsList: News[] = [];
+  newsList: Word[] = [];
   page = 1;
   loading = false;
   slug = '';
@@ -22,7 +22,7 @@ export class CategorySingleComponent implements OnInit {
 
   constructor(private title: Title,
               private route: ActivatedRoute,
-              private newsService: NewsService,
+              private newsService: WordService,
               private router: Router) {
   }
 
@@ -53,7 +53,7 @@ export class CategorySingleComponent implements OnInit {
 
   getData() {
     this.newsService
-      .getNewsList(this.page, this.slug)
+      .getWordsList(this.page, this.slug)
       .subscribe({
         next: value => {
           this.newsList = value;

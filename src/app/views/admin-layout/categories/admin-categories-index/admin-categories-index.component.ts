@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from "../../../../services/categories.service";
-import {Category} from "../../../../interfaces/Category";
+import {Category} from "../../../../interfaces/words/Category";
 
 @Component({
   selector: 'app-admin-categories-index',

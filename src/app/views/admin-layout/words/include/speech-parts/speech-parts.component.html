@@ -1,0 +1,51 @@
+<div class="speech-parts">
+  <h5>Speech parts</h5>
+
+  <!-- speech parts loop -->
+  <div *ngFor="let sp of wordSection.speechParts; index as i" class="speech-part">
+    <app-card>
+      <app-card-body>
+
+        <button type="button" (click)="removeSpeechPart(i)">Remove</button>
+
+        <label>Speech Parts Order
+          <input type="number" name="sp_order[{{i}}]" [(ngModel)]="sp.order">
+        </label>
+
+
+        <br>
+        <label>Speech Part Enum
+          <select [(ngModel)]="sp.speechPartEnum" name="sp_speechPart[{{i}}]">
+            <ng-container *ngFor="let part of SpeechPartEnum|keyvalue">
+              <option *ngIf="Number(part.value)"
+                      [ngValue]="part.value">{{part.key}}</option>
+            </ng-container>
+
+          </select>
+        </label>
+
+        <br>
+        <!-- meanings in speech part -->
+        <app-meanings [section]="sp"/>
+        <!-- end meanings in speech part -->
+
+        <!-- definitions in speech part -->
+        <app-definitions-list [section]="sp"/>
+        <!-- end definitions in speech part -->
+
+        <!-- sounds in speech part -->
+        <app-sounds [section]="sp"/>
+        <!-- end sounds in speech part -->
+
+        <!-- spec-blocks in speech part -->
+        <app-spec-blocks [section]="sp"/>
+        <!-- end spec-blocks in speech part -->
+
+
+      </app-card-body>
+    </app-card>
+  </div>
+  <!-- end speech part loop -->
+  <button type="button" (click)="addSpeechPart()">Add speech part +</button>
+
+</div>

@@ -1,6 +1,6 @@
 import type {BaseModel} from "./BaseModel";
-import type {News} from "./News";
+import {Word} from "./words/Word";
 
 export interface Tag extends BaseModel {
-  newsList?: News[];
+  wordList?: Word[];
 }

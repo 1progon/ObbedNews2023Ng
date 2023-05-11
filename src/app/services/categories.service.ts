@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Category} from "../interfaces/Category";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {ParentCategory} from "../interfaces/ParentCategory";
+import {ParentCategory} from "../interfaces/words/ParentCategory";
+import {Category} from "../interfaces/words/Category";
 
 @Injectable({
   providedIn: 'root'

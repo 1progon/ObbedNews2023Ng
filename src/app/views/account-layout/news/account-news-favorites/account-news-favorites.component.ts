@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {News} from "../../../../interfaces/News";
-import {AccountNewsService} from "../../../../services/account/account-news.service";
+import {AccountWordsService} from "../../../../services/account/account-words.service";
 import {rNames} from "../../../../app-routing.module";
+import {Word} from "../../../../interfaces/words/Word";
 
 @Component({
   selector: 'app-account-news-favorites',
@@ -10,10 +10,10 @@ import {rNames} from "../../../../app-routing.module";
 })
 export class AccountNewsFavoritesComponent implements OnInit {
   r = rNames;
-  newsList: News[] = [];
+  newsList: Word[] = [];
   isLoading = false;
 
-  constructor(private accountNewsService: AccountNewsService) {
+  constructor(private accountNewsService: AccountWordsService) {
   }
 
   ngOnInit(): void {

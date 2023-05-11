@@ -1,0 +1,39 @@
+<app-card>
+  <app-card-body>
+    <div class="sounds">
+      <h6>Sounds</h6>
+      <div class="sound" *ngFor="let s of section.sounds; index as i" style="margin-left: 30px">
+        <app-card>
+          <app-card-body>
+
+            <button type="button" (click)="section.sounds.splice(i,1)">Remove</button>
+
+            <label>
+              Sounds language
+              <input type="text" name="s_language[{{i}}]" [(ngModel)]="s.language"/>
+            </label>
+
+            <br>
+
+            <label>
+              Sounds transcription
+              <input type="text" name="s_transcription[{{i}}]" [(ngModel)]="s.transcription"/>
+            </label>
+
+            <br>
+
+            <label>
+              <!-- todo add sound file handle with separate form FormFile -->
+              Sounds sound file
+              <input type="file" name="s_sound[{{i}}]" [(ngModel)]="s.sound"/>
+            </label>
+
+
+          </app-card-body>
+        </app-card>
+      </div>
+      <button type="button" (click)="addSoundInSpeechPart(section)">Add sounds part +</button>
+    </div>
+  </app-card-body>
+</app-card>
+

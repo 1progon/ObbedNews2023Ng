@@ -1,0 +1,45 @@
+<app-card>
+  <app-card-body>
+    <div class="spec-blocks">
+      <h6>Spec block</h6>
+
+      <div class="spec-block" *ngFor="let b of section.specBlocks; index as i" style="margin-left: 30px">
+        <app-card>
+          <app-card-body>
+
+            <button type="button" (click)="section.specBlocks.splice(i,1)">Remove</button>
+
+            <label>
+              Spec block section Order
+              <input type="number" name="spb_sectionOrder[{{i}}]" [(ngModel)]="b.sectionOrder"/>
+            </label>
+
+            <br>
+
+            <label>
+              Spec block name
+              <input type="text" name="spb_name[{{i}}]" [(ngModel)]="b.name"/>
+            </label>
+
+            <br>
+
+
+            <label>
+              <app-card>
+                <app-card-body>
+                  <h6>Spec block def</h6>
+                  <app-definitions-list-item/>
+
+                </app-card-body>
+              </app-card>
+            </label>
+
+
+          </app-card-body>
+        </app-card>
+      </div>
+      <button type="button" (click)="addSpecBlockInSpeechPart(section)">Add spec bloc part +</button>
+    </div>
+  </app-card-body>
+</app-card>
+

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {rNames} from "../../../../app-routing.module";
-import {Category} from "../../../../interfaces/Category";
 import {environment} from "../../../../../environments/environment";
 import {CategoriesService} from "../../../../services/categories.service";
-import {ParentCategory} from "../../../../interfaces/ParentCategory";
+import {ParentCategory} from "../../../../interfaces/words/ParentCategory";
+import {Category} from "../../../../interfaces/words/Category";
 
 @Component({
   selector: 'app-categories-index',
