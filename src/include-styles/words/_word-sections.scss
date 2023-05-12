@@ -78,6 +78,7 @@ article, .word-sections {
 }
 
 ul.examples {
+
   &::before {
     content: 'Примеры';
     text-transform: lowercase;
@@ -93,34 +94,46 @@ ul.examples {
     margin-bottom: 20px;
 
     .example {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       font-weight: 600;
       color: darkblue;
       margin-bottom: 10px;
 
-      &::before {
+      span.name {
+        flex-basis: 95px;
         display: inline-block;
-        content: 'По английски: ';
-        width: 95px;
         text-transform: lowercase;
         color: darkgray;
         font-weight: 300;
         font-size: 14px;
       }
 
+      span.text {
+        flex: 10;
+      }
+
     }
 
     .example-tr {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       font-weight: 300;
       font-style: italic;
       color: dimgray;
 
-      &::before {
+      span.name {
+        flex-basis: 95px;
         display: inline-block;
-        content: 'Перевод: ';
-        width: 95px;
         text-transform: lowercase;
         color: darkgray;
         font-size: 14px;
+      }
+
+      span.text {
+        flex: 10;
       }
 
     }

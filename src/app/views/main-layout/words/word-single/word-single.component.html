@@ -109,10 +109,11 @@
           <app-card-body>
             <h4 class="def-name">{{word.name}}</h4>
 
-            <!-- todo switch value to reading cyrilic words -->
             <div [ngSwitch]="sp.speechPartEnum">
               <h5 class="def-name italic"
                   *ngSwitchCase="SpeechPartEnum.Idiom">Идиома</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Exclamation">Восклицание</h5>
               <h5 class="def-name italic"
                   *ngSwitchCase="SpeechPartEnum.Phrase">Фраза</h5>
               <h5 class="def-name italic"
@@ -160,8 +161,15 @@
 
                   <ul class="examples" *ngIf="d.examples.length">
                     <li *ngFor="let ex of d.examples">
-                      <div class="example">{{ex.example}}</div>
-                      <div class="example-tr">{{ex.exampleTranslation}}</div>
+
+                      <div class="example">
+                        <span class="name">По английски: </span>
+                        <span class="text">{{ex.example}}</span>
+                      </div>
+                      <div class="example-tr">
+                        <span class="name">Перевод</span>
+                        <span class="text">{{ex.exampleTranslation}}</span>
+                      </div>
                     </li>
 
                   </ul>
