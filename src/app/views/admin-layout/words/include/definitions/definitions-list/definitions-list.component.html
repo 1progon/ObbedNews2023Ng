@@ -1,33 +1,32 @@
-<div style="margin-left: 30px;">
-  <app-card>
-    <app-card-header>
-      Definitions
-      <button type="button"
-              *ngIf="section.definitions?.length"
-              (click)="sortDefinitions(section.definitions)">Sort
-      </button>
-    </app-card-header>
-    <app-card-body *ngIf="section.definitions?.length">
-      <div class="definitions">
+<app-card>
+  <app-card-header>
+    Definitions
+    <button type="button"
+            *ngIf="section.definitions?.length"
+            (click)="sortDefinitions(section.definitions)">Sort
+    </button>
+  </app-card-header>
+  <app-card-body *ngIf="section.definitions?.length">
+    <div class="definitions">
 
-        <div class="definition"
-             *ngFor="let d of section.definitions; index as i">
+      <div class="definition"
+           *ngFor="let d of section.definitions; index as i">
 
-          <app-definitions-list-item *ngIf="ws.activeSection == d || !ws.activeSection"
-                                     [definition]="d"
-                                     [index]="i"
-                                     [section]="section"/>
-
-        </div>
+        <app-definitions-list-item
+          *ngIf="ws.activeSection == d || !ws.activeSection || ws.activeSection2 == d || ws.activeSection == section"
+          [definition]="d"
+          [index]="i"
+          [section]="section"/>
 
       </div>
-    </app-card-body>
-    <app-card-footer>
-      <button type="button"
-              (click)="addDefinition(section)">
-        Add definition part +
-      </button>
 
-    </app-card-footer>
-  </app-card>
-</div>
+    </div>
+  </app-card-body>
+  <app-card-footer>
+    <button type="button"
+            (click)="addDefinition(section)">
+      Add definition part +
+    </button>
+
+  </app-card-footer>
+</app-card>

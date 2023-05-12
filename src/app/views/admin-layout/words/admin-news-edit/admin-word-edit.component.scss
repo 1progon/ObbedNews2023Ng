@@ -1,3 +1,5 @@
+@use "vars";
+
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -5,10 +7,30 @@
   margin-bottom: 20px;
 }
 
+.word-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 
-.word-sections {
-  background-color: #f1f1f1;
-  padding: 10px;
+  .menu.left-side {
+    flex: 2;
 
+    .nested-menu-buttons {
+      margin-left: 20px;
+
+      hr {
+        margin-left: -20px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+    }
+  }
+
+  .right-side {
+    flex: 10;
+  }
 
 }

@@ -1,56 +1,64 @@
-<div class="speech-parts">
-  <h4>Speech parts</h4>
-  <button type="button"
-          *ngIf="wordSection.speechParts?.length"
-          (click)="sortSpeechParts(wordSection.speechParts)">Sort
-  </button>
+<app-card [noMarginLeft]="true">
+  <app-card-header>
+    Speech parts
+    <button type="button"
+            *ngIf="wordSection.speechParts?.length"
+            (click)="sortSpeechParts(wordSection.speechParts)">Sort
+    </button>
 
-  <!-- speech parts loop -->
-  <div *ngFor="let sp of wordSection.speechParts; index as i"
-       class="speech-part">
-    <app-card *ngIf="sp == ws.activeSpeechPart || !ws.activeSpeechPart">
-      <app-card-header [active]="ws.activeSpeechPart == sp">
-        <label>
-          <span (click)="showSection[i] = !showSection[i]">
-            {{showSection[i] ? '-' : '+'}} Speech Part Order
-          </span>
-          <input type="number" name="sp_order[{{i}}]" [(ngModel)]="sp.order">
-        </label>
-        <label>
-          Speech Part Enum
-          <select [(ngModel)]="sp.speechPartEnum" name="sp_speechPart[{{i}}]">
-            <ng-container *ngFor="let part of SpeechPartEnum|keyvalue">
-              <option *ngIf="Number(part.value)"
-                      [ngValue]="part.value">{{part.key}}</option>
-            </ng-container>
-          </select>
-        </label>
-        <button type="button" (click)="removeSpeechPart(i)">Remove</button>
-      </app-card-header>
-      <app-card-body *ngIf="showSection[i]">
-        <!-- meanings in speech part -->
-        <app-meanings [section]="sp"/>
-        <!-- end meanings in speech part -->
+  </app-card-header>
+  <app-card-body>
 
-        <!-- definitions in speech part -->
-        <app-definitions-list [section]="sp"/>
-        <!-- end definitions in speech part -->
+    <!-- speech parts loop -->
+    <div *ngFor="let sp of wordSection.speechParts; index as i"
+         class="speech-part">
+      <app-card *ngIf="sp == ws.activeSpeechPart || !ws.activeSpeechPart"
+                [noMarginLeft]="true">
+        <app-card-header [active]="ws.activeSpeechPart == sp">
+          <button type="button" (click)="showSection[i] = !showSection[i]">
+            {{showSection[i] ? '-' : '+'}}
+          </button>
+          <label>
+            Speech Part Order
+            <input type="number" name="sp_order[{{i}}]" [(ngModel)]="sp.order">
+          </label>
+          <label>
+            Speech Part Enum
+            <select [(ngModel)]="sp.speechPartEnum" name="sp_speechPart[{{i}}]">
+              <ng-container *ngFor="let part of SpeechPartEnum|keyvalue">
+                <option *ngIf="Number(part.value)"
+                        [ngValue]="part.value">{{part.key}}</option>
+              </ng-container>
+            </select>
+          </label>
+          <button type="button" (click)="removeSpeechPart(i)">Remove</button>
+        </app-card-header>
+        <app-card-body *ngIf="showSection[i]">
+          <!-- meanings in speech part -->
+          <app-meanings [section]="sp"/>
+          <!-- end meanings in speech part -->
 
-        <!-- sounds in speech part -->
-        <app-sounds [section]="sp"/>
-        <!-- end sounds in speech part -->
+          <!-- definitions in speech part -->
+          <app-definitions-list [section]="sp"/>
+          <!-- end definitions in speech part -->
 
-        <!-- spec-blocks in speech part -->
-        <app-spec-blocks [section]="sp"/>
-        <!-- end spec-blocks in speech part -->
+          <!-- sounds in speech part -->
+          <app-sounds [section]="sp"/>
+          <!-- end sounds in speech part -->
+
+          <!-- spec-blocks in speech part -->
+          <app-spec-blocks [section]="sp"/>
+          <!-- end spec-blocks in speech part -->
 
 
-      </app-card-body>
-    </app-card>
-  </div>
-  <!-- end speech part loop -->
+        </app-card-body>
+      </app-card>
+    </div>
+    <!-- end speech part loop -->
 
-  <br>
-  <button type="button" (click)="addSpeechPart()">Add speech part +</button>
+    <br>
+    <button type="button" (click)="addSpeechPart()">Add speech part +</button>
 
-</div>
+
+  </app-card-body>
+</app-card>

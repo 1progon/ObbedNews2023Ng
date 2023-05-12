@@ -6,6 +6,7 @@
   //border: 1px solid vars.$card-border-color;
   margin-bottom: 20px;
   box-shadow: 0 4px 18px 0 rgb(194 200 213);
+  overflow: hidden;
 
 
   &.ml-3 {
@@ -43,6 +44,12 @@
     &.flex-column {
       display: flex;
       flex-direction: column;
+    }
+
+    // app-card inside app-card with margin from left
+    .card:not(.no-margin-left) {
+      margin-left: 40px;
+      margin-top: 20px;
     }
   }
 

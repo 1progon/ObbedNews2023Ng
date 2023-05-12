@@ -39,7 +39,7 @@ export class AdminWordEditComponent implements OnInit {
 
   wordSection = {} as WordSection;
 
-  constructor(public wordsWrapperService: AdminWordsWrapperService,
+  constructor(public ws: AdminWordsWrapperService,
               private adminWordService: AdminWordService,
               private toastService: ToastsService,
               private router: Router,
@@ -60,7 +60,7 @@ export class AdminWordEditComponent implements OnInit {
       })
       .add(() => this.loading = false)
 
-    this.wordsWrapperService.word$
+    this.ws.word$
       .subscribe({
         next: word => {
           if (word.wordSection) {
@@ -118,14 +118,14 @@ export class AdminWordEditComponent implements OnInit {
         let tag = this.form.tags?.find(tag => tag.name == tagName);
         if (tag) {
           tag.name = tagName.toLowerCase();
-          tag.slug = this.wordsWrapperService.createSlugFromString(tagName);
+          tag.slug = this.ws.createSlugFromString(tagName);
           return tag;
 
         } else {
 
           return <TagDto>{
             name: tagName.toLowerCase(),
-            slug: this.wordsWrapperService.createSlugFromString(tagName)
+            slug: this.ws.createSlugFromString(tagName)
           }
         }
 
@@ -136,7 +136,7 @@ export class AdminWordEditComponent implements OnInit {
   }
 
   updateSlug() {
-    this.form.slug = this.wordsWrapperService.createSlugFromString(this.form.slug);
+    this.form.slug = this.ws.createSlugFromString(this.form.slug);
   }
 
   updateImagePreview(e: Event) {
@@ -172,7 +172,7 @@ export class AdminWordEditComponent implements OnInit {
     this.adminWordService.updateWord(this.form, this.newsId)
       .subscribe({
         next: value => {
-          this.wordsWrapperService.word$.next(value);
+          this.ws.word$.next(value);
 
           this.router
             .navigate(['detail'], {relativeTo: this.route.parent})
@@ -198,7 +198,7 @@ export class AdminWordEditComponent implements OnInit {
       .updateWordImage(this.newsId, this.form.mainImage)
       .subscribe({
         next: value => {
-          this.wordsWrapperService.word$.next(value);
+          this.ws.word$.next(value);
 
           this.router
             .navigate(['detail'], {relativeTo: this.route.parent})
@@ -229,13 +229,17 @@ export class AdminWordEditComponent implements OnInit {
 
 
   setActiveSection(speechPart: SpeechPartSection,
-                   section?: Meaning | SpecialDefinitionBlock | Definition | WordSound) {
-    this.wordsWrapperService.activeSpeechPart = speechPart;
-    this.wordsWrapperService.activeSection = section;
+                   section?: (Meaning | SpecialDefinitionBlock | Definition | WordSound | undefined)[],
+  ) {
+
+    this.ws.activeSpeechPart = speechPart;
+    this.ws.activeSection = section?.[0];
+    this.ws.activeSection2 = section?.[1];
   }
 
   resetActiveSection() {
-    this.wordsWrapperService.activeSpeechPart = undefined;
-    this.wordsWrapperService.activeSection = undefined;
+    this.ws.activeSpeechPart = undefined;
+    this.ws.activeSection = undefined;
+    this.ws.activeSection2 = undefined;
   }
 }

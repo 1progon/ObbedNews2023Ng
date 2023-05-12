@@ -1,5 +1,5 @@
 <ng-container *ngFor="let news of newsList">
-  <app-card>
+  <app-card [noMarginLeft]="true">
     <app-card-body>
       <a [routerLink]="['/', r.dictionary, news.slug]" class="news-row">
         <div *ngIf="news.mainThumb" class="news-image">

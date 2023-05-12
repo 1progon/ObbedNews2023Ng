@@ -16,6 +16,7 @@ export class AdminWordsWrapperService {
 
   activeSpeechPart?: SpeechPartSection;
   activeSection?: Meaning | SpecialDefinitionBlock | Definition | WordSound;
+  activeSection2?: Meaning | SpecialDefinitionBlock | Definition | WordSound;
 
   constructor(private adminWordService: AdminWordService) {
   }

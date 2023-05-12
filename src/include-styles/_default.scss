@@ -44,6 +44,22 @@ code {
   display: block;
 }
 
+hr {
+  border-color: vars.$bg-color;
+}
+
+button {
+  min-width: 35px;
+}
+
+input, select, textarea {
+  width: 100%;
+}
+
+button, select, label {
+  cursor: pointer;
+}
+
 
 @keyframes rotate360 {
   from {

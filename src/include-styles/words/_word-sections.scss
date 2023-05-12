@@ -14,11 +14,16 @@ article, .word-sections {
   }
 
   .sounds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
 
 
     .sound-block {
       display: flex;
-      gap: 10px;
+      align-items: center;
+      gap: 5px;
       flex-wrap: wrap;
 
       .language {
@@ -92,18 +97,30 @@ ul.examples {
       color: darkblue;
       margin-bottom: 10px;
 
+      &::before {
+        display: inline-block;
+        content: 'По английски: ';
+        width: 95px;
+        text-transform: lowercase;
+        color: darkgray;
+        font-weight: 300;
+        font-size: 14px;
+      }
+
     }
 
     .example-tr {
       font-weight: 300;
       font-style: italic;
       color: dimgray;
-      font-size: 15px;
 
       &::before {
+        display: inline-block;
         content: 'Перевод: ';
+        width: 95px;
         text-transform: lowercase;
         color: darkgray;
+        font-size: 14px;
       }
 
     }

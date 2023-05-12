@@ -1,51 +1,46 @@
-<div style="margin-left: 30px;">
-  <app-card>
-    <app-card-header>
-      Sounds
-    </app-card-header>
-    <app-card-body *ngIf="section.sounds?.length">
-      <div class="sounds">
-        <div class="sound" *ngFor="let s of section.sounds; index as i" style="margin-left: 30px">
-          <app-card>
-            <app-card-header>
-              Sound {{s.language}}
-              <button type="button" (click)="section.sounds.splice(i,1)">Remove</button>
-            </app-card-header>
-            <app-card-body>
+<app-card>
+  <app-card-header>
+    Sounds
+  </app-card-header>
+  <app-card-body *ngIf="section.sounds?.length">
+    <div class="sounds">
+      <div class="sound" *ngFor="let s of section.sounds; index as i">
+        <app-card *ngIf="ws.activeSection == s || !ws.activeSection">
+          <app-card-header [active]="ws.activeSection == s">
+            <button type="button" (click)="sectionBlockShow[i] = !sectionBlockShow[i]">
+              {{sectionBlockShow[i] ? '-' : '+'}}
+            </button>
+            <label>
+              Language
+              <input type="text" name="s_language[{{i}}]" [(ngModel)]="s.language"/>
+            </label>
+            <button type="button" (click)="section.sounds.splice(i,1)">Remove</button>
+          </app-card-header>
+          <app-card-body *ngIf="sectionBlockShow[i]">
+
+            <label>
+              Transcription
+              <input type="text" name="s_transcription[{{i}}]" [(ngModel)]="s.transcription"/>
+            </label>
+
+            <br>
+
+            <label>
+              <!-- todo add sound file handle with separate form FormFile -->
+              Sound File
+              <input type="file" name="s_sound[{{i}}]" [(ngModel)]="s.sound"/>
+            </label>
 
 
-              <label>
-                Sounds language
-                <input type="text" name="s_language[{{i}}]" [(ngModel)]="s.language"/>
-              </label>
-
-              <br>
-
-              <label>
-                Sounds transcription
-                <input type="text" name="s_transcription[{{i}}]" [(ngModel)]="s.transcription"/>
-              </label>
-
-              <br>
-
-              <label>
-                <!-- todo add sound file handle with separate form FormFile -->
-                Sounds sound file
-                <input type="file" name="s_sound[{{i}}]" [(ngModel)]="s.sound"/>
-              </label>
-
-
-            </app-card-body>
-          </app-card>
-        </div>
-
+          </app-card-body>
+        </app-card>
       </div>
-    </app-card-body>
-    <app-card-footer>
-      <button type="button"
-              (click)="addSoundInSpeechPart(section)">Add sounds part +
-      </button>
-    </app-card-footer>
-  </app-card>
-</div>
 
+    </div>
+  </app-card-body>
+  <app-card-footer>
+    <button type="button"
+            (click)="addSoundInSpeechPart(section)">Add sounds part +
+    </button>
+  </app-card-footer>
+</app-card>

@@ -31,6 +31,13 @@
 
   .right-side {
     flex: 10.5;
+
+    .title-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between
+    }
+
     app-card-header {
       h1 {
         word-break: break-word;
@@ -63,6 +70,7 @@
     display: block;
     width: 20px;
     height: 20px;
+    fill: rgba(255, 0, 0, 1);
 
     &.updating {
       animation: rotate360 infinite 1s linear;

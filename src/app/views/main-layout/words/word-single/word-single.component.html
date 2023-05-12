@@ -27,7 +27,7 @@
 
     <app-card>
       <app-card-header>
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between">
+        <div class="title-block">
           <!-- bread -->
           <div *ngIf="word.category">
             {{word.category.parentCategory?.name}} /
@@ -42,7 +42,6 @@
             <ng-container *ngIf="!auth.isLogged() || !isInFavorites">
               <!-- add to favorites button -->
               <svg [class.updating]="isUpdatingFavorites"
-                   style="fill: rgba(255, 0, 0, 1)"
                    viewBox="0 0 24 24"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -55,7 +54,6 @@
             <ng-container *ngIf="auth.isLogged() && isInFavorites">
               <!-- in favorites button -->
               <svg [class.updating]="isUpdatingFavorites"
-                   style="fill: rgba(255, 0, 0, 1)"
                    viewBox="0 0 24 24"
                    xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 10.132v-6c0-1.103-.897-2-2-2H7c-1.103 0-2 .897-2 2V22l7-4.666L19 22V10.132z"></path>
@@ -69,7 +67,10 @@
           </div>
           <!-- end favorites -->
         </div>
+
+        <!-- title -->
         <h1>{{word.name}}</h1>
+        <!-- end title -->
 
         <div *ngIf="word.newsLink || word.description" class="lead">
           <div *ngIf="word.description" [innerHTML]="word.description"></div>
@@ -106,22 +107,22 @@
       <div *ngFor="let sp of word.wordSection?.speechParts">
         <app-card>
           <app-card-body>
-            <h3 class="def-name">{{word.name}}</h3>
+            <h4 class="def-name">{{word.name}}</h4>
 
             <!-- todo switch value to reading cyrilic words -->
             <div [ngSwitch]="sp.speechPartEnum">
-              <h4 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Idiom">Идиома</h4>
-              <h4 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Phrase">Фраза</h4>
-              <h4 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Adjective">Прилагательное</h4>
-              <h4 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Noun">Существительное</h4>
-              <h4 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Verb">Глагол</h4>
-              <h4 class="def-name italic"
-                  *ngSwitchDefault>{{SpeechPartEnum[sp.speechPartEnum]}}</h4>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Idiom">Идиома</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Phrase">Фраза</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Adjective">Прилагательное</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Noun">Существительное</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Verb">Глагол</h5>
+              <h5 class="def-name italic"
+                  *ngSwitchDefault>{{SpeechPartEnum[sp.speechPartEnum]}}</h5>
             </div>
 
             <!-- speech section - sounds and transcription -->
