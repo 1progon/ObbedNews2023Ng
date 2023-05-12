@@ -77,7 +77,7 @@
         </div>
 
       </app-card-header>
-      <app-card-body>
+      <app-card-body *ngIf="word.mainImage || word.article">
         <div *ngIf="word.mainImage"
              class="main-image-block">
           <a [href]="imagesPath + '/' + word.mainImage" target="_blank">
@@ -107,7 +107,22 @@
         <app-card>
           <app-card-body>
             <h3 class="def-name">{{word.name}}</h3>
-            <h4 class="def-name italic">{{SpeechPartEnum[sp.speechPartEnum]}}</h4>
+
+            <!-- todo switch value to reading cyrilic words -->
+            <div [ngSwitch]="sp.speechPartEnum">
+              <h4 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Idiom">Идиома</h4>
+              <h4 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Phrase">Фраза</h4>
+              <h4 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Adjective">Прилагательное</h4>
+              <h4 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Noun">Существительное</h4>
+              <h4 class="def-name italic"
+                  *ngSwitchCase="SpeechPartEnum.Verb">Глагол</h4>
+              <h4 class="def-name italic"
+                  *ngSwitchDefault>{{SpeechPartEnum[sp.speechPartEnum]}}</h4>
+            </div>
 
             <!-- speech section - sounds and transcription -->
             <ng-container *ngIf="sp.sounds.length">
@@ -134,7 +149,7 @@
                 <!-- meaning definitions -->
                 <ng-container *ngFor="let d of m.definitions">
                   <p class="def-text">{{d.defText}}</p>
-                  <span class="tag">{{EngLevel[d.level]}}</span>
+                  <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
 
                   <ul class="labels" *ngIf="d.labels.length">
                     <li *ngFor="let l of d.labels">
@@ -163,7 +178,7 @@
 
                 <!-- single definition -->
                 <p class="def-text">{{d.defText}}</p>
-                <span class="tag">{{EngLevel[d.level]}}</span>
+                <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
 
                 <ul class="labels" *ngIf="d.labels.length">
                   <li *ngFor="let l of d.labels">

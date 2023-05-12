@@ -50,6 +50,10 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
 
   yaButtonsScript: string = 'https://yastatic.net/share2/share.js';
 
+  protected readonly rNames = rNames;
+  protected readonly SpeechPartEnum = SpeechPartEnum;
+  protected readonly EngLevel = EngLevel;
+
 
   constructor(public route: ActivatedRoute,
               public auth: AuthService,
@@ -294,7 +298,4 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
   }
 
 
-  protected readonly rNames = rNames;
-  protected readonly SpeechPartEnum = SpeechPartEnum;
-  protected readonly EngLevel = EngLevel;
 }
