@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {SpecialDefinitionBlock} from "../../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
 import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
+import {Definition} from "../../../../../interfaces/words/dictionary/Definition";
 
 @Component({
   selector: 'app-spec-blocks',
@@ -26,7 +27,7 @@ export class SpecBlocksComponent {
       ? sp.specBlocks[sp.specBlocks.length - 1].sectionOrder + 1
       : sp.specBlocks.length + 1;
 
-    sp.specBlocks.push({sectionOrder: order} as SpecialDefinitionBlock);
+    sp.specBlocks.push({sectionOrder: order, definition: {} as Definition} as SpecialDefinitionBlock);
   }
 
   sortSpecBlock(specBlocks: SpecialDefinitionBlock[]) {

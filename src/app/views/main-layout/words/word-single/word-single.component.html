@@ -106,25 +106,14 @@
 
       <div *ngFor="let sp of word.wordSection?.speechParts">
         <app-card>
-          <app-card-body>
-            <h4 class="def-name">{{word.name}}</h4>
+          <app-card-header>
+            <h4>{{word.name}}</h4>
 
-            <div [ngSwitch]="sp.speechPartEnum">
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Idiom">Идиома</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Exclamation">Восклицание</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Phrase">Фраза</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Adjective">Прилагательное</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Noun">Существительное</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchCase="SpeechPartEnum.Verb">Глагол</h5>
-              <h5 class="def-name italic"
-                  *ngSwitchDefault>{{SpeechPartEnum[sp.speechPartEnum]}}</h5>
-            </div>
+            <h5 class="def-name italic">
+              {{SpeechPartEnum[sp.speechPartEnum]}},
+              <span class="to-lower"> по русски: </span>
+              {{speechEnumToCyrillic(sp.speechPartEnum)}}
+            </h5>
 
             <!-- speech section - sounds and transcription -->
             <ng-container *ngIf="sp.sounds.length">
@@ -132,32 +121,52 @@
                 <div class="sound-block" *ngFor="let m of sp.sounds">
                   <span class="language">{{m.language}}</span>
                   <!-- todo add play audio sound -->
-                  <!-- <span class="language">{{m.sound}}</span> -->
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       width="24"
+                       height="24"
+                       viewBox="0 0 24 24"
+                       style="fill: #212121">
+                    <path
+                      d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z"></path>
+                    <path
+                      d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697L14 21.868V2.132L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2z"></path>
+                  </svg>
+
+
                   <span class="transcription">/{{m.transcription}}/</span>
+                  <!-- <span class="language">{{m.sound}}</span> -->
                 </div>
 
               </div>
             </ng-container>
             <!-- end speech section - sounds and transcription -->
+          </app-card-header>
+          <app-card-body>
+
 
             <!-- speech section - meanings -->
             <ng-container *ngIf="sp.meanings.length">
-              <hr>
               <div class="mean-block" *ngFor="let m of sp.meanings">
 
-                <p class="mean">{{word.name}} <span class="italic">{{SpeechPartEnum[sp.speechPartEnum]}}</span>
-                  ({{m.mean}})</p>
+                <p class="mean">{{word.name}}
+                  <span class="italic">
+                    {{speechEnumToCyrillic(sp.speechPartEnum)}}
+                  </span>
+                  в значении: ({{m.mean}})</p>
 
                 <!-- meaning definitions -->
                 <ng-container *ngFor="let d of m.definitions">
-                  <p class="def-text">{{d.defText}}</p>
-                  <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
-
                   <ul class="labels" *ngIf="d.labels.length">
                     <li *ngFor="let l of d.labels">
                       <span class="tag">{{l.name}}</span>
                     </li>
                   </ul>
+
+                  <div class="flex flex-base">
+                    <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
+                    <p class="def-text">{{d.defText}}</p>
+                  </div>
+
 
                   <ul class="examples" *ngIf="d.examples.length">
                     <li *ngFor="let ex of d.examples">
@@ -167,7 +176,7 @@
                         <span class="text">{{ex.example}}</span>
                       </div>
                       <div class="example-tr">
-                        <span class="name">Перевод</span>
+                        <span class="name">Перевод: </span>
                         <span class="text">{{ex.exampleTranslation}}</span>
                       </div>
                     </li>
@@ -182,23 +191,30 @@
 
             <!-- speech section - definitions -->
             <ng-container *ngIf="sp.definitions.length">
-              <hr>
               <div class="definition-block" *ngFor="let d of sp.definitions">
-
-                <!-- single definition -->
-                <p class="def-text">{{d.defText}}</p>
-                <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
-
                 <ul class="labels" *ngIf="d.labels.length">
                   <li *ngFor="let l of d.labels">
                     <span class="tag">{{l.name}}</span>
                   </li>
                 </ul>
 
+                <!-- single definition -->
+                <div class="flex flex-base">
+                  <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
+                  <p class="def-text">{{d.defText}}</p>
+                </div>
+
+
                 <ul class="examples" *ngIf="d.examples.length">
                   <li *ngFor="let ex of d.examples">
-                    <div class="example">{{ex.example}}</div>
-                    <div class="example-tr">{{ex.exampleTranslation}}</div>
+                    <div class="example">
+                      <span class="name">По английски: </span>
+                      <span class="text">{{ex.example}}</span>
+                    </div>
+                    <div class="example-tr">
+                      <span class="name">Перевод: </span>
+                      <span class="text">{{ex.exampleTranslation}}</span>
+                    </div>
                   </li>
 
                 </ul>
@@ -211,8 +227,38 @@
 
 
             <ng-container *ngIf="sp.specBlocks.length">
-              <hr>
-              <div *ngFor="let m of sp.specBlocks"></div>
+              <div class="special-block" *ngFor="let sb of sp.specBlocks">
+                <p class="def-name">{{sb.name}}</p>
+
+                <!-- single definition inside special block -->
+                <div class="flex flex-base">
+                  <span *ngIf="sb.definition.level" class="tag">{{EngLevel[sb.definition.level]}}</span>
+                  <p class="def-text">{{sb.definition.defText}}</p>
+                </div>
+
+                <ul class="labels" *ngIf="sb.definition.labels.length">
+                  <li *ngFor="let l of sb.definition.labels">
+                    <span class="tag">{{l.name}}</span>
+                  </li>
+                </ul>
+
+                <ul class="examples" *ngIf="sb.definition.examples.length">
+                  <li *ngFor="let ex of sb.definition.examples">
+                    <div class="example">
+                      <span class="name">По английски: </span>
+                      <span class="text">{{ex.example}}</span>
+                    </div>
+                    <div class="example-tr">
+                      <span class="name">Перевод: </span>
+                      <span class="text">{{ex.exampleTranslation}}</span>
+                    </div>
+                  </li>
+
+                </ul>
+                <!-- end single definition inside special block -->
+
+
+              </div>
             </ng-container>
 
           </app-card-body>

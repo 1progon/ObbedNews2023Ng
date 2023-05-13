@@ -25,10 +25,30 @@
           <label>
             Speech Part Enum
             <select [(ngModel)]="sp.speechPartEnum" name="sp_speechPart[{{i}}]">
-              <ng-container *ngFor="let part of SpeechPartEnum|keyvalue">
-                <option *ngIf="Number(part.value)"
-                        [ngValue]="part.value">{{part.key}}</option>
-              </ng-container>
+              <optgroup label="POPULAR">
+                <option [ngValue]="SpeechPartEnum.Noun">
+                  {{SpeechPartEnum[SpeechPartEnum.Noun]}}
+                </option>
+                <option [ngValue]="SpeechPartEnum.Verb">
+                  {{SpeechPartEnum[SpeechPartEnum.Verb]}}
+                </option>
+                <option [ngValue]="SpeechPartEnum.Adjective">
+                  {{SpeechPartEnum[SpeechPartEnum.Adjective]}}
+                </option>
+                <option [ngValue]="SpeechPartEnum.Idiom">
+                  {{SpeechPartEnum[SpeechPartEnum.Idiom]}}
+                </option>
+                <option [ngValue]="SpeechPartEnum.Phrase">
+                  {{SpeechPartEnum[SpeechPartEnum.Phrase]}}
+                </option>
+
+              </optgroup>
+              <optgroup label="ALL">
+                <ng-container *ngFor="let part of SpeechPartEnum|keyvalue">
+                  <option *ngIf="Number(part.value)"
+                          [ngValue]="part.value">{{part.key}}</option>
+                </ng-container>
+              </optgroup>
             </select>
           </label>
           <button type="button" (click)="removeSpeechPart(i)">Remove</button>

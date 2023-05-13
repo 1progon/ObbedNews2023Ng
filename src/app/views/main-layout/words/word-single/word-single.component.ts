@@ -298,4 +298,39 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
   }
 
 
+  speechEnumToCyrillic(speechPartEnum: SpeechPartEnum): string {
+    switch (speechPartEnum) {
+
+      case SpeechPartEnum.Noun:
+        return 'Существительное';
+      case SpeechPartEnum.Verb:
+        return 'Глагол';
+      case SpeechPartEnum.Adjective:
+        return 'Прилагательное';
+      case SpeechPartEnum.Adverb:
+        return 'Наречие';
+      case SpeechPartEnum.Conjunction:
+        return 'Союз';
+      case SpeechPartEnum.Number:
+        return 'Число';
+      case SpeechPartEnum.OrdinalNumber:
+        return 'Порядковый номер';
+      case SpeechPartEnum.Preposition:
+        return 'Предлог';
+      case SpeechPartEnum.Prefix:
+        return 'Приставка';
+      case SpeechPartEnum.Suffix:
+        return 'Окончание';
+      case SpeechPartEnum.Exclamation:
+        return 'Восклицание';
+      case SpeechPartEnum.Idiom:
+        return 'Идиома';
+      case SpeechPartEnum.Phrase:
+        return 'Фраза';
+      default:
+        return SpeechPartEnum[speechPartEnum];
+
+
+    }
+  }
 }

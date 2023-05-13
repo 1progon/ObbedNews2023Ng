@@ -45,7 +45,8 @@ code {
 }
 
 hr {
-  border-color: vars.$bg-color;
+  border-width: 1px;
+  border-color: vars.$primary-color-lighter;
 }
 
 button {

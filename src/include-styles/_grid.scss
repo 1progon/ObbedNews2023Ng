@@ -7,3 +7,46 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.flex {
+  display: flex;
+
+  &.flex-base {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  &.flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &.flex-column {
+    flex-direction: column;
+  }
+
+  &.flex-align-items-center {
+    align-items: center;
+  }
+
+  &.flex-justify-content-between {
+    justify-content: space-between;
+  }
+
+  &.flex-gap-5 {
+    gap: 5px;
+  }
+
+  &.flex-gap-10 {
+    gap: 10px;
+  }
+
+  &.flex-gap-20 {
+    gap: 20px;
+  }
+}

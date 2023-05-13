@@ -9,19 +9,28 @@
   <app-card-body *ngIf="section.specBlocks?.length">
     <div class="spec-blocks">
       <div class="spec-block"
-           *ngFor="let b of section.specBlocks; index as i">
-        <app-card *ngIf="ws.activeSection == b || !ws.activeSection">
-          <app-card-header [active]="ws.activeSection == b">
+           *ngFor="let sb of section.specBlocks; index as i">
+        <app-card *ngIf="ws.activeSection == sb || !ws.activeSection">
+          <app-card-header [active]="ws.activeSection == sb">
 
-            <div style="display: flex; gap: 10px; align-items: center">
-                <span (click)="specBlockShow[i] = !specBlockShow[i]">
-                  {{specBlockShow[i] ? '-' : '+'}} Spec Block</span>
-              <input type="number" name="spb_sectionOrder[{{i}}]"
-                     placeholder="Order"
-                     [(ngModel)]="b.sectionOrder"/>
-              <button type="button" (click)="section.specBlocks.splice(i,1)">Remove</button>
+            <div class="flex flex-base">
+              <button type="button" (click)="specBlockShow[i] = !specBlockShow[i]">
+                {{specBlockShow[i] ? '-' : '+'}}
+              </button>
+              <label>
+                Spec Block
+                <input type="number" name="sb_sectionOrder[{{i}}]"
+                       placeholder="Order"
+                       [(ngModel)]="sb.sectionOrder">
+              </label>
 
-              <input type="text" name="spb_name[{{i}}]" [(ngModel)]="b.name"
+              <button type="button"
+                      (click)="section.specBlocks.splice(i,1)">
+                Remove
+              </button>
+
+              <input type="text" name="sb_name[{{i}}]"
+                     [(ngModel)]="sb.name"
                      placeholder="Name"/>
             </div>
 
@@ -30,10 +39,11 @@
 
             <app-card>
               <app-card-header>
-                Spec block def
+                Spec block definition
               </app-card-header>
               <app-card-body>
-                <app-definitions-list-item [section]="section"/>
+                <app-definitions-list-item [section]="section"
+                                           [definition]="sb.definition"/>
               </app-card-body>
             </app-card>
 

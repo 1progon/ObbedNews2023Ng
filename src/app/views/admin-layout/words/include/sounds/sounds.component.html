@@ -13,6 +13,20 @@
             <label>
               Language
               <input type="text" name="s_language[{{i}}]" [(ngModel)]="s.language"/>
+              <select name="s_language[{{i}}]" [(ngModel)]="s.language">
+                <optgroup label="POPULAR">
+                  <option ngValue="UK">UK</option>
+                  <option ngValue="US">US</option>
+                  <option ngValue="FR">FR</option>
+                </optgroup>
+
+                <optgroup label="OTHER">
+                  <option ngValue="RU">RU</option>
+                  <option ngValue="DE">DE</option>
+                  <option ngValue="IT">IT</option>
+                </optgroup>
+
+              </select>
             </label>
             <button type="button" (click)="section.sounds.splice(i,1)">Remove</button>
           </app-card-header>

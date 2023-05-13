@@ -2,13 +2,43 @@
 
 article, .word-sections {
 
+  .mean-block, .definition-block, .special-block {
+    &:not(:last-child) {
+      border-bottom: 1px solid $primary-color-lighter;
+      margin-bottom: 20px;
+
+    }
+  }
+
+  .special-block {
+    background-color: $bg-color;
+    border-radius: $default-radius;
+    overflow: hidden;
+
+    .def-name {
+      padding: 10px 10px 10px;
+      background-color: $primary-color-lighter;
+      color: #fff;
+      margin: 0;
+    }
+
+    .def-text {
+      padding: 0 10px 10px;
+    }
+  }
+
   .mean-block {
+
     .mean {
       font-weight: 600;
-      color: darkmagenta;
+      color: $primary-color;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $bg-color;
 
       .italic {
         font-style: italic;
+        color: $primary-color-lighter;
+        border-bottom: 1px solid $primary-color-lighter;
       }
     }
   }
@@ -28,13 +58,12 @@ article, .word-sections {
 
       .language {
         text-transform: uppercase;
-        margin-right: 10px;
         font-weight: 600;
-        color: darkblue;
+        color: $text-color;
       }
 
       .transcription {
-        color: dimgray;
+        color: $text-color-gray;
         font-size: 15px;
       }
 
@@ -42,8 +71,12 @@ article, .word-sections {
   }
 
   .def-name {
-    color: darkblue;
+    color: $primary-color;
     text-transform: capitalize;
+
+    span.to-lower {
+      text-transform: lowercase;
+    }
 
     &.italic {
       font-style: italic;
@@ -52,7 +85,7 @@ article, .word-sections {
 
   .def-desc {
     font-style: italic;
-    color: gray;
+    color: $primary-color;
     font-size: 14px;
 
     & * {
@@ -62,79 +95,100 @@ article, .word-sections {
   }
 
   .def-text {
-    color: dimgray;
+    color: $text-color-gray;
 
   }
 
   .tag {
-    text-transform: lowercase;
-    background-color: lightgray;
+    text-transform: uppercase;
+    background-color: $bg-color;
     border-radius: 6px;
-    padding: 3px;
-    margin-right: 5px;
-    color: dimgray;
+    padding: 3px 5px;
+    color: $primary-color;
   }
 
+}
+
+ul.labels, ul.examples {
+
+  li {
+    margin-bottom: 20px;
+
+    &::marker {
+      color: $text-color-gray;
+    }
+  }
+
+
+}
+
+ul.labels {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  li {
+    list-style: none;
+
+  }
 }
 
 ul.examples {
 
   &::before {
-    content: 'Примеры';
+    content: 'Примеры:';
     text-transform: lowercase;
-    color: darkgray;
+    color: $text-color-gray;
     font-style: italic;
   }
 
-  li:first-child {
-    margin-top: 10px;
-  }
 
   li {
-    margin-bottom: 20px;
 
-    .example {
+    &:first-child {
+      margin-top: 10px;
+    }
+
+    .example, .example-tr {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      font-weight: 600;
-      color: darkblue;
-      margin-bottom: 10px;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
 
       span.name {
         flex-basis: 95px;
         display: inline-block;
         text-transform: lowercase;
-        color: darkgray;
+        color: $text-color-gray;
         font-weight: 300;
         font-size: 14px;
+
+        @media screen and (max-width: 768px) {
+          flex-basis: unset;
+        }
       }
 
       span.text {
         flex: 10;
       }
+    }
+
+    .example {
+      font-weight: 600;
+      color: $text-color;
+      margin-bottom: 10px;
 
     }
 
     .example-tr {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
       font-weight: 300;
       font-style: italic;
-      color: dimgray;
+      color: $text-color-gray;
 
-      span.name {
-        flex-basis: 95px;
-        display: inline-block;
-        text-transform: lowercase;
-        color: darkgray;
-        font-size: 14px;
-      }
-
-      span.text {
-        flex: 10;
-      }
 
     }
   }
