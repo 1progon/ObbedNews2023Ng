@@ -71,7 +71,7 @@
     display: block;
     width: 20px;
     height: 20px;
-    fill: rgba(255, 0, 0, 1);
+    fill: $accent-color;
 
     &.updating {
       animation: rotate360 infinite 1s linear;

@@ -71,9 +71,12 @@ article {
 
     & .left-progress {
       height: 20px;
-      border-left: 1px solid red;
-      border-top: 1px solid red;
-      border-bottom: 1px solid red;
+      border-left: 1px;
+      border-right: 0;
+      border-top: 1px;
+      border-bottom: 1px;
+      border-color: $accent-color;
+      border-style: solid;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
       display: flex;
@@ -82,13 +85,13 @@ article {
 
       @media screen and (max-width: 425px) {
         justify-content: flex-start;
-        border: 1px solid red;
+        border: 1px solid $accent-color;
         border-radius: 5px;
       }
 
       & .filled {
         text-align: right;
-        background-color: red;
+        background-color: $accent-color;
         color: #fff;
         font-size: 13px;
         display: flex;
@@ -129,9 +132,12 @@ article {
 
     & .right-progress {
       height: 20px;
-      border-right: 1px solid $primary-color;
-      border-top: 1px solid $primary-color;
-      border-bottom: 1px solid $primary-color;
+      border-right: 1px;
+      border-left: 0;
+      border-top: 1px;
+      border-bottom: 1px;
+      border-color: $primary-color;
+      border-style: solid;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       display: flex;

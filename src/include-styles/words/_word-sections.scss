@@ -71,7 +71,7 @@ article, .word-sections {
   }
 
   .def-name {
-    color: $primary-color;
+    color: $accent-color;
     text-transform: capitalize;
 
     span.to-lower {
@@ -95,7 +95,6 @@ article, .word-sections {
   }
 
   .def-text {
-    color: $text-color-gray;
 
   }
 
@@ -104,7 +103,8 @@ article, .word-sections {
     background-color: $bg-color;
     border-radius: 6px;
     padding: 3px 5px;
-    color: $primary-color;
+    color: $accent-color;
+    font-size: 16px;
   }
 
 }
