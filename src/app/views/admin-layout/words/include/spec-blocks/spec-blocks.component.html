@@ -17,8 +17,9 @@
               <button type="button" (click)="specBlockShow[i] = !specBlockShow[i]">
                 {{specBlockShow[i] ? '-' : '+'}}
               </button>
+              Spec block {{i + 1}}
               <label>
-                Spec Block
+                Section Order
                 <input type="number" name="sb_sectionOrder[{{i}}]"
                        placeholder="Order"
                        [(ngModel)]="sb.sectionOrder">
@@ -39,7 +40,7 @@
 
             <app-card>
               <app-card-header>
-                Spec block definition
+                Spec block Definition
               </app-card-header>
               <app-card-body>
                 <app-definitions-list-item [section]="section"
@@ -54,6 +55,8 @@
     </div>
   </app-card-body>
   <app-card-footer>
-    <button type="button" (click)="addSpecBlockInSpeechPart(section)">Add spec bloc part +</button>
+    <button type="button" (click)="addSpecBlockInSpeechPart(section)">
+      Add spec bloc part +
+    </button>
   </app-card-footer>
 </app-card>

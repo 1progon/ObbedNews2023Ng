@@ -2,6 +2,13 @@
 
 article, .word-sections {
 
+  .card-header {
+
+    .speech-part-title {
+      color: $accent-color;
+    }
+  }
+
   .mean-block, .definition-block, .special-block {
     &:not(:last-child) {
       border-bottom: 1px solid $primary-color-lighter;
@@ -71,7 +78,6 @@ article, .word-sections {
   }
 
   .def-name {
-    color: $accent-color;
     text-transform: capitalize;
 
     span.to-lower {
@@ -95,7 +101,7 @@ article, .word-sections {
   }
 
   .def-text {
-
+    font-weight: 600;
   }
 
   .tag {

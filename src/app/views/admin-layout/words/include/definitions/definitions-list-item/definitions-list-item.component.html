@@ -3,8 +3,9 @@
     <button type="button" (click)="showSection[index] = !showSection[index]">
       {{showSection[index] ? '-' : '+'}}
     </button>
+    <span>Definition {{index + 1}}</span>
     <label>
-      Definition Order
+      Order
       <input type="number" name="d_sectionOrder[{{index}}]"
              placeholder="Section Order"
              [(ngModel)]="definition.sectionOrder"/>
@@ -18,22 +19,24 @@
   <app-card-body *ngIf="showSection[index]">
 
     <label>
-      definitions order Inside Meaning
+      Order Inside Meaning
       <input type="number" name="d_orderInsideMeaning[{{index}}]" [(ngModel)]="definition.orderInsideMeaning"/>
     </label>
 
     <br>
 
     <label>
-      definitions def Text
-      <textarea name="d_defText[{{index}}]" [(ngModel)]="definition.defText"></textarea>
+      Text
+      <textarea name="d_defText[{{index}}]"
+                [(ngModel)]="definition.defText"></textarea>
     </label>
 
     <br>
 
     <label>
-      definitions level EngLevel
+      Eng Level
       <select name="d_level[{{index}}]" [(ngModel)]="definition.level">
+        <option [ngValue]="EngLevel.Undefined">------</option>
         <ng-container *ngFor="let l of EngLevel|keyvalue">
           <option *ngIf="Number(l.value)" [ngValue]="l.value">{{l.key}}</option>
         </ng-container>
@@ -60,14 +63,16 @@
             </app-card-header>
             <app-card-body>
               <label>
-                Definition Labels description
-                <textarea name="l_description[{{i}}]" [(ngModel)]="l.description"></textarea>
+                Description
+                <textarea name="l_description[{{i}}]"
+                          [(ngModel)]="l.description"></textarea>
               </label>
 
               <br>
               <label>
-                Definition Labels speechPartEnum
+                Speech Part Enum
                 <select name="l_speechPartEnum[{{i}}]" [(ngModel)]="l.speechPartEnum">
+                  <option [ngValue]="SpeechPartEnum.Undefined">------</option>
                   <ng-container *ngFor="let e of SpeechPartEnum|keyvalue">
                     <option *ngIf="Number(e.value)" [ngValue]="e.value">{{e.key}}</option>
                   </ng-container>
@@ -77,7 +82,7 @@
 
 
               <!-- todo add parent meaning -->
-              <div contenteditable="true">parentMeaning: ...</div>
+              <!-- <div contenteditable="true">parentMeaning: ...</div> -->
             </app-card-body>
           </app-card>
 
@@ -107,13 +112,15 @@
             <app-card-body>
 
               <label>
-                example example
-                <textarea name="ex_example[{{i}}]" [(ngModel)]="ex.example"></textarea>
+                Example
+                <textarea name="ex_example[{{i}}]"
+                          [(ngModel)]="ex.example"></textarea>
               </label>
               <br>
               <label>
-                example example Translation
+                Example Translation
                 <textarea name="ex_exampleTranslation[{{i}}]"
+                          rows="5"
                           [(ngModel)]="ex.exampleTranslation"></textarea>
               </label>
               <br>

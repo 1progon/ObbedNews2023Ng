@@ -3,11 +3,13 @@ import {SpeechPartEnum} from "../../../../../enums/news/SpeechPartEnum";
 import {WordSection} from "../../../../../interfaces/words/dictionary/WordSection";
 import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
+import {ControlContainer, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-speech-parts',
   templateUrl: './speech-parts.component.html',
-  styleUrls: ['./speech-parts.component.scss']
+  styleUrls: ['./speech-parts.component.scss'],
+  viewProviders: [{provide: ControlContainer, useExisting: NgForm}]
 })
 export class SpeechPartsComponent {
   @Input() wordSection: WordSection = {} as WordSection;

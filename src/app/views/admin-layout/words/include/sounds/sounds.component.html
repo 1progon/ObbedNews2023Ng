@@ -10,6 +10,7 @@
             <button type="button" (click)="sectionBlockShow[i] = !sectionBlockShow[i]">
               {{sectionBlockShow[i] ? '-' : '+'}}
             </button>
+            Sound {{i + 1}}
             <label>
               Language
               <input type="text" name="s_language[{{i}}]" [(ngModel)]="s.language"/>

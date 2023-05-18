@@ -3,11 +3,13 @@ import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/Spee
 import {SpecialDefinitionBlock} from "../../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
 import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
 import {Definition} from "../../../../../interfaces/words/dictionary/Definition";
+import {ControlContainer, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-spec-blocks',
   templateUrl: './spec-blocks.component.html',
-  styleUrls: ['./spec-blocks.component.scss']
+  styleUrls: ['./spec-blocks.component.scss'],
+  viewProviders: [{provide: ControlContainer, useExisting: NgForm}]
 })
 export class SpecBlocksComponent {
   @Input() section: SpeechPartSection = <SpeechPartSection>{};

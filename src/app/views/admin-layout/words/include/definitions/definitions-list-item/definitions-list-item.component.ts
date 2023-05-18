@@ -7,11 +7,13 @@ import {SpeechPartEnum} from "../../../../../../enums/news/SpeechPartEnum";
 import {SpeechPartSection} from "../../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {Meaning} from "../../../../../../interfaces/words/dictionary/Meaning";
 import {AdminWordsWrapperService} from "../../../admin-words-wrapper.service";
+import {ControlContainer, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-definitions-list-item',
   templateUrl: './definitions-list-item.component.html',
-  styleUrls: ['./definitions-list-item.component.scss']
+  styleUrls: ['./definitions-list-item.component.scss'],
+  viewProviders: [{provide: ControlContainer, useExisting: NgForm}]
 })
 export class DefinitionsListItemComponent {
   @Input() definition: Definition = <Definition>{}

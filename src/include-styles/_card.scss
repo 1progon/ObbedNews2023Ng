@@ -21,7 +21,7 @@
     font-weight: 600;
     font-size: 17px;
     border-bottom: 2px solid vars.$bg-color;
-    padding: 10px;
+    padding: 10px 20px;
     color: vars.$text-color;
     background-color: vars.$bg-color;
 
@@ -39,7 +39,7 @@
   }
 
   .card-body {
-    padding: 10px;
+    padding: 10px 20px;
 
     &.flex-column {
       display: flex;
@@ -55,7 +55,7 @@
 
   .card-footer {
     border-top: 2px solid vars.$bg-color;
-    padding: 20px 10px;
+    padding: 10px 20px;
     color: vars.$text-color;
   }
 }

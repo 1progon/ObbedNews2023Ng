@@ -15,8 +15,9 @@
             <button type="button" (click)="showSection[i] = !showSection[i]">
               {{showSection[i] ? '-' : '+'}}
             </button>
+            <span>Meaning {{i + 1}}</span>
             <label>
-              Meaning Order
+              Order
               <input type="number"
                      placeholder="Section Order"
                      name="m_sectionOrder[{{i}}]"
@@ -28,7 +29,7 @@
           <app-card-body *ngIf="showSection[i]">
 
             <label>
-              Meaning mean
+              Meaning
               <textarea name="m_mean[{{i}}]" [(ngModel)]="m.mean"></textarea>
             </label>
 
@@ -41,6 +42,8 @@
     </div>
   </app-card-body>
   <app-card-footer>
-    <button type="button" (click)="addMeaningInSpeechPart(section)">Add meaning part +</button>
+    <button type="button" (click)="addMeaningInSpeechPart(section)">
+      Add meaning part +
+    </button>
   </app-card-footer>
 </app-card>

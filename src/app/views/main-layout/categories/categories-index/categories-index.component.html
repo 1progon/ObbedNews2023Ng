@@ -9,7 +9,7 @@
       <app-card-body>
 
         <ng-container *ngFor="let c of categories">
-          <app-card *ngIf="c.parentCategory?.id == pc.id">
+          <app-card *ngIf="c.parentCategory?.id == pc.id" [noMarginLeft]="true">
             <app-card-body>
               <a [routerLink]="['/', r.catNested, c.slug]" class="news-row">
                 <div class="news-image">

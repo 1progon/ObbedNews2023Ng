@@ -2,11 +2,13 @@ import {Component, Input} from '@angular/core';
 import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {Meaning} from "../../../../../interfaces/words/dictionary/Meaning";
 import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
+import {ControlContainer, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-meanings',
   templateUrl: './meanings.component.html',
-  styleUrls: ['./meanings.component.scss']
+  styleUrls: ['./meanings.component.scss'],
+  viewProviders: [{provide: ControlContainer, useExisting: NgForm}]
 })
 export class MeaningsComponent {
   @Input() section: SpeechPartSection = {} as SpeechPartSection;

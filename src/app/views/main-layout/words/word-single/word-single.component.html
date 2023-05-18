@@ -107,12 +107,13 @@
       <div *ngFor="let sp of word.wordSection?.speechParts">
         <app-card>
           <app-card-header>
-            <h4>{{word.name}}</h4>
+            <h4 class="speech-part-title">{{word.name}}</h4>
 
-            <h5 class="def-name italic">
-              {{SpeechPartEnum[sp.speechPartEnum]}},
-              <span class="to-lower"> по русски: </span>
-              {{speechEnumToCyrillic(sp.speechPartEnum)}}
+            <h5 class="def-name italic"
+                *ngIf="sp.speechPartEnum">
+              {{speechEnumToCyrillic(sp.speechPartEnum)}},
+              <span class="to-lower"> по-английски: </span>
+              {{SpeechPartEnum[sp.speechPartEnum]}}
             </h5>
 
             <!-- speech section - sounds and transcription -->
@@ -194,13 +195,14 @@
               <div class="definition-block" *ngFor="let d of sp.definitions">
                 <ul class="labels" *ngIf="d.labels.length">
                   <li *ngFor="let l of d.labels">
-                    <span class="tag">{{l.name}}</span>
+                    <span class="tag" [title]="l.description">{{l.name}}</span>
                   </li>
                 </ul>
 
                 <!-- single definition -->
                 <div class="flex flex-base">
-                  <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
+                  <span *ngIf="d.level"
+                        class="tag">{{EngLevel[d.level]}}</span>
                   <p class="def-text">{{d.defText}}</p>
                 </div>
 

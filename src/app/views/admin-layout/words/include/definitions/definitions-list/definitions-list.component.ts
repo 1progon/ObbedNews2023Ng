@@ -3,11 +3,13 @@ import {SpeechPartSection} from "../../../../../../interfaces/words/dictionary/S
 import {Meaning} from "../../../../../../interfaces/words/dictionary/Meaning";
 import {Definition} from "../../../../../../interfaces/words/dictionary/Definition";
 import {AdminWordsWrapperService} from "../../../admin-words-wrapper.service";
+import {ControlContainer, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-definitions-list',
   templateUrl: './definitions-list.component.html',
-  styleUrls: ['./definitions-list.component.scss']
+  styleUrls: ['./definitions-list.component.scss'],
+  viewProviders: [{provide: ControlContainer, useExisting: NgForm}]
 })
 export class DefinitionsListComponent {
   @Input() section: SpeechPartSection | Meaning = {} as SpeechPartSection | Meaning;
