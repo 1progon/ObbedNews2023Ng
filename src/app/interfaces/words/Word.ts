@@ -8,7 +8,7 @@ import {Category} from "./Category";
 import {WordSection} from "./dictionary/WordSection";
 
 export interface Word extends BaseModelWithDates {
-
+  isDraft: boolean;
 
   mainThumb?: string;
   mainImage?: string;

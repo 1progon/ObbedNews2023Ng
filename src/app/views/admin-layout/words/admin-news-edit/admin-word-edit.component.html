@@ -67,7 +67,8 @@
           type="file"> -->
 
 
-  <label for="newsLink">News Link <a [href]="form.newsLink" target="_blank">[Open]</a></label>
+  <label for="newsLink">News Link <a *ngIf="form.newsLink"
+                                     [href]="form.newsLink" target="_blank">[Open]</a></label>
   <input [(ngModel)]="form.newsLink"
          id="newsLink"
          name="newsLink"
@@ -107,7 +108,7 @@
   </div>
 
 
-  <hr/>
+  <br/>
 
   <!-- Word section -->
   <app-card [noMarginLeft]="true">
@@ -230,6 +231,16 @@
 
 
   <!-- submit form -->
+  <br>
+
+  <div class="checkbox-block">
+    <input type="checkbox" name="is_draft" id="is-draft"
+           [(ngModel)]="form.isDraft">
+    <label for="is-draft">Draft</label>
+  </div>
+
+  <br>
+
   <button [disabled]="isPosting || ngForm.invalid || ngForm.pristine"
           class="btn"
           type="submit">

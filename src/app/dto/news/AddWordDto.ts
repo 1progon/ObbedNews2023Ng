@@ -23,4 +23,6 @@ export interface AddWordDto extends BaseModelDto {
 
   wordSection?: WordSection;
 
+  isDraft: boolean;
+
 }

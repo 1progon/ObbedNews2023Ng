@@ -16,6 +16,7 @@
     <td>Dislikes</td>
     <td>Likes</td>
     <td>Front</td>
+    <td>Is Draft</td>
     <td>Link</td>
     <td>Edit</td>
     <td>Delete</td>
@@ -23,7 +24,9 @@
   </thead>
   <tbody>
   <tr *ngFor="let c of newsList">
+    <!-- id -->
     <td>{{c.id}}</td>
+    <!-- thumb -->
     <td>
       <img *ngIf="c.mainThumb"
            [src]="imagesPath + '/' + c.mainThumb"
@@ -32,23 +35,35 @@
            width="auto">
       <span *ngIf="!c.mainThumb">None</span>
     </td>
+    <!-- name -->
     <td>{{c.name}}</td>
+    <!-- category -->
     <td>{{c.category ? c.category.name : ''}}</td>
+    <!-- description -->
     <td>{{c.description}}</td>
+    <!-- vid section -->
     <td>{{ c.videoSections.length }}</td>
+    <!-- dislike -->
     <td>{{c.dislikesCount}}</td>
+    <!-- like -->
     <td>{{c.likesCount}}</td>
+    <!-- front -->
     <td>
       <a [routerLink]="['/', r.dictionary, c.slug]" target="_blank">Front</a>
     </td>
+    <!-- is draft -->
+    <td>{{c.isDraft ? 'Draft': 'Published'}}</td>
+    <!-- detail -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.show]"
          class="btn btn-outline">Detail</a>
     </td>
+    <!-- edit -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.edit]"
          class="btn btn-warning">Edit</a>
     </td>
+    <!-- remove -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.remove]"
          class="btn btn-danger">Remove</a>

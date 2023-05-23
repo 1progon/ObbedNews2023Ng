@@ -24,4 +24,6 @@ export interface UpdateWordDto extends BaseModelDto {
   disLikes: number;
 
   wordSection?: WordSection;
+
+  isDraft: boolean;
 }

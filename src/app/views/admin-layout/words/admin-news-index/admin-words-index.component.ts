@@ -33,7 +33,8 @@ export class AdminWordsIndexComponent implements OnInit {
 
         this.loading = true;
 
-        this.newsService.getWordsList(this.page)
+        this.newsService
+          .getWordsList(this.page, undefined, true)
           .subscribe({
             next: value => {
               this.newsList = value;

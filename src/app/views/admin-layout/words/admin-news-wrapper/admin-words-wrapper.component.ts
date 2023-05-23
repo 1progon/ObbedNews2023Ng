@@ -6,6 +6,7 @@ import {catchError} from "rxjs";
 import {ToastType} from "../../../../enums/ToastType";
 import {HttpErrorResponse} from "@angular/common/http";
 import {rNames} from "../../../../app-routing.module";
+import {Word} from "../../../../interfaces/words/Word";
 
 @Component({
   selector: 'app-admin-words-wrapper',
@@ -37,6 +38,9 @@ export class AdminWordsWrapperComponent implements OnInit {
             })
             return;
           }
+
+          this.wrapperService.word$.next({} as Word);
+
           this.wrapperService
             .getWord(this.id)
             .pipe(

@@ -18,7 +18,7 @@ export class WordService {
 
 
   // allow anonymous
-  getWordsList(page: number = 1, categorySlug?: string) {
+  getWordsList(page: number = 1, categorySlug?: string, withDrafts?: boolean) {
     let params = new HttpParams();
     let offset = (page - 1) * this.limit;
 
@@ -32,6 +32,10 @@ export class WordService {
 
     if (categorySlug) {
       params = params.append('categorySlug', categorySlug);
+    }
+
+    if (withDrafts) {
+      params = params.append('withDrafts', withDrafts);
     }
 
     return this.http.get<Word[]>(this.api, {params});

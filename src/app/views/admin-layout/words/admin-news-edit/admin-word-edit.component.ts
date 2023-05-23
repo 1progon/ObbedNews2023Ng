@@ -88,6 +88,7 @@ export class AdminWordEditComponent implements OnInit {
             removeImage: false,
             likes: word.likesCount,
             disLikes: word.dislikesCount,
+            isDraft: word.isDraft,
           }
 
           if (word.tags) {
