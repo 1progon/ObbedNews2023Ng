@@ -164,7 +164,9 @@
                   </ul>
 
                   <div class="flex flex-base">
-                    <span *ngIf="d.level" class="tag">{{EngLevel[d.level]}}</span>
+                    <span *ngIf="d.level"
+                          title="Уровень английского языка"
+                          class="tag">{{EngLevel[d.level]}}</span>
                     <p class="def-text">{{d.defText}}</p>
                   </div>
 
@@ -202,6 +204,7 @@
                 <!-- single definition -->
                 <div class="flex flex-base">
                   <span *ngIf="d.level"
+                        title="Уровень английского языка"
                         class="tag">{{EngLevel[d.level]}}</span>
                   <p class="def-text">{{d.defText}}</p>
                 </div>
@@ -234,7 +237,9 @@
 
                 <!-- single definition inside special block -->
                 <div class="flex flex-base">
-                  <span *ngIf="sb.definition.level" class="tag">{{EngLevel[sb.definition.level]}}</span>
+                  <span *ngIf="sb.definition.level"
+                        title="Уровень английского языка"
+                        class="tag">{{EngLevel[sb.definition.level]}}</span>
                   <p class="def-text">{{sb.definition.defText}}</p>
                 </div>
 
