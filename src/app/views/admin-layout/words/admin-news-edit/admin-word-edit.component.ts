@@ -17,6 +17,7 @@ import {Meaning} from "../../../../interfaces/words/dictionary/Meaning";
 import {SpecialDefinitionBlock} from "../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
 import {Definition} from "../../../../interfaces/words/dictionary/Definition";
 import {WordSound} from "../../../../interfaces/words/dictionary/WordSound";
+import {LabelType} from "../../../../interfaces/words/dictionary/LabelType";
 
 @Component({
   selector: 'app-admin-word-edit',

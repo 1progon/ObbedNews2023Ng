@@ -7,6 +7,7 @@ import {Meaning} from "../../../interfaces/words/dictionary/Meaning";
 import {SpecialDefinitionBlock} from "../../../interfaces/words/dictionary/SpecialDefinitionBlock";
 import {Definition} from "../../../interfaces/words/dictionary/Definition";
 import {WordSound} from "../../../interfaces/words/dictionary/WordSound";
+import {LabelType} from "../../../interfaces/words/dictionary/LabelType";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,16 @@ export class AdminWordsWrapperService {
   activeSpeechPart?: SpeechPartSection;
   activeSection?: Meaning | SpecialDefinitionBlock | Definition | WordSound;
   activeSection2?: Meaning | SpecialDefinitionBlock | Definition | WordSound;
+
+  labelsHelper: LabelType[] = [
+    {name: 'Брит.', text: 'Используется в основном британцами'},
+    {name: 'Амер.', text: 'Используется в основном американцами'},
+    {name: 'Юморное', text: 'Юморное выражение, забавное, веселое, шутливое'},
+    {name: 'Старомодное', text: 'Устарелое, старомодное, реже используется, и в основном более старшим поколением'},
+    {name: 'Сленг', text: 'Сленговое выражение'},
+    {name: 'Разговорное', text: 'Используется в разговорной речи'},
+    {name: 'Неформальное', text: 'Используется в неформальном общении'},
+  ];
 
   constructor(private adminWordService: AdminWordService) {
   }

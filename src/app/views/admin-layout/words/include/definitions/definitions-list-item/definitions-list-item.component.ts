@@ -8,6 +8,7 @@ import {SpeechPartSection} from "../../../../../../interfaces/words/dictionary/S
 import {Meaning} from "../../../../../../interfaces/words/dictionary/Meaning";
 import {AdminWordsWrapperService} from "../../../admin-words-wrapper.service";
 import {ControlContainer, NgForm} from "@angular/forms";
+import {LabelType} from "../../../../../../interfaces/words/dictionary/LabelType";
 
 @Component({
   selector: 'app-definitions-list-item',
@@ -25,6 +26,7 @@ export class DefinitionsListItemComponent {
   protected readonly Number = Number;
   protected readonly EngLevel = EngLevel;
   protected readonly SpeechPartEnum = SpeechPartEnum;
+  tempLabel: LabelType[] = [];
 
   constructor(public ws: AdminWordsWrapperService) {
   }
@@ -39,4 +41,9 @@ export class DefinitionsListItemComponent {
     definition.labels.push({} as DefinitionLabel);
   }
 
+
+  updateLabel(l: DefinitionLabel, index: number) {
+    l.name = this.tempLabel[index].name;
+    l.description = this.tempLabel[index].text;
+  }
 }

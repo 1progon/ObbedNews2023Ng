@@ -57,9 +57,20 @@
             <app-card-header>
               Label {{i}}
               <button type="button" (click)="definition.labels.splice(i, 1)">Remove</button>
+              <!-- label name -->
+              <!-- label input string -->
               <input type="text" name="l_name[{{i}}]"
                      placeholder="Name"
                      [(ngModel)]="l.name">
+              <!-- label selector -->
+              <select (change)="updateLabel(l, i)"
+                      [(ngModel)]="tempLabel[i]" name="temp_label[{{i}}]">
+                <option value="" [selected]="l.name == ''">------</option>
+                <option *ngFor="let lSelector of ws.labelsHelper"
+                        [selected]="lSelector.name == l.name"
+                        [ngValue]="lSelector">{{lSelector.name}}</option>
+              </select>
+              <!-- end label name -->
             </app-card-header>
             <app-card-body>
               <label>
@@ -71,8 +82,9 @@
               <br>
               <label>
                 Speech Part Enum
-                <select name="l_speechPartEnum[{{i}}]" [(ngModel)]="l.speechPartEnum">
-                  <option [ngValue]="SpeechPartEnum.Undefined">------</option>
+                <select name="l_speechPartEnum[{{i}}]"
+                        [(ngModel)]="l.speechPartEnum">
+                  <option [ngValue]="undefined">------</option>
                   <ng-container *ngFor="let e of SpeechPartEnum|keyvalue">
                     <option *ngIf="Number(e.value)" [ngValue]="e.value">{{e.key}}</option>
                   </ng-container>
