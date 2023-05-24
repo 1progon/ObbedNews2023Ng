@@ -27,6 +27,7 @@ export class AdminWordsWrapperService {
     {name: 'Сленг', text: 'Сленговое выражение'},
     {name: 'Разговорное', text: 'Используется в разговорной речи'},
     {name: 'Неформальное', text: 'Используется в неформальном общении'},
+    {name: 'Поговорка', text: 'Поговорка, разговорное'},
   ];
 
   constructor(private adminWordService: AdminWordService) {
