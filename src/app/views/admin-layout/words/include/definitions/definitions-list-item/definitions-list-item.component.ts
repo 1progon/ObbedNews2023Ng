@@ -63,7 +63,7 @@ export class DefinitionsListItemComponent {
 
   removeExamples(index: number) {
     this.definition.examples?.splice(index, 1);
-    if (!this.definition.examples) {
+    if (!this.definition.examples?.length) {
       this.definition.examples = undefined;
     }
   }
