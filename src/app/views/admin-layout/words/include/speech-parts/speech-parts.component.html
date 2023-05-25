@@ -2,8 +2,10 @@
   <app-card-header>
     Speech parts
     <button type="button"
+            class="btn"
             *ngIf="wordSection.speechParts?.length"
-            (click)="sortSpeechParts(wordSection.speechParts)">Sort
+            (click)="sortSpeechParts(wordSection.speechParts)">
+      Sort
     </button>
 
   </app-card-header>
@@ -15,16 +17,18 @@
       <app-card *ngIf="sp == ws.activeSpeechPart || !ws.activeSpeechPart"
                 [noMarginLeft]="true">
         <app-card-header [active]="ws.activeSpeechPart == sp">
-          <button type="button" (click)="showSection[i] = !showSection[i]">
+          <button type="button"
+                  class="btn"
+                  (click)="showSection[i] = !showSection[i]">
             {{showSection[i] ? '-' : '+'}}
           </button>
-          <span>Speech Part {{i + 1}}</span>
+          <span>Part {{i + 1}}</span>
           <label>
             Order
             <input type="number" name="sp_order[{{i}}]" [(ngModel)]="sp.order">
           </label>
           <label>
-            Speech Part Enum
+            Speech Part
             <select [(ngModel)]="sp.speechPartEnum" name="sp_speechPart[{{i}}]">
               <optgroup label="POPULAR">
                 <option [ngValue]="SpeechPartEnum.Noun">
@@ -53,7 +57,10 @@
               </optgroup>
             </select>
           </label>
-          <button type="button" (click)="removeSpeechPart(i)">Remove</button>
+          <button type="button"
+                  class="btn btn-danger"
+                  (click)="removeSpeechPart(i)">x
+          </button>
         </app-card-header>
         <app-card-body *ngIf="showSection[i]">
           <!-- meanings in speech part -->
@@ -79,7 +86,11 @@
     <!-- end speech part loop -->
 
     <br>
-    <button type="button" (click)="addSpeechPart()">Add speech part +</button>
+    <button type="button"
+            class="btn btn-warning"
+            (click)="addSpeechPart()">
+      Add speech part +
+    </button>
 
 
   </app-card-body>

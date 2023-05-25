@@ -17,7 +17,6 @@ import {Meaning} from "../../../../interfaces/words/dictionary/Meaning";
 import {SpecialDefinitionBlock} from "../../../../interfaces/words/dictionary/SpecialDefinitionBlock";
 import {Definition} from "../../../../interfaces/words/dictionary/Definition";
 import {WordSound} from "../../../../interfaces/words/dictionary/WordSound";
-import {LabelType} from "../../../../interfaces/words/dictionary/LabelType";
 
 @Component({
   selector: 'app-admin-word-edit',
@@ -39,6 +38,7 @@ export class AdminWordEditComponent implements OnInit {
   categories: Category[] = [];
 
   wordSection = {} as WordSection;
+  showMainEditForm: boolean = false;
 
   constructor(public ws: AdminWordsWrapperService,
               private adminWordService: AdminWordService,
@@ -168,7 +168,7 @@ export class AdminWordEditComponent implements OnInit {
 
     this.updateFormTags();
 
-    // add separated word section
+    // add separated wordSection to form
     this.form.wordSection = this.wordSection;
 
     this.adminWordService.updateWord(this.form, this.newsId)

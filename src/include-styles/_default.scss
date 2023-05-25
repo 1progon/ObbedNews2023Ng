@@ -49,18 +49,18 @@ hr {
   border-color: vars.$primary-color-lighter;
 }
 
-button {
-  min-width: 35px;
-}
-
-input, select, textarea {
-  width: 100%;
-}
-
 button, select, label {
   cursor: pointer;
 }
 
+button {
+  min-width: 35px;
+
+  &:hover {
+    opacity: .8;
+    color: vars.$primary-color;
+  }
+}
 
 @keyframes rotate360 {
   from {

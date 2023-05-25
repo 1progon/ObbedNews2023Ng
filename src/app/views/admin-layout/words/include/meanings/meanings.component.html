@@ -2,6 +2,7 @@
   <app-card-header>
     Meanings
     <button type="button"
+            class="btn"
             *ngIf="section.meanings?.length"
             (click)="sortMeanings(section.meanings)">
       Sort
@@ -12,7 +13,9 @@
       <div class="meaning" *ngFor="let m of section.meanings; index as i">
         <app-card *ngIf="ws.activeSection == m || !ws.activeSection || ws.activeSection2 == m">
           <app-card-header [active]="ws.activeSection == m || ws.activeSection2 == m">
-            <button type="button" (click)="showSection[i] = !showSection[i]">
+            <button type="button"
+                    class="btn"
+                    (click)="showSection[i] = !showSection[i]">
               {{showSection[i] ? '-' : '+'}}
             </button>
             <span>Meaning {{i + 1}}</span>
@@ -23,7 +26,10 @@
                      name="m_sectionOrder[{{i}}]"
                      [(ngModel)]="m.sectionOrder"/>
             </label>
-            <button type="button" (click)="section.meanings.splice(i,1)">Remove</button>
+            <button type="button"
+                    class="btn btn-danger"
+                    (click)="removeMeaning(i)">x
+            </button>
 
           </app-card-header>
           <app-card-body *ngIf="showSection[i]">
@@ -42,7 +48,9 @@
     </div>
   </app-card-body>
   <app-card-footer>
-    <button type="button" (click)="addMeaningInSpeechPart(section)">
+    <button type="button"
+            class="btn btn-warning"
+            (click)="addMeaningInSpeechPart(section)">
       Add meaning part +
     </button>
   </app-card-footer>

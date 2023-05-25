@@ -117,7 +117,7 @@
             </h5>
 
             <!-- speech section - sounds and transcription -->
-            <ng-container *ngIf="sp.sounds.length">
+            <ng-container *ngIf="sp.sounds?.length">
               <div class="sounds">
                 <div class="sound-block" *ngFor="let m of sp.sounds">
                   <span class="language">{{m.language}}</span>
@@ -146,7 +146,7 @@
 
 
             <!-- speech section - meanings -->
-            <ng-container *ngIf="sp.meanings.length">
+            <ng-container *ngIf="sp.meanings?.length">
               <div class="mean-block" *ngFor="let m of sp.meanings">
 
                 <p class="mean">{{word.name}}
@@ -157,7 +157,7 @@
 
                 <!-- meaning definitions -->
                 <ng-container *ngFor="let d of m.definitions">
-                  <ul class="labels" *ngIf="d.labels.length">
+                  <ul class="labels" *ngIf="d.labels?.length">
                     <li *ngFor="let l of d.labels">
                       <span class="tag">{{l.name}}</span>
                     </li>
@@ -171,7 +171,7 @@
                   </div>
 
 
-                  <ul class="examples" *ngIf="d.examples.length">
+                  <ul class="examples" *ngIf="d.examples?.length">
                     <li *ngFor="let ex of d.examples">
 
                       <div class="example">
@@ -193,9 +193,9 @@
             <!-- end speech section - meanings -->
 
             <!-- speech section - definitions -->
-            <ng-container *ngIf="sp.definitions.length">
+            <ng-container *ngIf="sp.definitions?.length">
               <div class="definition-block" *ngFor="let d of sp.definitions">
-                <ul class="labels" *ngIf="d.labels.length">
+                <ul class="labels" *ngIf="d.labels?.length">
                   <li *ngFor="let l of d.labels">
                     <span class="tag" [title]="l.description">{{l.name}}</span>
                   </li>
@@ -210,7 +210,7 @@
                 </div>
 
 
-                <ul class="examples" *ngIf="d.examples.length">
+                <ul class="examples" *ngIf="d.examples?.length">
                   <li *ngFor="let ex of d.examples">
                     <div class="example">
                       <span class="name">По английски: </span>
@@ -231,7 +231,7 @@
             <!-- end speech section - definitions -->
 
 
-            <ng-container *ngIf="sp.specBlocks.length">
+            <ng-container *ngIf="sp.specBlocks?.length">
               <div class="special-block" *ngFor="let sb of sp.specBlocks">
                 <p class="def-name">{{sb.name}}</p>
 
@@ -243,13 +243,13 @@
                   <p class="def-text">{{sb.definition.defText}}</p>
                 </div>
 
-                <ul class="labels" *ngIf="sb.definition.labels.length">
+                <ul class="labels" *ngIf="sb.definition.labels?.length">
                   <li *ngFor="let l of sb.definition.labels">
                     <span class="tag">{{l.name}}</span>
                   </li>
                 </ul>
 
-                <ul class="examples" *ngIf="sb.definition.examples.length">
+                <ul class="examples" *ngIf="sb.definition.examples?.length">
                   <li *ngFor="let ex of sb.definition.examples">
                     <div class="example">
                       <span class="name">По английски: </span>

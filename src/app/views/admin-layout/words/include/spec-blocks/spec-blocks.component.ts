@@ -32,11 +32,18 @@ export class SpecBlocksComponent {
     sp.specBlocks.push({sectionOrder: order, definition: {} as Definition} as SpecialDefinitionBlock);
   }
 
-  sortSpecBlock(specBlocks: SpecialDefinitionBlock[]) {
-    specBlocks.sort((a, b) => a.sectionOrder - b.sectionOrder)
+  sortSpecBlock(specBlocks?: SpecialDefinitionBlock[]) {
+    specBlocks?.sort((a, b) => a.sectionOrder - b.sectionOrder)
       .map((value, index) => {
         value.sectionOrder = index + 1;
         return value;
       });
+  }
+
+  removeSpecBlock(index: number) {
+    this.section.specBlocks?.splice(index, 1);
+    if (!this.section.specBlocks?.length) {
+      this.section.specBlocks = undefined;
+    }
   }
 }

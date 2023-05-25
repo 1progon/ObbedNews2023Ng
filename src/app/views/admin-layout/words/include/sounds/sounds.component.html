@@ -7,7 +7,9 @@
       <div class="sound" *ngFor="let s of section.sounds; index as i">
         <app-card *ngIf="ws.activeSection == s || !ws.activeSection">
           <app-card-header [active]="ws.activeSection == s">
-            <button type="button" (click)="sectionBlockShow[i] = !sectionBlockShow[i]">
+            <button type="button"
+                    class="btn"
+                    (click)="sectionBlockShow[i] = !sectionBlockShow[i]">
               {{sectionBlockShow[i] ? '-' : '+'}}
             </button>
             Sound {{i + 1}}
@@ -29,7 +31,10 @@
 
               </select>
             </label>
-            <button type="button" (click)="section.sounds.splice(i,1)">Remove</button>
+            <button type="button"
+                    class="btn btn-danger"
+                    (click)="removeSound(i)">x
+            </button>
           </app-card-header>
           <app-card-body *ngIf="sectionBlockShow[i]">
 
@@ -55,7 +60,9 @@
   </app-card-body>
   <app-card-footer>
     <button type="button"
-            (click)="addSoundInSpeechPart(section)">Add sounds part +
+            class="btn btn-warning"
+            (click)="addSoundInSpeechPart(section)">
+      Add sounds part +
     </button>
   </app-card-footer>
 </app-card>

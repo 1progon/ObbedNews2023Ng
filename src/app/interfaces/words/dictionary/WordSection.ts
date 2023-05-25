@@ -2,7 +2,7 @@ import {SpeechPartSection} from "./SpeechPartSection";
 
 
 export interface WordSection {
-  speechParts: SpeechPartSection[];
+  speechParts?: SpeechPartSection[];
 }
 
 

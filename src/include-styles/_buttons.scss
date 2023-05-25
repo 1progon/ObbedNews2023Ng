@@ -6,7 +6,7 @@
   align-items: center;
   padding: 10px 20px;
   color: #fff;
-  background-color: $primary-color;
+  background-color: $primary-color-lighter;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -19,7 +19,7 @@
   }
 
   &.btn-danger {
-    background-color: red;
+    background-color: $danger-bg-color;
   }
 
   &:hover {
@@ -35,6 +35,7 @@
 
   &.btn-warning {
     background-color: $warning-bg-color;
+    color: $warning-bg-text;
 
     &.btn-outline {
       color: #ffa800;

@@ -2,6 +2,7 @@
   <app-card-header>
     Spec blocks
     <button type="button"
+            class="btn"
             *ngIf="section.specBlocks?.length"
             (click)="sortSpecBlock(section.specBlocks)">Sort
     </button>
@@ -13,27 +14,28 @@
         <app-card *ngIf="ws.activeSection == sb || !ws.activeSection">
           <app-card-header [active]="ws.activeSection == sb">
 
-            <div class="flex flex-base">
-              <button type="button" (click)="specBlockShow[i] = !specBlockShow[i]">
-                {{specBlockShow[i] ? '-' : '+'}}
-              </button>
-              Spec block {{i + 1}}
-              <label>
-                Section Order
-                <input type="number" name="sb_sectionOrder[{{i}}]"
-                       placeholder="Order"
-                       [(ngModel)]="sb.sectionOrder">
-              </label>
+            <button type="button"
+                    class="btn"
+                    (click)="specBlockShow[i] = !specBlockShow[i]">
+              {{specBlockShow[i] ? '-' : '+'}}
+            </button>
+            Spec block {{i + 1}}
+            <label>
+              Section Order
+              <input type="number" name="sb_sectionOrder[{{i}}]"
+                     placeholder="Order"
+                     [(ngModel)]="sb.sectionOrder">
+            </label>
 
-              <button type="button"
-                      (click)="section.specBlocks.splice(i,1)">
-                Remove
-              </button>
+            <input type="text" name="sb_name[{{i}}]"
+                   [(ngModel)]="sb.name"
+                   placeholder="Name"/>
 
-              <input type="text" name="sb_name[{{i}}]"
-                     [(ngModel)]="sb.name"
-                     placeholder="Name"/>
-            </div>
+            <button type="button"
+                    class="btn btn-danger"
+                    (click)="removeSpecBlock(i)">
+              x
+            </button>
 
           </app-card-header>
           <app-card-body *ngIf="specBlockShow[i]">
@@ -55,7 +57,9 @@
     </div>
   </app-card-body>
   <app-card-footer>
-    <button type="button" (click)="addSpecBlockInSpeechPart(section)">
+    <button type="button"
+            class="btn btn-warning"
+            (click)="addSpecBlockInSpeechPart(section)">
       Add spec bloc part +
     </button>
   </app-card-footer>

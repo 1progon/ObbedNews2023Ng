@@ -7,8 +7,8 @@ import {SpeechPartEnum} from "../../../enums/news/SpeechPartEnum";
 export interface SpeechPartSection {
   order: number;
   speechPartEnum: SpeechPartEnum;
-  sounds: WordSound[];
-  meanings: Meaning[];
-  definitions: Definition[];
-  specBlocks: SpecialDefinitionBlock[];
+  sounds?: WordSound[];
+  meanings?: Meaning[];
+  definitions?: Definition[];
+  specBlocks?: SpecialDefinitionBlock[];
 }

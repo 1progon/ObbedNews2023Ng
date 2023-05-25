@@ -32,12 +32,18 @@ export class MeaningsComponent {
 
   }
 
-  sortMeanings(meanings: Meaning[]) {
-    meanings
-      .sort((a, b) => a.sectionOrder - b.sectionOrder)
+  sortMeanings(meanings?: Meaning[]) {
+    meanings?.sort((a, b) => a.sectionOrder - b.sectionOrder)
       .map((value, i) => {
         value.sectionOrder = i + 1;
         return value;
       });
+  }
+
+  removeMeaning(index: number) {
+    this.section.meanings?.splice(index, 1);
+    if (!this.section.meanings?.length) {
+      this.section.meanings = undefined;
+    }
   }
 }

@@ -33,9 +33,8 @@ export class DefinitionsListComponent {
   }
 
 
-  sortDefinitions(definitions: Definition[]) {
-    definitions
-      .sort((a, b) => a.sectionOrder - b.sectionOrder)
+  sortDefinitions(definitions?: Definition[]) {
+    definitions?.sort((a, b) => a.sectionOrder - b.sectionOrder)
       .map((value, i) => {
         value.sectionOrder = i + 1;
         return value;

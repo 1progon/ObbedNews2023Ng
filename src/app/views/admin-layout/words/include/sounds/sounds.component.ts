@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {EngLevel} from "../../../../../enums/news/EngLevel";
 import {SpeechPartSection} from "../../../../../interfaces/words/dictionary/SpeechPartSection";
 import {WordSound} from "../../../../../interfaces/words/dictionary/WordSound";
 import {AdminWordsWrapperService} from "../../admin-words-wrapper.service";
@@ -24,5 +23,12 @@ export class SoundsComponent {
   addSoundInSpeechPart(sp: SpeechPartSection) {
     if (!sp.sounds) sp.sounds = [];
     sp.sounds.push({} as WordSound);
+  }
+
+  removeSound(index: number) {
+    this.section.sounds?.splice(index, 1);
+    if (!this.section.sounds?.length) {
+      this.section.sounds = undefined;
+    }
   }
 }

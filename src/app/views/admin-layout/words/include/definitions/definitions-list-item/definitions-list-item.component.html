@@ -1,6 +1,9 @@
 <app-card>
-  <app-card-header [active]="ws.activeSection==definition || ws.activeSection2 == definition">
-    <button type="button" (click)="showSection[index] = !showSection[index]">
+  <app-card-header
+    [active]="ws.activeSection==definition || ws.activeSection2 == definition">
+    <button type="button"
+            class="btn"
+            (click)="showSection[index] = !showSection[index]">
       {{showSection[index] ? '-' : '+'}}
     </button>
     <span>Definition {{index + 1}}</span>
@@ -12,7 +15,8 @@
     </label>
 
     <button type="button"
-            (click)="section.definitions.splice(index,1)">Remove
+            class="btn btn-danger"
+            (click)="removeDefinition(index)">x
     </button>
 
   </app-card-header>
@@ -20,7 +24,8 @@
 
     <label>
       Order Inside Meaning
-      <input type="number" name="d_orderInsideMeaning[{{index}}]" [(ngModel)]="definition.orderInsideMeaning"/>
+      <input type="number" name="d_orderInsideMeaning[{{index}}]"
+             [(ngModel)]="definition.orderInsideMeaning"/>
     </label>
 
     <br>
@@ -52,11 +57,10 @@
         Definition Labels
       </app-card-header>
       <app-card-body>
-        <div *ngFor="let l of definition.labels;index as i">
+        <div *ngFor="let l of definition.labels; index as i">
           <app-card>
             <app-card-header>
               Label {{i}}
-              <button type="button" (click)="definition.labels.splice(i, 1)">Remove</button>
               <!-- label name -->
               <!-- label input string -->
               <input type="text" name="l_name[{{i}}]"
@@ -70,6 +74,10 @@
                         [selected]="lSelector.name == l.name"
                         [ngValue]="lSelector">{{lSelector.name}}</option>
               </select>
+              <button type="button"
+                      class="btn btn-danger"
+                      (click)="definition.labels?.splice(i, 1)">x
+              </button>
               <!-- end label name -->
             </app-card-header>
             <app-card-body>
@@ -99,8 +107,10 @@
           </app-card>
 
         </div>
-        <button type="button" (click)="addLabelsInDefinition(definition)">
-          Add def label in definition +
+        <button type="button"
+                class="btn btn-warning"
+                (click)="addLabelsInDefinition(definition)">
+          Add label in definition +
         </button>
       </app-card-body>
     </app-card>
@@ -119,7 +129,10 @@
           <app-card>
             <app-card-header>
               Example {{i}}
-              <button type="button" (click)="definition.examples.splice(i, 1)">Remove</button>
+              <button type="button"
+                      class="btn btn-danger"
+                      (click)="definition.examples?.splice(i, 1)">x
+              </button>
             </app-card-header>
             <app-card-body>
 
@@ -138,7 +151,7 @@
               <br>
 
               <!-- todo add parent meaning -->
-              <div contenteditable="true">parentMeaning: ...</div>
+              <!-- <div contenteditable="true">parentMeaning: ...</div> -->
 
             </app-card-body>
           </app-card>
@@ -146,8 +159,10 @@
 
       </app-card-body>
       <app-card-footer>
-        <button type="button" (click)="addExampleInDefinition(definition)">
-          Add def example in definition +
+        <button type="button"
+                class="btn btn-warning"
+                (click)="addExampleInDefinition(definition)">
+          Add example in definition +
         </button>
       </app-card-footer>
     </app-card>

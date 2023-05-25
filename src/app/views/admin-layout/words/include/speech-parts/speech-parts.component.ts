@@ -32,17 +32,19 @@ export class SpeechPartsComponent {
       : this.wordSection.speechParts.length + 1;
 
 
-    this.wordSection.speechParts.push({order} as SpeechPartSection);
+    this.wordSection.speechParts.push({order, speechPartEnum: SpeechPartEnum.Undefined} as SpeechPartSection);
   }
 
   removeSpeechPart(indexElement: number) {
-    this.wordSection.speechParts.splice(indexElement, 1)
+    this.wordSection.speechParts?.splice(indexElement, 1);
+    if (!this.wordSection.speechParts?.length) {
+      this.wordSection.speechParts = undefined;
+    }
   }
 
 
-  sortSpeechParts(speechParts: SpeechPartSection[]) {
-    speechParts
-      .sort((a, b) => a.order - b.order)
+  sortSpeechParts(speechParts?: SpeechPartSection[]) {
+    speechParts?.sort((a, b) => a.order - b.order)
       .map((value, index) => {
         value.order = index + 1;
         return value;

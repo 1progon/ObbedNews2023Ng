@@ -38,12 +38,19 @@ export class DefinitionsListItemComponent {
 
   addLabelsInDefinition(definition: Definition) {
     if (!definition.labels) definition.labels = [];
-    definition.labels.push({} as DefinitionLabel);
+    definition.labels.push({speechPartEnum: SpeechPartEnum.Undefined} as DefinitionLabel);
   }
 
 
   updateLabel(l: DefinitionLabel, index: number) {
     l.name = this.tempLabel[index].name;
     l.description = this.tempLabel[index].text;
+  }
+
+  removeDefinition(index: number) {
+    this.section.definitions?.splice(index, 1);
+    if (!this.section.definitions?.length) {
+      this.section.definitions = undefined;
+    }
   }
 }
