@@ -76,7 +76,7 @@
               </select>
               <button type="button"
                       class="btn btn-danger"
-                      (click)="definition.labels?.splice(i, 1)">x
+                      (click)="removeLabels(i)">x
               </button>
               <!-- end label name -->
             </app-card-header>
@@ -131,7 +131,7 @@
               Example {{i}}
               <button type="button"
                       class="btn btn-danger"
-                      (click)="definition.examples?.splice(i, 1)">x
+                      (click)="removeExamples(i)">x
               </button>
             </app-card-header>
             <app-card-body>

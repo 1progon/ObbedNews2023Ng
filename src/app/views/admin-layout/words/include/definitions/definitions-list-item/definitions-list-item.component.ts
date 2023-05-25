@@ -53,4 +53,18 @@ export class DefinitionsListItemComponent {
       this.section.definitions = undefined;
     }
   }
+
+  removeLabels(index: number) {
+    this.definition.labels?.splice(index, 1);
+    if (!this.definition.labels?.length) {
+      this.definition.labels = undefined;
+    }
+  }
+
+  removeExamples(index: number) {
+    this.definition.examples?.splice(index, 1);
+    if (!this.definition.examples) {
+      this.definition.examples = undefined;
+    }
+  }
 }
