@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {AuthService} from "../../app/services/auth.service";
-import {AddParentCategoryDto} from "../../app/dto/categories/AddParentCategoryDto";
-import {AddCategoryDto} from "../../app/dto/categories/AddCategoryDto";
+import {AddParentCategoryDto} from "../dto/categories/AddParentCategoryDto";
+import {AddCategoryDto} from "../dto/categories/AddCategoryDto";
 
 @Injectable({
   providedIn: 'root'

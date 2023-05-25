@@ -4,7 +4,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer, SafeResourceUrl, Title} from "@angular/platform-browser";
 import {rNames} from "../../../../app/app-routing.module";
-import {UpdateWordDto} from "../../../../app/dto/words/UpdateWordDto";
 import {environment} from "../../../../environments/environment";
 import {Category} from "../../../../app/interfaces/words/Category";
 import {WordSection} from "../../../../app/interfaces/words/dictionary/WordSection";
@@ -17,6 +16,7 @@ import {Meaning} from "../../../../app/interfaces/words/dictionary/Meaning";
 import {SpecialDefinitionBlock} from "../../../../app/interfaces/words/dictionary/SpecialDefinitionBlock";
 import {Definition} from "../../../../app/interfaces/words/dictionary/Definition";
 import {WordSound} from "../../../../app/interfaces/words/dictionary/WordSound";
+import {UpdateWordDto} from "../../../dto/words/UpdateWordDto";
 
 @Component({
   selector: 'app-admin-word-edit',

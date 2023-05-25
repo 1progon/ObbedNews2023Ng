@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {AddParentCategoryDto} from "../../../../app/dto/categories/AddParentCategoryDto";
 import {AdminCategoriesService} from "../../../services/admin-categories.service";
 import {rNames} from "../../../../app/app-routing.module";
+import {AddParentCategoryDto} from "../../../dto/categories/AddParentCategoryDto";
 
 @Component({
   selector: 'app-admin-add-parent-category',

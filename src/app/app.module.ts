@@ -25,8 +25,8 @@ import {NewsListIndexComponent} from "./views/words/include/list/news-list-index
 import {NewsListItemComponent} from "./views/words/include/list/news-list-item/news-list-item.component";
 import {WordEpisodeComponent} from "./views/words/word-episode/word-episode.component";
 import {WordWrapperComponent} from "./views/words/word-wrapper/word-wrapper.component";
-import {NewsIndexWrapperComponent} from "./views/words/news-index-wrapper/news-index-wrapper.component";
 import {ComponentsModule} from "../components/components.module";
+import {WordsIndexWrapperComponent} from "./views/words/words-index-wrapper/words-index-wrapper.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import {ComponentsModule} from "../components/components.module";
     UserReportComponent,
     WordEpisodeComponent,
     WordWrapperComponent,
-    NewsIndexWrapperComponent,
+    WordsIndexWrapperComponent,
     CategorySingleComponent,
     CategoriesIndexComponent,
     Error404Component,

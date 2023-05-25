@@ -1,6 +1,6 @@
-import {BaseModelDto} from "../BaseModelDto";
-import {TagDto} from "./TagDto";
-import {WordSection} from "../../interfaces/words/dictionary/WordSection";
+import {BaseModelDto} from "../../../app/dto/BaseModelDto";
+import {TagDto} from "../../../app/dto/words/TagDto";
+import {WordSection} from "../../../app/interfaces/words/dictionary/WordSection";
 
 export interface AddWordDto extends BaseModelDto {
 

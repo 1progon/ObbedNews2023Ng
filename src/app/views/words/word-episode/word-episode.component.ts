@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {WordWrapperService} from "../word-wrapper.service";
+import {WordsWrapperService} from "../words-wrapper.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SafeResourceUrl} from "@angular/platform-browser";
 import {rNames} from "../../../app-routing.module";
@@ -28,7 +28,7 @@ export class WordEpisodeComponent implements OnInit {
   videoLoaded: boolean = false;
   isShowedMobileMenu: boolean = false;
 
-  constructor(public wrapperService: WordWrapperService,
+  constructor(public wrapperService: WordsWrapperService,
               public route: ActivatedRoute,
               public auth: AuthService,
               public router: Router) {

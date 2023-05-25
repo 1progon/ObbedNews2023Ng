@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeHtml, SafeResourceUrl, Title} from "@angular/platform-browser";
-import {WordWrapperService} from "../word-wrapper.service";
+import {WordsWrapperService} from "../words-wrapper.service";
 import {WordWrapperComponent} from "../word-wrapper/word-wrapper.component";
 import {rNames} from "../../../app-routing.module";
 import {Word} from "../../../interfaces/words/Word";
@@ -62,7 +62,7 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
               private titleService: Title,
               private toastService: ToastsService,
               private san: DomSanitizer,
-              public wrapperService: WordWrapperService,
+              public wrapperService: WordsWrapperService,
               public wrapperComponent: WordWrapperComponent,
               private renderer: Renderer2) {
   }

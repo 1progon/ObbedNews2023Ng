@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AddCategoryDto} from "../../../../app/dto/categories/AddCategoryDto";
 import {ParentCategory} from "../../../../app/interfaces/words/ParentCategory";
 import {AdminCategoriesService} from "../../../services/admin-categories.service";
 import {CategoriesService} from "../../../../app/services/categories.service";
 import {rNames} from "../../../../app/app-routing.module";
+import {AddCategoryDto} from "../../../dto/categories/AddCategoryDto";
 
 @Component({
   selector: 'app-admin-add-category',

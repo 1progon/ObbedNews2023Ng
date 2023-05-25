@@ -5,7 +5,7 @@ import {Word} from "../../interfaces/words/Word";
 @Injectable({
   providedIn: 'root'
 })
-export class WordWrapperService {
+export class WordsWrapperService {
   word$: BehaviorSubject<Word> = new BehaviorSubject<Word>({} as Word);
   nearbyWords$: BehaviorSubject<Word[]> = new BehaviorSubject<Word[]>([]);
 

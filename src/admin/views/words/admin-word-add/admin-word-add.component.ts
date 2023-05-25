@@ -3,12 +3,12 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {AdminWordsWrapperService} from "../admin-words-wrapper.service";
-import {AddWordDto} from "../../../../app/dto/words/AddWordDto";
 import {Category} from "../../../../app/interfaces/words/Category";
 import {ParentCategory} from "../../../../app/interfaces/words/ParentCategory";
 import {AdminWordService} from "../../../services/admin-word.service";
 import {rNames} from "../../../../app/app-routing.module";
 import {Tag} from "../../../../app/interfaces/Tag";
+import {AddWordDto} from "../../../dto/words/AddWordDto";
 
 @Component({
   selector: 'app-admin-word-add',

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {WordWrapperService} from "../word-wrapper.service";
+import {WordsWrapperService} from "../words-wrapper.service";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {WordService} from "../../../services/word.service";
 import {Word} from "../../../interfaces/words/Word";
@@ -15,7 +15,7 @@ export class WordWrapperComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private wordService: WordService,
-              private wrapperService: WordWrapperService,
+              private wrapperService: WordsWrapperService,
               private route: ActivatedRoute,
               private router: Router) {
   }

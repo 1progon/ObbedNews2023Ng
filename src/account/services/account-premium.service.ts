@@ -3,10 +3,10 @@ import {HttpClient, HttpErrorResponse, HttpStatusCode} from "@angular/common/htt
 import {BehaviorSubject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {AuthService} from "../../app/services/auth.service";
-import {AccountPremiumInitialDto} from "../../app/dto/accounts/AccountPremiumInitialDto";
 import {CreateOrderDto} from "../../app/dto/payments/payPal/CreateOrderDto";
 import {PayPalCreateOrderResponseDto} from "../../app/dto/payments/payPal/PayPalCreateOrderResponseDto";
 import {CaptureOrderDto} from "../../app/dto/payments/payPal/CaptureOrderDto";
+import {AccountPremiumInitialDto} from "../../admin/dto/accounts/AccountPremiumInitialDto";
 
 @Injectable({
   providedIn: 'root'
