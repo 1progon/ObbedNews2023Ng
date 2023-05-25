@@ -12,7 +12,7 @@ import {rNames} from "../../../../app-routing.module";
 export class AdminWordRemoveComponent implements OnInit {
 
   id?: number;
-  isLoading = false;
+  loading = false;
 
   constructor(private route: ActivatedRoute,
               private adminNewsService: AdminWordService,
@@ -37,7 +37,7 @@ export class AdminWordRemoveComponent implements OnInit {
   removeNews() {
     if (!this.id) return;
 
-    this.isLoading = true;
+    this.loading = true;
     this.adminNewsService.removeWord(this.id)
       .subscribe({
         next: () => {
@@ -46,6 +46,6 @@ export class AdminWordRemoveComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => console.error(err)
       })
-      .add(() => this.isLoading = false);
+      .add(() => this.loading = false);
   }
 }
