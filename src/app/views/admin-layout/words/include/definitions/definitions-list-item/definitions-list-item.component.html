@@ -41,9 +41,10 @@
     <label>
       Eng Level
       <select name="d_level[{{index}}]" [(ngModel)]="definition.level">
-        <option [ngValue]="EngLevel.Undefined">------</option>
+        <option [ngValue]="undefined">------</option>
         <ng-container *ngFor="let l of EngLevel|keyvalue">
-          <option *ngIf="Number(l.value)" [ngValue]="l.value">{{l.key}}</option>
+          <option *ngIf="Number(l.value)"
+                  [ngValue]="l.value">{{l.key}}</option>
         </ng-container>
       </select>
     </label>
@@ -125,7 +126,7 @@
         Definition Examples
       </app-card-header>
       <app-card-body>
-        <div *ngFor="let ex of definition.examples;index as i">
+        <div *ngFor="let ex of definition.examples; index as i">
           <app-card>
             <app-card-header>
               Example {{i}}
