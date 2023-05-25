@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {UserLoggedGuard} from "../app/guards/user-logged.guard";
 import {rNames} from "../app/app-routing.module";
-import {MainLayoutComponent} from "../app/views/main-layout/main-layout/main-layout.component";
 import {AccountLayoutComponent} from "./views/account-layout/account-layout.component";
 import {AccountDashboardComponent} from "./views/account-dashboard/account-dashboard.component";
 import {AccountCheckPaymentComponent} from "./views/account-check-payment/account-check-payment.component";
@@ -12,41 +11,37 @@ import {AccountPremiumComponent} from "./views/account-premium/account-premium.c
 
 const routes: Routes = [
 
+  // account
   {
-    path: rNames.account, component: MainLayoutComponent, children: [
-      // account
+    path: '',
+    component: AccountLayoutComponent,
+    canActivate: [UserLoggedGuard],
+    children: [
       {
         path: '',
-        component: AccountLayoutComponent,
-        canActivate: [UserLoggedGuard],
+        component: AccountDashboardComponent,
+        title: 'Account Dashboard',
         children: [
           {
-            path: '',
-            component: AccountDashboardComponent,
-            title: 'Account Dashboard',
-            children: [
-              {
-                path: rNames.accountCheckPayment,
-                component: AccountCheckPaymentComponent
-              },
-              {
-                path: rNames.favorites,
-                component: AccountNewsFavoritesComponent
-              },
-              {
-                path: rNames.edit,
-                component: AccountEditComponent,
-              },
-              {
-                path: rNames.accountPremium,
-                component: AccountPremiumComponent,
-              },
-            ]
+            path: rNames.accountCheckPayment,
+            component: AccountCheckPaymentComponent
           },
-
-        ],
+          {
+            path: rNames.favorites,
+            component: AccountNewsFavoritesComponent
+          },
+          {
+            path: rNames.edit,
+            component: AccountEditComponent,
+          },
+          {
+            path: rNames.accountPremium,
+            component: AccountPremiumComponent,
+          },
+        ]
       },
-    ]
+
+    ],
   },
 
 

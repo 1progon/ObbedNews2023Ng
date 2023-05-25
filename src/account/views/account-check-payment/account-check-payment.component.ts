@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CaptureOrderDto} from "../../../app/dto/payments/payPal/CaptureOrderDto";
-import {AccountPremiumService} from "../../../app/services/account/account-premium.service";
 import {rNames} from "../../../app/app-routing.module";
+import {AccountPremiumService} from "../../services/account-premium.service";
 
 
 @Component({

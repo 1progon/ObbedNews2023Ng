@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {rNames} from "../../../../app/app-routing.module";
-import {AccountWordsService} from "../../../../app/services/account/account-words.service";
 import {Word} from "../../../../app/interfaces/words/Word";
+import {AccountWordsService} from "../../../services/account-words.service";
 
 @Component({
   selector: 'app-account-news-favorites',

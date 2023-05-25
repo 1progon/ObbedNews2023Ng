@@ -2,7 +2,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {rNames} from "../app/app-routing.module";
 import {AdminOnlyGuard} from "../app/guards/admin-only.guard";
 import {NgModule} from "@angular/core";
-import {MainLayoutComponent} from "../app/views/main-layout/main-layout/main-layout.component";
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
 import {AdminDashboardComponent} from "./views/admin-dashboard/admin-dashboard.component";
 import {AdminUsersIndexComponent} from "./views/users/admin-users-index/admin-users-index.component";
@@ -31,94 +30,89 @@ import {AdminCommentsComponent} from "./views/comments/admin-comments/admin-comm
 
 
 const routes: Routes = [
+  // admin
   {
-    path: rNames.admin,
-    component: MainLayoutComponent, children: [
-      // admin
+    path: '',
+    component: AdminLayoutComponent,
+    canActivate: [AdminOnlyGuard],
+    children: [
       {
         path: '',
-        component: AdminLayoutComponent,
-        canActivate: [AdminOnlyGuard],
+        component: AdminDashboardComponent,
+        title: 'Admin Only Dashboard',
         children: [
           {
-            path: '',
-            component: AdminDashboardComponent,
-            title: 'Admin Only Dashboard',
-            children: [
+            path: rNames.users, children: [
+              {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
               {
-                path: rNames.users, children: [
-                  {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
-                  {
-                    path: ':' + rNames.id, children: [
-                      {path: '', redirectTo: rNames.show, pathMatch: 'full'},
-                      {path: rNames.show, component: AdminUserDetailComponent},
-                      // {path: rNames.userEdit, component: AdminUserEditComponent},
-                      // {path: rNames.userRemove, component: AdminUserRemoveComponent},
-                    ]
-                  },
+                path: ':' + rNames.id, children: [
+                  {path: '', redirectTo: rNames.show, pathMatch: 'full'},
+                  {path: rNames.show, component: AdminUserDetailComponent},
+                  // {path: rNames.userEdit, component: AdminUserEditComponent},
+                  // {path: rNames.userRemove, component: AdminUserRemoveComponent},
                 ]
               },
-              {
-                path: rNames.dictionary, children: [
-                  {path: '', component: AdminWordsIndexComponent, title: 'All News'},
-                  {path: rNames.add, component: AdminWordAddComponent, title: 'Add News'},
-                  {
-                    path: ':' + rNames.id,
-                    component: AdminWordsWrapperComponent,
-                    children: [
-                      {path: '', redirectTo: rNames.show, pathMatch: 'full'},
-                      {path: rNames.show, component: AdminWordDetailComponent},
-                      {path: rNames.edit, component: AdminWordEditComponent},
-                      {path: rNames.remove, component: AdminWordRemoveComponent},
-                    ]
-                  },
-                ]
-              },
-              {
-                path: rNames.catNested, children: [
-                  // index nested categories
-                  {path: '', component: AdminCategoriesIndexComponent},
-
-                  // index parent categories
-                  {path: rNames.catParent, component: AdminParentCategoriesIndexComponent},
-
-                  {path: rNames.add, component: AdminAddCategoryComponent},
-                  {
-                    path: ':' + rNames.id, children: [
-                      {path: rNames.show, component: AdminCategoryDetailComponent},
-                      // {path: rNames.edit, component: 'edit'},
-                      // {path: rNames.remove, component: 'remove'},
-                    ]
-                  }
-
-                ]
-              },
-              {
-                path: rNames.catParent, children: [
-                  {path: rNames.add, component: AdminAddParentCategoryComponent},
-                  {
-                    path: ':' + rNames.id, children: [
-                      {path: rNames.show, component: AdminParentCategoryDetailComponent},
-                      // {path: routeNames.edit, component: 'edit'},
-                      // {path: routeNames.remove, component: 'remove'},
-                    ]
-                  }
-
-
-                ]
-              },
-              {
-                path: rNames.comments, children: [
-                  {path: rNames.commentWaitModer, component: AdminCommentsComponent}
-                ]
-              }
             ]
           },
+          {
+            path: rNames.dictionary, children: [
+              {path: '', component: AdminWordsIndexComponent, title: 'All News'},
+              {path: rNames.add, component: AdminWordAddComponent, title: 'Add News'},
+              {
+                path: ':' + rNames.id,
+                component: AdminWordsWrapperComponent,
+                children: [
+                  {path: '', redirectTo: rNames.show, pathMatch: 'full'},
+                  {path: rNames.show, component: AdminWordDetailComponent},
+                  {path: rNames.edit, component: AdminWordEditComponent},
+                  {path: rNames.remove, component: AdminWordRemoveComponent},
+                ]
+              },
+            ]
+          },
+          {
+            path: rNames.catNested, children: [
+              // index nested categories
+              {path: '', component: AdminCategoriesIndexComponent},
+
+              // index parent categories
+              {path: rNames.catParent, component: AdminParentCategoriesIndexComponent},
+
+              {path: rNames.add, component: AdminAddCategoryComponent},
+              {
+                path: ':' + rNames.id, children: [
+                  {path: rNames.show, component: AdminCategoryDetailComponent},
+                  // {path: rNames.edit, component: 'edit'},
+                  // {path: rNames.remove, component: 'remove'},
+                ]
+              }
+
+            ]
+          },
+          {
+            path: rNames.catParent, children: [
+              {path: rNames.add, component: AdminAddParentCategoryComponent},
+              {
+                path: ':' + rNames.id, children: [
+                  {path: rNames.show, component: AdminParentCategoryDetailComponent},
+                  // {path: routeNames.edit, component: 'edit'},
+                  // {path: routeNames.remove, component: 'remove'},
+                ]
+              }
 
 
-        ],
+            ]
+          },
+          {
+            path: rNames.comments, children: [
+              {path: rNames.commentWaitModer, component: AdminCommentsComponent}
+            ]
+          }
+        ]
       },
-    ]
+
+
+    ],
   },
 
 ];

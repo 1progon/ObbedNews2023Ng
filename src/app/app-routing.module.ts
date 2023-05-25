@@ -1,18 +1,18 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MainLayoutComponent} from "./views/main-layout/main-layout/main-layout.component";
-import {LoginComponent} from "./views/main-layout/auth/login/login.component";
-import {RegisterComponent} from "./views/main-layout/auth/register/register.component";
-import {HomepageComponent} from "./views/main-layout/homepage/homepage/homepage.component";
-import {UserSingleComponent} from "./views/main-layout/users/user-single/user-single.component";
-import {UserReportComponent} from "./views/main-layout/users/user-report/user-report.component";
-import {CategoriesIndexComponent} from "./views/main-layout/categories/categories-index/categories-index.component";
-import {CategorySingleComponent} from "./views/main-layout/categories/category-single/category-single.component";
-import {Error404Component} from "./views/main-layout/errors/error404/error404.component";
-import {WordSingleComponent} from "./views/main-layout/words/word-single/word-single.component";
-import {WordWrapperComponent} from "./views/main-layout/words/word-wrapper/word-wrapper.component";
-import {WordEpisodeComponent} from "./views/main-layout/words/word-episode/word-episode.component";
-import {WordIndexComponent} from "./views/main-layout/words/word-index/word-index.component";
+import {MainLayoutComponent} from "./views/main-layout/main-layout.component";
+import {HomepageComponent} from "./views/homepage/homepage/homepage.component";
+import {UserSingleComponent} from "./views/users/user-single/user-single.component";
+import {UserReportComponent} from "./views/users/user-report/user-report.component";
+import {LoginComponent} from "./views/auth/login/login.component";
+import {RegisterComponent} from "./views/auth/register/register.component";
+import {WordIndexComponent} from "./views/words/word-index/word-index.component";
+import {WordWrapperComponent} from "./views/words/word-wrapper/word-wrapper.component";
+import {WordSingleComponent} from "./views/words/word-single/word-single.component";
+import {WordEpisodeComponent} from "./views/words/word-episode/word-episode.component";
+import {CategoriesIndexComponent} from "./views/categories/categories-index/categories-index.component";
+import {CategorySingleComponent} from "./views/categories/category-single/category-single.component";
+import {Error404Component} from "./views/errors/error404/error404.component";
 
 export const rNames = {
 
@@ -67,6 +67,18 @@ const routes: Routes = [
       // homepage
       {path: '', component: HomepageComponent, title: 'Английский на Оббед'},
       // {path: '', redirectTo: '/' + rNames.news, pathMatch: 'full'},
+
+      // account
+      {
+        path: rNames.account, loadChildren: () => import('../account/account.module')
+          .then(value => value.AccountModule)
+      },
+
+      // admin
+      {
+        path: rNames.admin, loadChildren: () => import('../admin/admin.module')
+          .then(value => value.AdminModule)
+      },
 
       // public users
       {

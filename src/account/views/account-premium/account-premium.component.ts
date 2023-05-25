@@ -4,10 +4,10 @@ import {Price} from "../../../app/interfaces/payment/Price";
 import {PaymentPlan} from "../../../app/enums/payments/PaymentPlan";
 import {PaymentSystem} from "../../../app/enums/payments/PaymentSystem";
 import {PayPalOrder} from "../../../app/interfaces/payment/PayPalOrder";
-import {AccountPremiumService} from "../../../app/services/account/account-premium.service";
 import {AuthService} from "../../../app/services/auth.service";
 import {CreateOrderDto} from "../../../app/dto/payments/payPal/CreateOrderDto";
 import {PayPalStatuses} from "../../../app/enums/payments/paypal/PayPalStatuses";
+import {AccountPremiumService} from "../../services/account-premium.service";
 
 
 @Component({
