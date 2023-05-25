@@ -2,10 +2,8 @@
   <app-card-header>
     Meanings
     <button type="button"
-            class="btn"
             *ngIf="section.meanings?.length"
-            (click)="sortMeanings(section.meanings)">
-      Sort
+            (click)="sortMeanings(section.meanings)">📶
     </button>
   </app-card-header>
   <app-card-body *ngIf="section.meanings?.length">
@@ -28,7 +26,7 @@
             </label>
             <button type="button"
                     class="btn btn-danger"
-                    (click)="removeMeaning(i)">x
+                    (click)="removeMeaning(i)">❌
             </button>
 
           </app-card-header>
@@ -51,7 +49,7 @@
     <button type="button"
             class="btn btn-warning"
             (click)="addMeaningInSpeechPart(section)">
-      Add meaning part +
+      ➕ Add meaning part
     </button>
   </app-card-footer>
 </app-card>

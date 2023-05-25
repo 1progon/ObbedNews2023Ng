@@ -2,9 +2,8 @@
   <app-card-header>
     Spec blocks
     <button type="button"
-            class="btn"
             *ngIf="section.specBlocks?.length"
-            (click)="sortSpecBlock(section.specBlocks)">Sort
+            (click)="sortSpecBlock(section.specBlocks)">📶
     </button>
   </app-card-header>
   <app-card-body *ngIf="section.specBlocks?.length">
@@ -33,8 +32,7 @@
 
             <button type="button"
                     class="btn btn-danger"
-                    (click)="removeSpecBlock(i)">
-              x
+                    (click)="removeSpecBlock(i)">❌
             </button>
 
           </app-card-header>
@@ -60,7 +58,7 @@
     <button type="button"
             class="btn btn-warning"
             (click)="addSpecBlockInSpeechPart(section)">
-      Add spec bloc part +
+      ➕ Add spec bloc part
     </button>
   </app-card-footer>
 </app-card>

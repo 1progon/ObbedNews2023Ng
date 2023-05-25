@@ -16,7 +16,7 @@
 
     <button type="button"
             class="btn btn-danger"
-            (click)="removeDefinition(index)">x
+            (click)="removeDefinition(index)">❌
     </button>
 
   </app-card-header>
@@ -77,7 +77,7 @@
               </select>
               <button type="button"
                       class="btn btn-danger"
-                      (click)="removeLabels(i)">x
+                      (click)="removeLabels(i)">❌
               </button>
               <!-- end label name -->
             </app-card-header>
@@ -111,7 +111,7 @@
         <button type="button"
                 class="btn btn-warning"
                 (click)="addLabelsInDefinition(definition)">
-          Add label in definition +
+          ➕ Add label in definition
         </button>
       </app-card-body>
     </app-card>
@@ -132,7 +132,7 @@
               Example {{i}}
               <button type="button"
                       class="btn btn-danger"
-                      (click)="removeExamples(i)">x
+                      (click)="removeExamples(i)">❌
               </button>
             </app-card-header>
             <app-card-body>
@@ -163,7 +163,7 @@
         <button type="button"
                 class="btn btn-warning"
                 (click)="addExampleInDefinition(definition)">
-          Add example in definition +
+          ➕ Add example in definition
         </button>
       </app-card-footer>
     </app-card>

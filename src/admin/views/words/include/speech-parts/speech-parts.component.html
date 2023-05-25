@@ -2,10 +2,8 @@
   <app-card-header>
     Speech parts
     <button type="button"
-            class="btn"
             *ngIf="wordSection.speechParts?.length"
-            (click)="sortSpeechParts(wordSection.speechParts)">
-      Sort
+            (click)="sortSpeechParts(wordSection.speechParts)">📶
     </button>
 
   </app-card-header>
@@ -59,7 +57,7 @@
           </label>
           <button type="button"
                   class="btn btn-danger"
-                  (click)="removeSpeechPart(i)">x
+                  (click)="removeSpeechPart(i)">❌
           </button>
         </app-card-header>
         <app-card-body *ngIf="showSection[i]">
@@ -89,7 +87,7 @@
     <button type="button"
             class="btn btn-warning"
             (click)="addSpeechPart()">
-      Add speech part +
+      ➕ Add speech part
     </button>
 
 

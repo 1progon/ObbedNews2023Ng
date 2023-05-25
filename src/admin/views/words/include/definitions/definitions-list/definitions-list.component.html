@@ -2,11 +2,10 @@
   <app-card-header>
     Definitions
     <button type="button"
-            class="btn"
             *ngIf="section.definitions?.length"
-            (click)="sortDefinitions(section.definitions)">
-      Sort
+            (click)="sortDefinitions(section.definitions)">📶
     </button>
+
   </app-card-header>
   <app-card-body *ngIf="section.definitions?.length">
     <div class="definitions">
@@ -28,7 +27,7 @@
     <button type="button"
             class="btn btn-warning"
             (click)="addDefinition(section)">
-      Add definition part +
+      ➕ Add definition part
     </button>
 
   </app-card-footer>
