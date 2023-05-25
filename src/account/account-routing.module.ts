@@ -10,8 +10,6 @@ import {AccountEditComponent} from "./views/account-edit/account-edit.component"
 import {AccountPremiumComponent} from "./views/account-premium/account-premium.component";
 
 const routes: Routes = [
-
-  // account
   {
     path: '',
     component: AccountLayoutComponent,

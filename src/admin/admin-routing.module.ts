@@ -30,7 +30,6 @@ import {AdminCommentsComponent} from "./views/comments/admin-comments/admin-comm
 
 
 const routes: Routes = [
-  // admin
   {
     path: '',
     component: AdminLayoutComponent,
