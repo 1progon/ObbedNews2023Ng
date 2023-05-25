@@ -38,7 +38,7 @@ export class DefinitionsListItemComponent {
 
   addLabelsInDefinition(definition: Definition) {
     if (!definition.labels) definition.labels = [];
-    definition.labels.push({speechPartEnum: SpeechPartEnum.Undefined} as DefinitionLabel);
+    definition.labels.push({speechPartEnum: undefined} as DefinitionLabel);
   }
 
 
