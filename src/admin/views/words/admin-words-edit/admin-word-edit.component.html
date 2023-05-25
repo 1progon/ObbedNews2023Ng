@@ -4,7 +4,7 @@
 
 <div class="buttons">
   <a [relativeTo]="route.parent" [routerLink]="r.show"
-     class="btn">Detail</a>
+     class="btn">Detail 📄</a>
 
   <button (click)="videoFoldersToDb()" class="btn" type="button">
     Video Folders to DB
@@ -88,7 +88,7 @@
 
     <div class="flex flex-base">
       <label for="dislikes">
-        Dislikes
+        Dislikes 👎
         <input [(ngModel)]="form.disLikes"
                id="dislikes"
                min="0"
@@ -99,7 +99,7 @@
 
 
       <label for="likes">
-        Likes
+        Likes 👍
         <input [(ngModel)]="form.likes"
                id="likes"
                min="0"
@@ -234,7 +234,7 @@
            id="remove-image"
            name="remove_image"
            type="checkbox">
-    <label for="remove-image">Remove Image</label>
+    <label for="remove-image">Remove Image ❌</label>
   </div>
 
 
@@ -244,7 +244,7 @@
   <div class="checkbox-block">
     <input type="checkbox" name="is_draft" id="is-draft"
            [(ngModel)]="form.isDraft">
-    <label for="is-draft">Draft</label>
+    <label for="is-draft">Draft 📝</label>
   </div>
 
   <br>

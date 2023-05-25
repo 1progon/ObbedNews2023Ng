@@ -12,14 +12,13 @@
     <td>Name</td>
     <td>Category</td>
     <td>Description</td>
-    <td>Vid sections</td>
-    <td>Dislikes</td>
-    <td>Likes</td>
-    <td>Front</td>
-    <td>Is Draft</td>
-    <td>Link</td>
+    <td>👎</td>
+    <td>👍</td>
+    <td>Open ↗️</td>
+    <td>Posted?</td>
+    <td>Detail</td>
     <td>Edit</td>
-    <td>Delete</td>
+    <td>Remove</td>
   </tr>
   </thead>
   <tbody>
@@ -41,32 +40,37 @@
     <td>{{c.category ? c.category.name : ''}}</td>
     <!-- description -->
     <td>{{c.description}}</td>
-    <!-- vid section -->
-    <td>{{ c.videoSections.length }}</td>
     <!-- dislike -->
     <td>{{c.dislikesCount}}</td>
     <!-- like -->
     <td>{{c.likesCount}}</td>
+
     <!-- front -->
     <td>
-      <a [routerLink]="['/', r.dictionary, c.slug]" target="_blank">Front</a>
+      <a [routerLink]="['/', r.dictionary, c.slug]"
+         class="btn"
+         target="_blank">🔗</a>
     </td>
+
     <!-- is draft -->
-    <td>{{c.isDraft ? 'Draft': 'Published'}}</td>
+    <td>{{c.isDraft ? '⛔' : '✔️'}}</td>
+
     <!-- detail -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.show]"
-         class="btn btn-outline">Detail</a>
+         class="btn btn-outline">📄</a>
     </td>
+
     <!-- edit -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.edit]"
-         class="btn btn-warning">Edit</a>
+         class="btn btn-warning">✏️</a>
     </td>
-    <!-- remove -->
+
+    <!-- remove, delete -->
     <td>
       <a [routerLink]="['/' + r.admin, r.dictionary, c.id, r.remove]"
-         class="btn btn-danger">Remove</a>
+         class="btn btn-danger">❌</a>
     </td>
   </tr>
   </tbody>

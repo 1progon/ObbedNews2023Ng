@@ -1,14 +1,14 @@
 <app-preloader *ngIf="wrapperComponent.loading"/>
 
-<h2 *ngIf="news">Detail News {{news.id}}</h2>
+<h2 *ngIf="news">Detail Word {{news.id}}</h2>
 
 <div class="flex">
 
   <a *ngIf="news" [routerLink]="['/', r.dictionary, news.slug]"
-     class="btn btn-outline">Front View</a>
+     class="btn btn-outline">Front View 🔗</a>
 
-  <a [relativeTo]="route.parent" [routerLink]="r.edit" class="btn">Edit</a>
-  <a [relativeTo]="route.parent" [routerLink]="r.remove" class="btn btn-danger">Remove</a>
+  <a [relativeTo]="route.parent" [routerLink]="r.edit" class="btn">Edit ✏️</a>
+  <a [relativeTo]="route.parent" [routerLink]="r.remove" class="btn btn-danger">Remove ❌</a>
 
 </div>
 
