@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {Tag} from "../../../../interfaces/Tag";
 import {AdminWordService} from "../../../../services/admin/admin-word.service";
-import {AddWordDto} from "../../../../dto/news/AddWordDto";
+import {AddWordDto} from "../../../../dto/words/AddWordDto";
 import {rNames} from "../../../../app-routing.module";
 import {AdminWordsWrapperService} from "../admin-words-wrapper.service";
 import {Category} from "../../../../interfaces/words/Category";

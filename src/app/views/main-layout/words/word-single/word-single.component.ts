@@ -9,7 +9,7 @@ import {WordService} from "../../../../services/word.service";
 import {ToastType} from "../../../../enums/ToastType";
 import {AccountWordsService} from "../../../../services/account/account-words.service";
 import {LikeType} from "../../../../enums/news/LikeType";
-import {AddCommentDto} from "../../../../dto/news/AddCommentDto";
+import {AddCommentDto} from "../../../../dto/words/AddCommentDto";
 import {FavoriteStatus} from "../../../../enums/news/FavoriteStatus";
 import {rNames} from "../../../../app-routing.module";
 import {WordWrapperService} from "../word-wrapper.service";

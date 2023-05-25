@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode} from "@angular/common/http";
 import {AuthService} from "../auth.service";
-import {AddCommentDto} from "../../dto/news/AddCommentDto";
-import {AddedCommentDto} from "../../dto/news/AddedCommentDto";
+import {AddCommentDto} from "../../dto/words/AddCommentDto";
+import {AddedCommentDto} from "../../dto/words/AddedCommentDto";
 import {LikeType} from "../../enums/news/LikeType";
-import {PostUpdateLikeDto} from "../../dto/news/PostUpdateLikeDto";
-import {UpdatedLike} from "../../dto/news/UpdatedLike";
+import {PostUpdateLikeDto} from "../../dto/words/PostUpdateLikeDto";
+import {UpdatedLike} from "../../dto/words/UpdatedLike";
 import {FavoriteStatus} from "../../enums/news/FavoriteStatus";
 import {Word} from "../../interfaces/words/Word";
 

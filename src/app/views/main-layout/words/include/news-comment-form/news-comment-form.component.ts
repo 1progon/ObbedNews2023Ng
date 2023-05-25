@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {AuthService} from "../../../../../services/auth.service";
-import {AddCommentDto} from "../../../../../dto/news/AddCommentDto";
+import {AddCommentDto} from "../../../../../dto/words/AddCommentDto";
 import {rNames} from "../../../../../app-routing.module";
 
 @Component({

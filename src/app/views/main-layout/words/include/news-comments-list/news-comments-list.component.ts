@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AuthService} from "../../../../../services/auth.service";
-import {AddCommentDto} from "../../../../../dto/news/AddCommentDto";
+import {AddCommentDto} from "../../../../../dto/words/AddCommentDto";
 import {CommentStatus} from "../../../../../enums/news/comments/CommentStatus";
 import {rNames} from "../../../../../app-routing.module";
 import {WordComment} from "../../../../../interfaces/words/WordComment";

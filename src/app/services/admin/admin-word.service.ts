@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {AuthService} from "../auth.service";
 import {environment} from "../../../environments/environment";
-import {AddWordInitialDto} from "../../dto/news/AddWordInitialDto";
-import {AddWordDto} from "../../dto/news/AddWordDto";
-import {UpdateWordDto} from "../../dto/news/UpdateWordDto";
+import {AddWordInitialDto} from "../../dto/words/AddWordInitialDto";
+import {AddWordDto} from "../../dto/words/AddWordDto";
+import {UpdateWordDto} from "../../dto/words/UpdateWordDto";
 import {Word} from "../../interfaces/words/Word";
 
 @Injectable({

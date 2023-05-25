@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {GetWordDto} from "../dto/news/GetWordDto";
+import {GetWordDto} from "../dto/words/GetWordDto";
 import {Word} from "../interfaces/words/Word";
 
 @Injectable({
