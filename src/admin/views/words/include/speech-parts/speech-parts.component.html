@@ -61,13 +61,13 @@
           </button>
         </app-card-header>
         <app-card-body *ngIf="showSection[i]">
-          <!-- meanings in speech part -->
-          <app-meanings [section]="sp"/>
-          <!-- end meanings in speech part -->
-
           <!-- definitions in speech part -->
           <app-definitions-list [section]="sp"/>
           <!-- end definitions in speech part -->
+
+          <!-- meanings in speech part -->
+          <app-meanings [section]="sp"/>
+          <!-- end meanings in speech part -->
 
           <!-- sounds in speech part -->
           <app-sounds [section]="sp"/>
