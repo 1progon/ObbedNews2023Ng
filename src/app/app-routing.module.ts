@@ -24,7 +24,7 @@ export const rNames = {
   slug: 'slug',
   add: 'add',
   edit: 'edit',
-  show: 'detail',
+  detail: 'detail',
   remove: 'remove',
   report: 'report',
 

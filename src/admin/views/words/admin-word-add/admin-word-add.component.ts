@@ -70,7 +70,7 @@ export class AdminWordAddComponent implements OnInit {
         next: value => {
           if (value.id) {
             this.router
-              .navigate(['/', rNames.admin, rNames.dictionary, value.id, rNames.show])
+              .navigate(['/', rNames.admin, rNames.dictionary, value.id, rNames.detail])
               .finally();
           }
         },

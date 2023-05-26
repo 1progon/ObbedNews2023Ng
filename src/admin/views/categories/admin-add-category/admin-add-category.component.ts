@@ -45,7 +45,7 @@ export class AdminAddCategoryComponent implements OnInit {
             .navigate(['/', rNames.admin,
               rNames.catNested,
               value.id,
-              rNames.show])
+              rNames.detail])
             .finally();
         },
         error: err => console.error(err)

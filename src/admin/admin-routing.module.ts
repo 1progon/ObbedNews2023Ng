@@ -45,8 +45,8 @@ const routes: Routes = [
               {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
               {
                 path: ':' + rNames.id, children: [
-                  {path: '', redirectTo: rNames.show, pathMatch: 'full'},
-                  {path: rNames.show, component: AdminUserDetailComponent},
+                  {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
+                  {path: rNames.detail, component: AdminUserDetailComponent},
                   // {path: rNames.userEdit, component: AdminUserEditComponent},
                   // {path: rNames.userRemove, component: AdminUserRemoveComponent},
                 ]
@@ -61,8 +61,8 @@ const routes: Routes = [
                 path: ':' + rNames.id,
                 component: AdminWordsWrapperComponent,
                 children: [
-                  {path: '', redirectTo: rNames.show, pathMatch: 'full'},
-                  {path: rNames.show, component: AdminWordDetailComponent},
+                  {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
+                  {path: rNames.detail, component: AdminWordDetailComponent},
                   {path: rNames.edit, component: AdminWordEditComponent},
                   {path: rNames.remove, component: AdminWordRemoveComponent},
                 ]
@@ -80,7 +80,7 @@ const routes: Routes = [
               {path: rNames.add, component: AdminAddCategoryComponent},
               {
                 path: ':' + rNames.id, children: [
-                  {path: rNames.show, component: AdminCategoryDetailComponent},
+                  {path: rNames.detail, component: AdminCategoryDetailComponent},
                   // {path: rNames.edit, component: 'edit'},
                   // {path: rNames.remove, component: 'remove'},
                 ]
@@ -93,7 +93,7 @@ const routes: Routes = [
               {path: rNames.add, component: AdminAddParentCategoryComponent},
               {
                 path: ':' + rNames.id, children: [
-                  {path: rNames.show, component: AdminParentCategoryDetailComponent},
+                  {path: rNames.detail, component: AdminParentCategoryDetailComponent},
                   // {path: routeNames.edit, component: 'edit'},
                   // {path: routeNames.remove, component: 'remove'},
                 ]
