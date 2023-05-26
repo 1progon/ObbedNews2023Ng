@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {AdminWordsWrapperService} from "../admin-words-wrapper.service";
 import {Category} from "../../../../app/interfaces/words/Category";
@@ -31,6 +31,7 @@ export class AdminWordAddComponent implements OnInit {
 
   constructor(private adminNewsService: AdminWordService,
               private router: Router,
+              private route: ActivatedRoute,
               private san: DomSanitizer,
               private wrapperService: AdminWordsWrapperService
   ) {
@@ -70,7 +71,7 @@ export class AdminWordAddComponent implements OnInit {
         next: value => {
           if (value.id) {
             this.router
-              .navigate(['/', rNames.admin, rNames.dictionary, value.id, rNames.detail])
+              .navigate([value.id, rNames.detail], {relativeTo: this.route.parent})
               .finally();
           }
         },

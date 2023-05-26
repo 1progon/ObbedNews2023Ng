@@ -42,7 +42,10 @@ const routes: Routes = [
         children: [
           {
             path: rNames.users, children: [
-              {path: '', component: AdminUsersIndexComponent, title: 'Admin Users Index'},
+              {
+                path: '', component: AdminUsersIndexComponent,
+                title: 'Admin Users Index'
+              },
               {
                 path: ':' + rNames.id, children: [
                   {path: '', redirectTo: rNames.detail, pathMatch: 'full'},
@@ -55,8 +58,8 @@ const routes: Routes = [
           },
           {
             path: rNames.dictionary, children: [
-              {path: '', component: AdminWordsIndexComponent, title: 'All News'},
-              {path: rNames.add, component: AdminWordAddComponent, title: 'Add News'},
+              {path: '', component: AdminWordsIndexComponent, title: 'All Words'},
+              {path: rNames.add, component: AdminWordAddComponent, title: 'Add Words'},
               {
                 path: ':' + rNames.id,
                 component: AdminWordsWrapperComponent,
