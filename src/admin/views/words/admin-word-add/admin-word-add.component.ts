@@ -69,7 +69,8 @@ export class AdminWordAddComponent implements OnInit {
       .subscribe({
         next: value => {
           if (value.id) {
-            this.router.navigate(['/', rNames.dictionary, value.slug])
+            this.router
+              .navigate(['/', rNames.admin, rNames.dictionary, value.id, rNames.show])
               .finally();
           }
         },
