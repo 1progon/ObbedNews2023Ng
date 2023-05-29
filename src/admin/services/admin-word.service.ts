@@ -68,9 +68,9 @@ export class AdminWordService {
 
   }
 
-  videoFoldersToDb(newsId: number) {
-    return this.http.get<{ status: number; message: string }>(this.api + '/' + newsId + '/AddVideosToDb');
-  }
+  // videoFoldersToDb(newsId: number) {
+  //   return this.http.get<{ status: number; message: string }>(this.api + '/' + newsId + '/AddVideosToDb');
+  // }
 
   private checkIsAdmin() {
     if (!this.authService.isLoggedAdmin()) {

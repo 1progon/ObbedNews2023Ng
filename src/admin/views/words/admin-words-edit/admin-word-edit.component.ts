@@ -212,22 +212,22 @@ export class AdminWordEditComponent implements OnInit {
       .add(() => this.isPosting = false)
   }
 
-  videoFoldersToDb() {
-    if (!this.newsId) {
-      return;
-    }
-    this.adminWordService.videoFoldersToDb(this.newsId)
-      .subscribe({
-        next: value => {
-          this.toastService.pushToast({
-            type: ToastType.Info,
-            message: value.message
-          })
-        },
-        error: (err: HttpErrorResponse) => this.toastService.pushToast({type: ToastType.Danger, message: err.error})
-
-      })
-  }
+  // videoFoldersToDb() {
+  //   if (!this.newsId) {
+  //     return;
+  //   }
+  //   this.adminWordService.videoFoldersToDb(this.newsId)
+  //     .subscribe({
+  //       next: value => {
+  //         this.toastService.pushToast({
+  //           type: ToastType.Info,
+  //           message: value.message
+  //         })
+  //       },
+  //       error: (err: HttpErrorResponse) => this.toastService.pushToast({type: ToastType.Danger, message: err.error})
+  //
+  //     })
+  // }
 
 
   setActiveSection(speechPart: SpeechPartSection,
