@@ -26,7 +26,7 @@
           <a *ngIf="authService.user?.userType == UserType.Admin"
              [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/', r.admin]"
              class="btn"
-             routerLinkActive="btn-outline">Админ</a>
+             routerLinkActive="btn-outline">😎 Админ</a>
 
           <button (click)="authService.logout()" class="btn btn-danger">Выйти</button>
         </ng-container>
