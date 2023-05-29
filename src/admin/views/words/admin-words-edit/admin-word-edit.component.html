@@ -1,6 +1,6 @@
 <app-preloader *ngIf="isPosting || loading"/>
 
-<h2>Edit Word {{newsId}}</h2>
+<h2>Edit Word ID: {{newsId}}, {{form.name}}</h2>
 
 <div class="buttons">
   <a [relativeTo]="route.parent" [routerLink]="r.detail"
