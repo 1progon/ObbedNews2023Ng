@@ -84,7 +84,7 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
 
           this.votedLikeFor = LikeType.Undefined;
 
-          this.titleService.setTitle(value.name + '|' + environment.websiteName);
+          this.titleService.setTitle(value.name + ' перевод, значение на ' + environment.websiteName);
           this.word = value;
           this.updateSumCount();
 
