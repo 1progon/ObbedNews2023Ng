@@ -3,6 +3,7 @@ import {User} from "../../../../app/interfaces/User";
 import {rNames} from "../../../../app/app-routing.module";
 import {OrderStatus} from "../../../../app/enums/payments/OrderStatus";
 import {UsersService} from "../../../services/users.service";
+import {UserType} from "../../../../app/enums/users/UserType";
 
 @Component({
   selector: 'app-admin-users-index',
@@ -15,6 +16,8 @@ export class AdminUsersIndexComponent implements OnInit {
 
   protected readonly rNames = rNames;
   protected readonly OrderStatus = OrderStatus;
+
+  protected readonly UserType = UserType;
 
   constructor(private userService: UsersService) {
   }

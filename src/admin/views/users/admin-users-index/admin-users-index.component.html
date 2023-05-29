@@ -9,6 +9,7 @@
     <th>Guid</th>
     <th>Login</th>
     <th>Email</th>
+    <th>Status</th>
     <th>Orders</th>
     <th>Detail</th>
 
@@ -20,6 +21,7 @@
     <td>{{user.account.guid}}</td>
     <td>{{user.login}}</td>
     <td>{{user.account.email}}</td>
+    <td>{{UserType[user.account.userType]}}</td>
     <td>
       <p *ngFor="let order of user.payPalOrders; index as i">
         {{i + 1}}.

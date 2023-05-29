@@ -1,4 +1,5 @@
 import type {User} from "./User";
+import {UserType} from "../enums/users/UserType";
 
 export interface Account {
   id: number;
@@ -12,4 +13,6 @@ export interface Account {
 
   user: User;
   userId: number;
+
+  userType: UserType;
 }
