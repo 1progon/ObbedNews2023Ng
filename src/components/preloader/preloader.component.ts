@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./preloader.component.scss']
 })
 export class PreloaderComponent {
-  @Input() loadName: string = 'Loading';
+  @Input() loadName: string = 'Загрузка';
 }
