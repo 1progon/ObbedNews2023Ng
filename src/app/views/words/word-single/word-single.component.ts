@@ -4,10 +4,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {DomSanitizer, SafeHtml, SafeResourceUrl, Title} from "@angular/platform-browser";
 import {WordsWrapperService} from "../words-wrapper.service";
 import {WordWrapperComponent} from "../word-wrapper/word-wrapper.component";
-import {rNames} from "../../../app-routing.module";
 import {Word} from "../../../interfaces/words/Word";
 import {LikeType} from "../../../enums/news/LikeType";
-import {environment} from "../../../../environments/environment";
 import {WordVideoSection} from "../../../interfaces/words/WordVideoSection";
 import {SpeechPartEnum} from "../../../enums/news/SpeechPartEnum";
 import {EngLevel} from "../../../enums/news/EngLevel";
@@ -49,7 +47,6 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
 
   yaButtonsScript: string = 'https://yastatic.net/share2/share.js';
 
-  protected readonly rNames = rNames;
   protected readonly SpeechPartEnum = SpeechPartEnum;
   protected readonly EngLevel = EngLevel;
 
