@@ -10,10 +10,11 @@ import {rNames} from "../../../app-routing.module";
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
+  r = rNames;
+
   dto?: HomepageDto;
   isLoading: boolean = false;
   imagesPath: string = environment.imagesPath;
-  r = rNames;
 
   constructor(private http: HttpClient) {
   }
