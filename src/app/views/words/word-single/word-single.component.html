@@ -14,7 +14,7 @@
           <a *ngFor="let n of nearbyWords"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact: true}"
-             [routerLink]="['/', rNames.dictionary, n.slug]">
+             [routerLink]="['/', r.dictionary, n.slug]">
             <div>{{n.name}}</div>
           </a>
         </div>
