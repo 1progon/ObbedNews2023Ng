@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {DomSanitizer, SafeHtml, SafeResourceUrl, Title} from "@angular/platform-browser";
+import {DomSanitizer, Meta, SafeHtml, SafeResourceUrl, Title} from "@angular/platform-browser";
 import {WordsWrapperService} from "../words-wrapper.service";
 import {WordWrapperComponent} from "../word-wrapper/word-wrapper.component";
 import {Word} from "../../../interfaces/words/Word";
@@ -64,7 +64,8 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
               public wrapperService: WordsWrapperService,
               public wrapperComponent: WordWrapperComponent,
               private renderer: Renderer2,
-              private htmlService: HtmlHeadOptionsService) {
+              private htmlService: HtmlHeadOptionsService,
+              private metaS: Meta) {
   }
 
 
@@ -85,6 +86,11 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
           this.votedLikeFor = LikeType.Undefined;
 
           this.titleService.setTitle(value.name + ' перевод, значение на ' + environment.websiteName);
+          this.metaS.updateTag({
+            name: 'description',
+            content: 'Перевод слова (фразы) ' + value.name + ' c английского языка на русский язык. Значение слова,' +
+              ' перевод, и примеры англо-русские'
+          })
           this.htmlService.setCanonical(this.r.dictionary + '/' + value.slug);
 
           this.word = value;
