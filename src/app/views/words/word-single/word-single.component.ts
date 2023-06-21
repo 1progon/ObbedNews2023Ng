@@ -17,6 +17,9 @@ import {AddCommentDto} from "../../../dto/words/AddCommentDto";
 import {WordComment} from "../../../interfaces/words/WordComment";
 import {FavoriteStatus} from "../../../enums/news/FavoriteStatus";
 import {AccountWordsService} from "../../../../account/services/account-words.service";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {rNames} from "../../../app-routing.module";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-word-single',
@@ -60,7 +63,8 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
               private san: DomSanitizer,
               public wrapperService: WordsWrapperService,
               public wrapperComponent: WordWrapperComponent,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              private htmlService: HtmlHeadOptionsService) {
   }
 
 
@@ -81,6 +85,8 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
           this.votedLikeFor = LikeType.Undefined;
 
           this.titleService.setTitle(value.name + ' перевод, значение на ' + environment.websiteName);
+          this.htmlService.setCanonical(this.r.dictionary + '/' + value.slug);
+
           this.word = value;
           this.updateSumCount();
 
