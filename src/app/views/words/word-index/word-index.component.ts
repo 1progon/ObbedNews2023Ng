@@ -4,6 +4,7 @@ import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {rNames} from "../../../app-routing.module";
 import {Word} from "../../../interfaces/words/Word";
 import {WordService} from "../../../services/word.service";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-word-index',
@@ -18,10 +19,12 @@ export class WordIndexComponent implements OnInit {
 
   constructor(public wordService: WordService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private htmlService: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
+    this.htmlService.setCanonical(this.r.dictionary);
     this.loading = true;
 
     // subscribe to route query params change

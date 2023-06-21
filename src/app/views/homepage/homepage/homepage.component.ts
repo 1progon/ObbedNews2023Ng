@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {HomepageDto} from "../../../dto/homepage/HomepageDto";
 import {environment} from "../../../../environments/environment";
 import {rNames} from "../../../app-routing.module";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-homepage',
@@ -16,10 +17,12 @@ export class HomepageComponent implements OnInit {
   isLoading: boolean = false;
   imagesPath: string = environment.imagesPath;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private htmlService: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
+    this.htmlService.setCanonical();
 
     if (!this.dto) {
       this.isLoading = true;

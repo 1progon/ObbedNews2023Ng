@@ -4,6 +4,7 @@ import {environment} from "../../../../environments/environment";
 import {Category} from "../../../interfaces/words/Category";
 import {ParentCategory} from "../../../interfaces/words/ParentCategory";
 import {CategoriesService} from "../../../services/categories.service";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-categories-index',
@@ -18,10 +19,12 @@ export class CategoriesIndexComponent implements OnInit {
   parentCategories: ParentCategory[] = [];
   loading: boolean = false;
 
-  constructor(private categoriesService: CategoriesService) {
+  constructor(private categoriesService: CategoriesService,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
+    this.htmlS.setCanonical(this.r.catNested);
     this.loading = true;
     this.categoriesService.getCategories()
       .subscribe({

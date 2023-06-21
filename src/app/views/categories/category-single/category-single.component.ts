@@ -5,6 +5,7 @@ import {Title} from "@angular/platform-browser";
 import {rNames} from "../../../app-routing.module";
 import {Word} from "../../../interfaces/words/Word";
 import {WordService} from "../../../services/word.service";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-category-single',
@@ -23,7 +24,8 @@ export class CategorySingleComponent implements OnInit {
   constructor(private title: Title,
               private route: ActivatedRoute,
               private newsService: WordService,
-              private router: Router) {
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +40,8 @@ export class CategorySingleComponent implements OnInit {
 
         this.route.params.subscribe({
           next: params => {
+
+            this.htmlS.setCanonical(this.r.catNested + '/' + params[this.r.slug]);
 
             this.loading = true;
             this.slug = params[this.r.slug];
