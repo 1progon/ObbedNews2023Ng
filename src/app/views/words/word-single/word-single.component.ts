@@ -39,7 +39,6 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
   safeMainImage?: SafeResourceUrl;
   imagesPath: string = environment.imagesPath;
   isInFavorites: boolean = false;
-  hiddenArticle:boolean = false;
 
   isOnlyPreview: boolean = false;
 
@@ -274,12 +273,6 @@ export class WordSingleComponent implements OnInit, AfterViewInit {
 
   }
 
-  updateHiddenArticle(elementToScroll?: HTMLDivElement) {
-    this.hiddenArticle = !this.hiddenArticle;
-    if (this.hiddenArticle && elementToScroll) {
-      elementToScroll.scrollIntoView();
-    }
-  }
 
   showPreview(elementRefToScroll: HTMLDivElement) {
     this.isOnlyPreview = !this.isOnlyPreview;
