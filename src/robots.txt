@@ -1,0 +1,10 @@
+ User-agent: *
+Disallow: /blog/
+Disallow: /admin/
+Disallow: /account/
+Disallow: /category/
+Disallow: /country/
+Disallow: /news/
+Disallow: /pages/
+Disallow: /shops/
+Disallow: /turoperators/
